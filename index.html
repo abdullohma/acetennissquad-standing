@@ -112,9 +112,9 @@
                             <label for="minGames" class="block text-sm font-semibold text-slate-600 mb-2">Minimum Games Played:</label>
                             <div class="relative">
                                 <select id="minGames" onchange="filterPlayers()" class="w-full appearance-none bg-white border-2 border-slate-200 text-slate-700 py-3 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:border-ace focus:ring-4 focus:ring-ace/10 transition-all cursor-pointer font-medium">
-                                    <option value="0">Semua Pemain</option>
+                                    <option value="0" selected>Semua Pemain</option>
                                     <option value="5">5+ Games</option>
-                                    <option value="10" selected>10+ Games</option>
+                                    <option value="10">10+ Games</option>
                                     <option value="15">15+ Games</option>
                                     <option value="20">20+ Games</option>
                                 </select>
@@ -165,14 +165,14 @@
                             <tr>
                                 <th scope="col" class="px-6 py-4 text-center rounded-tl-xl">Rank</th>
                                 <th scope="col" class="px-6 py-4">Player</th>
-                                <th scope="col" class="px-6 py-4 text-center">Games</th>
+                                <th scope="col" class="px-6 py-4 text-center bg-ace">Total Poin</th>
                                 <th scope="col" class="px-6 py-4 text-center">Record (W-L)</th>
                                 <th scope="col" class="px-6 py-4 text-center">Win %</th>
                                 <th scope="col" class="px-6 py-4 text-center">Total Diff</th>
                                 <th scope="col" class="px-6 py-4 text-center">Avg Diff</th>
                                 <th scope="col" class="px-6 py-4 text-center">Diff Bonus</th>
                                 <th scope="col" class="px-6 py-4 text-center">Games Bonus</th>
-                                <th scope="col" class="px-6 py-4 text-center bg-ace rounded-tr-xl">Total Poin</th>
+                                <th scope="col" class="px-6 py-4 text-center rounded-tr-xl">Games</th>
                             </tr>
                         </thead>
                         <tbody id="leaderboardBody" class="divide-y divide-slate-100">
@@ -194,22 +194,24 @@
             { name: "Faiz", games: 12, wins: 8, totalDiff: 15 },
             { name: "Whika", games: 12, wins: 8, totalDiff: 7 },
             { name: "Leo", games: 13, wins: 8, totalDiff: 5 },
-            { name: "Ibam", games: 11, wins: 7, totalDiff: 4 },
             { name: "Frans", games: 21, wins: 12, totalDiff: 1 },
             { name: "Reiza", games: 18, wins: 9, totalDiff: 4 },
-            { name: "Ivo", games: 15, wins: 7, totalDiff: -2 },
             { name: "Kurniawan", games: 8, wins: 2, totalDiff: -7 },
             { name: "Bayu", games: 15, wins: 7, totalDiff: -8 },
             { name: "Zidan", games: 14, wins: 5, totalDiff: -14 },
             { name: "Huda", games: 14, wins: 4, totalDiff: -10 },
-            { name: "Betty", games: 13, wins: 4, totalDiff: -14 }
+            { name: "Betty", games: 13, wins: 4, totalDiff: -14 },
+            { name: "Gusti", games: 19, wins: 11, totalDiff: 5 },
+            { name: "Raka", games: 3, wins: 1, totalDiff: -2 },
+            { name: "Kiswoyo", games: 7, wins: 3, totalDiff: -2 },
+            { name: "Koesadn", games: 20, wins: 7, totalDiff: -3 }
         ];
 
         // Menghitung poin secara dinamis berdasarkan rumus:
         // Points = Win% + (Total_Diff * 0.2) + (Avg_Diff * 2.0) + (Games * 0.18)
         const playersData = rawPlayersData.map(p => {
-            const winRate = (p.wins / p.games) * 100;
-            const avgDiff = p.totalDiff / p.games;
+            const winRate = p.games > 0 ? (p.wins / p.games) * 100 : 0;
+            const avgDiff = p.games > 0 ? p.totalDiff / p.games : 0;
             const diffBonus = (p.totalDiff * 0.2) + (avgDiff * 2.0);
             const gamesBonus = p.games * 0.18;
             const totalPoints = winRate + diffBonus + gamesBonus;
@@ -265,7 +267,9 @@
                     <td class="px-6 py-4">
                         <div class="font-bold text-slate-800 text-base group-hover:text-ace transition-colors">${player.name}</div>
                     </td>
-                    <td class="px-6 py-4 text-center font-medium text-slate-700">${player.games}</td>
+                    <td class="px-6 py-4 text-center bg-ace/5 group-hover:bg-ace/10 transition-colors">
+                        <span class="text-lg font-extrabold text-ace-dark">${player.totalPoints.toFixed(1)}</span>
+                    </td>
                     <td class="px-6 py-4 text-center">
                         <span class="text-emerald-600 font-semibold">${player.wins}W</span> 
                         <span class="text-slate-300 mx-1">-</span> 
@@ -286,9 +290,7 @@
                     <td class="px-6 py-4 text-center text-slate-600 font-medium">
                         +${player.gamesBonus.toFixed(1)}
                     </td>
-                    <td class="px-6 py-4 text-center bg-ace/5 group-hover:bg-ace/10 transition-colors">
-                        <span class="text-lg font-extrabold text-ace-dark">${player.totalPoints.toFixed(1)}</span>
-                    </td>
+                    <td class="px-6 py-4 text-center font-medium text-slate-700">${player.games}</td>
                 `;
                 
                 tbody.appendChild(row);
