@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -99,6 +98,24 @@
         <!-- Main Content -->
         <div class="p-6 md:p-10">
             
+            <!-- Brief Introduction Section -->
+            <div class="max-w-4xl mx-auto mb-10 text-center bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                <h2 class="text-xl md:text-2xl font-bold text-slate-800 mb-3">Selamat datang di Leaderboard <span class="text-ace-dark">ACE Tennis Squad 2026</span>! 🎾</h2>
+                
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed mb-4">
+                    Sistem klasemen kita dirancang sedemikian rupa: <strong>banyak main belum tentu menambah poin</strong>, dan yang sedikit main bisa berada di posisi atas asalkan persentase kemenangan dan <em>diff</em>-nya tinggi. Tapi jangan khawatir, tetap ada <strong>poin bonus tersendiri</strong> untuk setiap <em>game</em> yang dimainkan. 
+                </p>
+
+                <div class="bg-purple-50/80 p-4 md:p-5 rounded-xl border border-purple-100/50 inline-block text-left text-sm md:text-base shadow-sm text-purple-700 space-y-2">
+                    <p>📌 <strong>Btw,</strong> ini bukan peringkat kompetisi resmi yang tegang ya, murni buat <strong>seru-seruan & ngukur statistik pribadi</strong> aja.</p>
+                    <p>📌 Statistik yang ada sekarang juga hasil <em>carry over</em> dari <em>match history</em> waktu teman-teman main bareng admin di sesi dengan <em>host</em> lain sepanjang tahun 2026 <strong>(terbatas pada match yang sempat dicatat admin)</strong>.</p>
+                </div>
+
+                <p class="mt-6 font-semibold text-ace text-lg md:text-xl">
+                    Keep playing with ACE Tennis Squad, push your rank, and have fun on the court! 🔥
+                </p>
+            </div>
+
             <!-- Filter & Stats Row -->
             <div class="flex flex-col lg:flex-row gap-8 mb-10">
                 
@@ -183,6 +200,52 @@
                 </div>
             </div>
             
+            <!-- Secret Admin Stats Reveal -->
+            <div class="mt-8">
+                <button onclick="toggleAdminStats()" class="w-full bg-slate-50 hover:bg-purple-50 border-2 border-slate-200 border-dashed rounded-xl p-4 text-center cursor-pointer transition-all duration-300 group hover:shadow-inner">
+                    <span class="text-slate-500 group-hover:text-ace font-semibold flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                        Peeking admin stats... (Click if you dare 👀)
+                    </span>
+                </button>
+                
+                <div id="adminStatsContent" class="hidden mt-4 transition-all duration-500 opacity-0 transform translate-y-4">
+                    <div class="bg-gradient-to-br from-slate-800 to-purple-900 rounded-2xl p-1 shadow-lg">
+                        <div class="bg-white rounded-xl overflow-hidden">
+                            <div class="bg-slate-800 px-6 py-3 text-white text-center font-bold tracking-wider text-sm uppercase flex items-center justify-center gap-2">
+                                🤫 Statistik Admin (Yang bisa nyusul poin dan bertahan di pucuk sampai akhir tahun, ada sovenir menarik 🎁)
+                            </div>
+                            <div class="table-container overflow-x-auto">
+                                <table class="w-full whitespace-nowrap text-sm text-left">
+                                    <thead class="bg-slate-50 text-slate-500 uppercase font-semibold text-xs tracking-wider">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-4 text-center">Player</th>
+                                            <th scope="col" class="px-6 py-4 text-center text-ace">Total Poin</th>
+                                            <th scope="col" class="px-6 py-4 text-center">Record (W-L)</th>
+                                            <th scope="col" class="px-6 py-4 text-center">Win %</th>
+                                            <th scope="col" class="px-6 py-4 text-center">Total Diff</th>
+                                            <th scope="col" class="px-6 py-4 text-center">Avg Diff</th>
+                                            <th scope="col" class="px-6 py-4 text-center">Games</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="hover:bg-slate-50 transition-colors">
+                                            <td class="px-6 py-4 text-center font-bold text-slate-800">Aliy (Admin)</td>
+                                            <td class="px-6 py-4 text-center"><span class="text-lg font-extrabold text-ace-dark">98.0</span></td>
+                                            <td class="px-6 py-4 text-center"><span class="text-emerald-600 font-semibold">48W</span> <span class="text-slate-300 mx-1">-</span> <span class="text-rose-500 font-semibold">17L</span></td>
+                                            <td class="px-6 py-4 text-center"><span class="text-emerald-600 font-semibold bg-emerald-50 px-2 py-1 rounded-md">73.8%</span></td>
+                                            <td class="px-6 py-4 text-center"><span class="text-emerald-600 font-semibold bg-emerald-50 px-2 py-1 rounded-md">+54</span></td>
+                                            <td class="px-6 py-4 text-center"><span class="text-emerald-600 font-semibold bg-emerald-50 px-2 py-1 rounded-md">+0.83</span></td>
+                                            <td class="px-6 py-4 text-center font-bold text-slate-700">65</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -190,7 +253,6 @@
         // Data mentah pemain (hanya perlu masukkan games, wins, dan totalDiff)
         const rawPlayersData = [
             { name: "Gian", games: 10, wins: 8, totalDiff: 22 },
-            { name: "Aliy", games: 65, wins: 48, totalDiff: 54 },
             { name: "Tommy", games: 19, wins: 13, totalDiff: 19 },
             { name: "Faiz", games: 12, wins: 8, totalDiff: 15 },
             { name: "Whika", games: 12, wins: 8, totalDiff: 7 },
@@ -205,10 +267,10 @@
             { name: "Gusti", games: 23, wins: 15, totalDiff: 17 },
             { name: "Raka", games: 6, wins: 2, totalDiff: -9 },
             { name: "Kiswoyo", games: 13, wins: 5, totalDiff: -14 },
-            { name: "Adnan", games: 4, wins: 3, totalDiff: 2 },
+            { name: "Adnan", games: 24, wins: 10, totalDiff: -1 },
             { name: "Yoses", games: 6, wins: 3, totalDiff: 4 },
             { name: "Bimo", games: 10, wins: 6, totalDiff: 10 },
-            { name: "Reno", games: 6, wins: 5, totalDiff: 10 },
+            { name: "Reno", games: 10, wins: 6, totalDiff: 10 },
             { name: "Syafrul", games: 6, wins: 2, totalDiff: -6 }
         ];
 
@@ -334,6 +396,25 @@
             `).join('');
         }
 
+        function toggleAdminStats() {
+            const content = document.getElementById('adminStatsContent');
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                // Beri jeda sangat kecil agar display block bisa dirender sebelum transisi animasi
+                setTimeout(() => {
+                    content.classList.remove('opacity-0', 'translate-y-4');
+                    content.classList.add('opacity-100', 'translate-y-0');
+                }, 10);
+            } else {
+                content.classList.remove('opacity-100', 'translate-y-0');
+                content.classList.add('opacity-0', 'translate-y-4');
+                // Tunggu animasi selesai baru di-hide
+                setTimeout(() => {
+                    content.classList.add('hidden');
+                }, 500); // Sesuaikan dengan duration-500 di class tailwind
+            }
+        }
+
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', () => {
             filterPlayers();
@@ -341,11 +422,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-```
