@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -120,29 +121,51 @@
             <div class="flex flex-col lg:flex-row gap-8 mb-10">
                 
                 <!-- Filter Section -->
-                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 flex-1 lg:max-w-sm">
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 flex-1 lg:max-w-lg shadow-sm">
                     <div class="flex items-center gap-2 mb-4">
                         <span class="text-xl">📊</span>
                         <h3 class="text-lg font-bold text-slate-800">Filter Tampilan</h3>
                     </div>
-                    <div class="space-y-4">
-                        <div>
-                            <label for="minGames" class="block text-sm font-semibold text-slate-600 mb-2">Minimum Games Played:</label>
-                            <div class="relative">
-                                <select id="minGames" onchange="filterPlayers()" class="w-full appearance-none bg-white border-2 border-slate-200 text-slate-700 py-3 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:border-ace focus:ring-4 focus:ring-ace/10 transition-all cursor-pointer font-medium">
-                                    <option value="0" selected>Semua Pemain</option>
-                                    <option value="5">5+ Games</option>
-                                    <option value="10">10+ Games</option>
-                                    <option value="15">15+ Games</option>
-                                    <option value="20">20+ Games</option>
-                                </select>
-                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
-                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                    <div class="space-y-5">
+                        
+                        <!-- 2 Columns Grid for dropdowns -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Min Games Dropdown -->
+                            <div>
+                                <label for="minGames" class="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Min. Games:</label>
+                                <div class="relative">
+                                    <select id="minGames" onchange="filterPlayers()" class="w-full appearance-none bg-white border-2 border-slate-200 text-slate-700 py-2.5 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:border-ace focus:ring-4 focus:ring-ace/10 transition-all cursor-pointer font-semibold text-sm">
+                                        <option value="0" selected>Semua Laga</option>
+                                        <option value="5">5+ Games</option>
+                                        <option value="10">10+ Games</option>
+                                        <option value="15">15+ Games</option>
+                                        <option value="20">20+ Games</option>
+                                    </select>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Gender Dropdown -->
+                            <div>
+                                <label for="genderFilter" class="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Kategori:</label>
+                                <div class="relative">
+                                    <select id="genderFilter" onchange="filterPlayers()" class="w-full appearance-none bg-white border-2 border-slate-200 text-slate-700 py-2.5 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:border-ace focus:ring-4 focus:ring-ace/10 transition-all cursor-pointer font-semibold text-sm">
+                                        <option value="ALL" selected>Semua Kategori</option>
+                                        <option value="M">👨 Pria (Men's)</option>
+                                        <option value="F">👩 Wanita (Women's)</option>
+                                    </select>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="text-sm font-medium text-ace flex items-center gap-2 bg-ace/5 p-3 rounded-lg border border-ace/10">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+
+                        <!-- Player Count Indicator -->
+                        <div class="text-sm font-medium text-ace flex items-center gap-2 bg-ace/5 p-3 rounded-xl border border-ace/10">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                             <span id="playerCount">Memuat...</span>
                         </div>
                     </div>
@@ -242,44 +265,48 @@
     </div>
 
     <script>
-        // Data mentah pemain (termasuk Wils)
+        // Data mentah pemain dengan penambahan Kategori Gender (M = Male, F = Female)
+        // Jika ada yang salah tebak, ganti 'M' ke 'F' atau sebaliknya.
         const rawPlayersData = [
-            { name: "Gian", games: 10, wins: 8, totalDiff: 22 },
-            { name: "Tommy", games: 19, wins: 13, totalDiff: 19 },
-            { name: "Faiz", games: 12, wins: 8, totalDiff: 15 },
-            { name: "Whika", games: 16, wins: 10, totalDiff: 13 },
-            { name: "Leo", games: 19, wins: 10, totalDiff: 7 },
-            { name: "Frans", games: 25, wins: 14, totalDiff: 1 },
-            { name: "Reiza", games: 22, wins: 12, totalDiff: 8 },
-            { name: "Kurniawan", games: 8, wins: 2, totalDiff: -7 },
-            { name: "Bayu", games: 15, wins: 7, totalDiff: -8 },
-            { name: "Zidan", games: 14, wins: 5, totalDiff: -14 },
-            { name: "Huda", games: 14, wins: 4, totalDiff: -10 },
-            { name: "Betty", games: 25, wins: 13, totalDiff: -6 },
-            { name: "Gusti", games: 27, wins: 19, totalDiff: 23 },
-            { name: "Raka", games: 13, wins: 5, totalDiff: -14 },
-            { name: "Kiswoyo", games: 13, wins: 5, totalDiff: -14 },
-            { name: "Adnan", games: 24, wins: 10, totalDiff: -1 },
-            { name: "Yoses", games: 12, wins: 6, totalDiff: 0 },
-            { name: "Bimo", games: 10, wins: 6, totalDiff: 10 },
-            { name: "Reno", games: 10, wins: 6, totalDiff: 10 },
-            { name: "Syafrul", games: 6, wins: 2, totalDiff: -6 },
-            { name: "Domas", games: 8, wins: 1, totalDiff: -8 },
-            { name: "Ade", games: 4, wins: 1, totalDiff: -4 },
-            { name: "Wils", games: 31, wins: 22, totalDiff: 38 },
-            { name: "Danar", games: 19, wins: 12, totalDiff: 15 },
-            { name: "Hanif", games: 13, wins: 6, totalDiff: -5 },
-            { name: "Uti", games: 10, wins: 4, totalDiff: -2 },
-            { name: "Shania", games: 6, wins: 0, totalDiff: -12 },
-            { name: "Adi", games: 4, wins: 1, totalDiff: -4 },
-            { name: "Anri", games: 6, wins: 2, totalDiff: -6 },
-            { name: "Devia", games: 4, wins: 0, totalDiff: -8 },
-            { name: "Barkah", games: 4, wins: 2, totalDiff: 0 }
+            { name: "Gian", gender: "M", games: 10, wins: 8, totalDiff: 22 },
+            { name: "Tommy", gender: "M", games: 19, wins: 13, totalDiff: 19 },
+            { name: "Faiz", gender: "M", games: 12, wins: 8, totalDiff: 15 },
+            { name: "Whika", gender: "F", games: 16, wins: 10, totalDiff: 13 },
+            { name: "Leo", gender: "M", games: 19, wins: 10, totalDiff: 7 },
+            { name: "Frans", gender: "M", games: 25, wins: 14, totalDiff: 1 },
+            { name: "Reiza", gender: "M", games: 22, wins: 12, totalDiff: 8 },
+            { name: "Kurniawan", gender: "M", games: 8, wins: 2, totalDiff: -7 },
+            { name: "Bayu", gender: "M", games: 15, wins: 7, totalDiff: -8 },
+            { name: "Zidan", gender: "M", games: 14, wins: 5, totalDiff: -14 },
+            { name: "Huda", gender: "M", games: 14, wins: 4, totalDiff: -10 },
+            { name: "Betty", gender: "F", games: 25, wins: 13, totalDiff: -6 },
+            { name: "Gusti", gender: "M", games: 31, wins: 22, totalDiff: 29 },
+            { name: "Raka", gender: "M", games: 13, wins: 5, totalDiff: -14 },
+            { name: "Kiswoyo", gender: "M", games: 13, wins: 5, totalDiff: -14 },
+            { name: "Adnan", gender: "M", games: 24, wins: 10, totalDiff: -1 },
+            { name: "Yoses", gender: "M", games: 12, wins: 6, totalDiff: 0 },
+            { name: "Bimo", gender: "M", games: 10, wins: 6, totalDiff: 10 },
+            { name: "Reno", gender: "M", games: 10, wins: 6, totalDiff: 10 },
+            { name: "Syafrul", gender: "M", games: 6, wins: 2, totalDiff: -6 },
+            { name: "Domas", gender: "M", games: 8, wins: 1, totalDiff: -8 },
+            { name: "Ade", gender: "M", games: 12, wins: 7, totalDiff: 4 },
+            { name: "Wils", gender: "M", games: 31, wins: 22, totalDiff: 38 },
+            { name: "Danar", gender: "M", games: 19, wins: 12, totalDiff: 15 },
+            { name: "Hanif", gender: "M", games: 13, wins: 6, totalDiff: -5 },
+            { name: "Uti", gender: "F", games: 10, wins: 4, totalDiff: -2 },
+            { name: "Shania", gender: "F", games: 6, wins: 0, totalDiff: -12 },
+            { name: "Adi", gender: "M", games: 4, wins: 1, totalDiff: -4 },
+            { name: "Anri", gender: "M", games: 6, wins: 2, totalDiff: -6 },
+            { name: "Devia", gender: "F", games: 4, wins: 0, totalDiff: -8 },
+            { name: "Barkah", gender: "M", games: 4, wins: 2, totalDiff: 0 },
+            { name: "Angwyn", gender: "F", games: 4, wins: 2, totalDiff: -2 },
+            { name: "Totong", gender: "M", games: 4, wins: 2, totalDiff: 2 },
+            { name: "Dani", gender: "M", games: 4, wins: 0, totalDiff: -10 }
         ];
 
         // Data Host
         const rawHostData = [
-            { name: "Aliy", games: 72, wins: 53, totalDiff: 63 }
+            { name: "Aliy", gender: "M", games: 72, wins: 53, totalDiff: 63 }
         ];
 
         // Fungsi perhitungan poin
@@ -307,11 +334,23 @@
 
         let filteredPlayers = [...playersData];
 
+        // FUNGSI FILTER GABUNGAN
         function filterPlayers() {
             const minGames = parseInt(document.getElementById('minGames').value, 10);
-            filteredPlayers = playersData.filter(p => p.games >= minGames);
+            const genderFilter = document.getElementById('genderFilter').value;
+
+            filteredPlayers = playersData.filter(p => {
+                const matchGames = p.games >= minGames;
+                const matchGender = genderFilter === 'ALL' ? true : p.gender === genderFilter;
+                
+                return matchGames && matchGender;
+            });
             
-            document.getElementById('playerCount').innerHTML = `<b>${filteredPlayers.length}</b> Pemain Ditampilkan`;
+            // Re-sort the filtered array just in case
+            filteredPlayers.sort((a, b) => b.totalPoints - a.totalPoints);
+            
+            let categoryText = genderFilter === 'ALL' ? 'Pemain' : (genderFilter === 'M' ? 'Pemain Pria' : 'Pemain Wanita');
+            document.getElementById('playerCount').innerHTML = `<b>${filteredPlayers.length}</b> ${categoryText} Ditampilkan`;
             
             renderStats();
             renderLeaderboard();
@@ -351,7 +390,7 @@
             const tbody = document.getElementById('leaderboardBody');
             
             if(filteredPlayers.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="10" class="px-6 py-8 text-center text-slate-500">Tidak ada pemain yang sesuai dengan filter.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="10" class="px-6 py-8 text-center text-slate-500 font-medium">Tidak ada pemain yang sesuai dengan filter kategori ini.</td></tr>`;
                 return;
             }
 
@@ -360,10 +399,14 @@
                 const rowClass = isTop3 ? 'bg-purple-50/20 hover:bg-purple-50' : 'hover:bg-slate-50';
                 const nameClass = isTop3 ? 'font-bold text-slate-900 text-base' : 'font-semibold text-slate-700';
 
+                // Re-calculating Rank automatically based on the filtered view
                 let rankBadge = `<span class="text-slate-500 font-bold">${index + 1}</span>`;
                 if (index === 0) rankBadge = '<span class="text-2xl" title="1st Place">🥇</span>';
                 if (index === 1) rankBadge = '<span class="text-2xl" title="2nd Place">🥈</span>';
                 if (index === 2) rankBadge = '<span class="text-2xl" title="3rd Place">🥉</span>';
+
+                // Gender Icon next to name
+                const genderIcon = p.gender === 'F' ? '<span class="text-xs ml-1" title="Female">👩</span>' : '<span class="text-xs ml-1" title="Male">👨</span>';
 
                 const losses = p.games - p.wins;
                 const winRateClass = p.winRate >= 60 ? 'text-emerald-600' : (p.winRate < 40 ? 'text-rose-600' : 'text-slate-600');
@@ -377,7 +420,7 @@
                 return `
                     <tr class="transition-colors border-b border-slate-100 last:border-0 ${rowClass}">
                         <td class="px-6 py-4 whitespace-nowrap text-center">${rankBadge}</td>
-                        <td class="px-6 py-4 whitespace-nowrap ${nameClass}">${p.name}</td>
+                        <td class="px-6 py-4 whitespace-nowrap ${nameClass}">${p.name} ${genderIcon}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-center bg-purple-50/40">
                             <span class="text-lg font-black text-ace-dark">${p.totalPoints.toFixed(1)}</span>
                         </td>
@@ -417,10 +460,11 @@
                 const diffColor = p.totalDiff > 0 ? 'text-emerald-600' : (p.totalDiff < 0 ? 'text-rose-600' : 'text-slate-600');
                 const diffBgColor = p.totalDiff > 0 ? 'bg-emerald-50' : (p.totalDiff < 0 ? 'bg-rose-50' : 'bg-slate-50');
                 const diffPrefix = p.totalDiff > 0 ? '+' : '';
+                const genderIcon = p.gender === 'F' ? '👩' : '👨';
 
                 return `
                     <tr class="hover:bg-slate-50 transition-colors border-b border-slate-100 last:border-0">
-                        <td class="px-6 py-4 text-center font-bold text-slate-800">${p.name} (Host)</td>
+                        <td class="px-6 py-4 text-center font-bold text-slate-800">${p.name} ${genderIcon} (Host)</td>
                         <td class="px-6 py-4 text-center"><span class="text-lg font-extrabold text-ace-dark">${p.totalPoints.toFixed(1)}</span></td>
                         <td class="px-6 py-4 text-center"><span class="text-emerald-600 font-semibold">${p.wins}W</span> <span class="text-slate-300 mx-1">-</span> <span class="text-rose-500 font-semibold">${losses}L</span></td>
                         <td class="px-6 py-4 text-center"><span class="${winRateClass} font-semibold ${diffBgColor} px-2 py-1 rounded-md">${p.winRate.toFixed(1)}%</span></td>
@@ -451,9 +495,12 @@
 
         // Initialize on load
         document.addEventListener('DOMContentLoaded', () => {
-            filterPlayers();
+            filterPlayers(); // This will render stats and leaderboard
             renderHostLeaderboard();
         });
     </script>
 </body>
 </html>
+
+
+```
