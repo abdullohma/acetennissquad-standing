@@ -153,8 +153,8 @@
                                 <div class="relative">
                                     <select id="genderFilter" onchange="filterPlayers()" class="w-full appearance-none bg-white border-2 border-slate-200 text-slate-700 py-2.5 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:border-ace focus:ring-4 focus:ring-ace/10 transition-all cursor-pointer font-semibold text-sm">
                                         <option value="ALL" selected>Semua Kategori</option>
-                                        <option value="M">👨 Pria (Men's)</option>
-                                        <option value="F">👩 Wanita (Women's)</option>
+                                        <option value="M">Pria (Men's)</option>
+                                        <option value="F">Wanita (Women's)</option>
                                     </select>
                                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
                                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -265,25 +265,25 @@
     </div>
 
     <script>
-        // Data mentah pemain dengan penambahan Kategori Gender (M = Male, F = Female)
+        // Data mentah pemain dengan Kategori Gender (M = Male, F = Female)
         const rawPlayersData = [
             { name: "Gian", gender: "M", games: 10, wins: 8, totalDiff: 22 },
             { name: "Tommy", gender: "M", games: 19, wins: 13, totalDiff: 19 },
             { name: "Faiz", gender: "M", games: 12, wins: 8, totalDiff: 15 },
             { name: "Whika", gender: "M", games: 16, wins: 10, totalDiff: 13 },
-            { name: "Leo", gender: "M", games: 19, wins: 10, totalDiff: 7 },
+            { name: "Leo", gender: "M", games: 26, wins: 14, totalDiff: 14 },
             { name: "Frans", gender: "M", games: 25, wins: 14, totalDiff: 1 },
             { name: "Reiza", gender: "M", games: 22, wins: 12, totalDiff: 8 },
             { name: "Kurniawan", gender: "M", games: 8, wins: 2, totalDiff: -7 },
             { name: "Bayu", gender: "M", games: 15, wins: 7, totalDiff: -8 },
             { name: "Zidan", gender: "M", games: 14, wins: 5, totalDiff: -14 },
             { name: "Huda", gender: "M", games: 14, wins: 4, totalDiff: -10 },
-            { name: "Betty", gender: "F", games: 25, wins: 13, totalDiff: -6 },
+            { name: "Betty", gender: "F", games: 32, wins: 17, totalDiff: -7 },
             { name: "Gusti", gender: "M", games: 31, wins: 22, totalDiff: 29 },
             { name: "Raka", gender: "M", games: 13, wins: 5, totalDiff: -14 },
             { name: "Kiswoyo", gender: "M", games: 13, wins: 5, totalDiff: -14 },
             { name: "Adnan", gender: "M", games: 24, wins: 10, totalDiff: -1 },
-            { name: "Yoses", gender: "M", games: 12, wins: 6, totalDiff: 0 },
+            { name: "Yoses", gender: "M", games: 19, wins: 10, totalDiff: 5 },
             { name: "Bimo", gender: "M", games: 10, wins: 6, totalDiff: 10 },
             { name: "Reno", gender: "F", games: 10, wins: 6, totalDiff: 10 },
             { name: "Syafrul", gender: "M", games: 6, wins: 2, totalDiff: -6 },
@@ -312,12 +312,16 @@
             { name: "Robertus", gender: "M", games: 7, wins: 4, totalDiff: 0 },
             { name: "Tiara", gender: "F", games: 6, wins: 2, totalDiff: -3 },
             { name: "Tyan", gender: "F", games: 7, wins: 4, totalDiff: -3 },
-            { name: "Ivo", gender: "F", games: 27, wins: 11, totalDiff: -3 }
+            { name: "Ivo", gender: "F", games: 27, wins: 11, totalDiff: -3 },
+            { name: "Alief", gender: "M", games: 7, wins: 2, totalDiff: -9 },
+            { name: "Dzaky", gender: "M", games: 7, wins: 2, totalDiff: -3 },
+            { name: "Gana", gender: "M", games: 7, wins: 4, totalDiff: 1 },
+            { name: "Heru", gender: "M", games: 7, wins: 3, totalDiff: -9 }
         ];
 
         // Data Host
         const rawHostData = [
-            { name: "Aliy", gender: "M", games: 78, wins: 59, totalDiff: 78 }
+            { name: "Aliy", gender: "M", games: 85, wins: 64, totalDiff: 90 }
         ];
 
         // Fungsi perhitungan poin
@@ -416,9 +420,6 @@
                 if (index === 1) rankBadge = '<span class="text-2xl" title="2nd Place">🥈</span>';
                 if (index === 2) rankBadge = '<span class="text-2xl" title="3rd Place">🥉</span>';
 
-                // Gender Icon next to name
-                const genderIcon = p.gender === 'F' ? '<span class="text-xs ml-1" title="Female">👩</span>' : '<span class="text-xs ml-1" title="Male">👨</span>';
-
                 const losses = p.games - p.wins;
                 const winRateClass = p.winRate >= 60 ? 'text-emerald-600' : (p.winRate < 40 ? 'text-rose-600' : 'text-slate-600');
                 
@@ -431,7 +432,7 @@
                 return `
                     <tr class="transition-colors border-b border-slate-100 last:border-0 ${rowClass}">
                         <td class="px-6 py-4 whitespace-nowrap text-center">${rankBadge}</td>
-                        <td class="px-6 py-4 whitespace-nowrap ${nameClass}">${p.name} ${genderIcon}</td>
+                        <td class="px-6 py-4 whitespace-nowrap ${nameClass}">${p.name}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-center bg-purple-50/40">
                             <span class="text-lg font-black text-ace-dark">${p.totalPoints.toFixed(1)}</span>
                         </td>
@@ -471,11 +472,10 @@
                 const diffColor = p.totalDiff > 0 ? 'text-emerald-600' : (p.totalDiff < 0 ? 'text-rose-600' : 'text-slate-600');
                 const diffBgColor = p.totalDiff > 0 ? 'bg-emerald-50' : (p.totalDiff < 0 ? 'bg-rose-50' : 'bg-slate-50');
                 const diffPrefix = p.totalDiff > 0 ? '+' : '';
-                const genderIcon = p.gender === 'F' ? '👩' : '👨';
 
                 return `
                     <tr class="hover:bg-slate-50 transition-colors border-b border-slate-100 last:border-0">
-                        <td class="px-6 py-4 text-center font-bold text-slate-800">${p.name} ${genderIcon} (Host)</td>
+                        <td class="px-6 py-4 text-center font-bold text-slate-800">${p.name} (Host)</td>
                         <td class="px-6 py-4 text-center"><span class="text-lg font-extrabold text-ace-dark">${p.totalPoints.toFixed(1)}</span></td>
                         <td class="px-6 py-4 text-center"><span class="text-emerald-600 font-semibold">${p.wins}W</span> <span class="text-slate-300 mx-1">-</span> <span class="text-rose-500 font-semibold">${losses}L</span></td>
                         <td class="px-6 py-4 text-center"><span class="${winRateClass} font-semibold ${diffBgColor} px-2 py-1 rounded-md">${p.winRate.toFixed(1)}%</span></td>
@@ -512,7 +512,6 @@
     </script>
 </body>
 </html>
-
 
 
 ```
