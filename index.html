@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACE Tennis League - Season Leaderboard</title>
+    <title>ACE Tennis League - Leaderboard & Statistics</title>
     
     <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -73,9 +73,12 @@
                     <img src="https://github.com/abdullohma/shareable-figure/blob/main/IMG_1528.png?raw=true" alt="ACE Tennis Squad Logo" class="relative z-10 h-48 md:h-60 w-auto object-contain hover:scale-105 transition-transform duration-500 mix-blend-multiply brightness-105">
                 </div>
                 
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-3 tracking-tight">
-                    <span class="bg-gradient-to-r from-ace-dark via-ace to-lime-600 bg-clip-text text-transparent drop-shadow-sm">
-                        Season Leaderboard
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-3 tracking-tight leading-tight">
+                    <span class="bg-gradient-to-r from-ace-dark via-ace to-lime-600 bg-clip-text text-transparent drop-shadow-sm block md:inline">
+                        Leaderboard &
+                    </span>
+                    <span class="bg-gradient-to-r from-ace-dark via-ace to-lime-600 bg-clip-text text-transparent drop-shadow-sm block md:inline">
+                        Statistics
                     </span>
                 </h1>
                 
@@ -91,7 +94,7 @@
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-lime-400 opacity-75"></span>
                       <span class="relative inline-flex rounded-full h-3 w-3 bg-lime-500"></span>
                     </span>
-                    Current League Standings
+                    Current Player Stats
                 </div>
             </div>
         </div>
@@ -101,10 +104,10 @@
             
             <!-- Brief Introduction Section -->
             <div class="max-w-4xl mx-auto mb-10 text-center bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                <h2 class="text-xl md:text-2xl font-bold text-slate-800 mb-3">Selamat datang di Leaderboard <span class="text-ace-dark">ACE Tennis Squad 2026</span>! 🎾</h2>
+                <h2 class="text-xl md:text-2xl font-bold text-slate-800 mb-3">Welcome to Player Stats <span class="text-ace-dark">ACE Tennis Squad 2026</span>! 🎾</h2>
                 
                 <p class="text-slate-600 text-sm md:text-base leading-relaxed mb-4">
-                    Sistem klasemen kita dirancang sedemikian rupa: <strong>banyak main belum tentu menambah poin</strong>, dan yang sedikit main bisa berada di posisi atas asalkan persentase kemenangan dan <em>diff</em>-nya tinggi. Tapi jangan khawatir, tetap ada <strong>poin bonus tersendiri</strong> untuk setiap <em>game</em> yang dimainkan. 
+                    Sistem ini dirancang murni untuk mencatat statistik performa kita agar lebih terstruktur dan seru. Di sini kita fokus pada <em>improvement</em> pribadi, baik dari <em>Win Rate</em> maupun <em>Diff</em> (selisih poin).
                 </p>
 
                 <div class="bg-purple-50/80 p-4 md:p-5 rounded-xl border border-purple-100/50 inline-block text-left text-sm md:text-base shadow-sm text-purple-700 space-y-2">
@@ -113,7 +116,7 @@
                 </div>
 
                 <p class="mt-6 font-semibold text-ace text-lg md:text-xl">
-                    Keep playing with ACE Tennis Squad, push your rank, and have fun on the court! 🔥
+                    Keep playing with ACE Tennis Squad, enjoy your progress, and have fun! 🔥
                 </p>
             </div>
 
@@ -128,8 +131,8 @@
                     </div>
                     <div class="space-y-5">
                         
-                        <!-- 2 Columns Grid for dropdowns -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- 3 Columns Grid for dropdowns -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <!-- Min Games Dropdown -->
                             <div>
                                 <label for="minGames" class="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Min. Games:</label>
@@ -155,6 +158,22 @@
                                         <option value="ALL" selected>Semua Kategori</option>
                                         <option value="M">Pria (Men's)</option>
                                         <option value="F">Wanita (Women's)</option>
+                                    </select>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sort By Dropdown -->
+                            <div>
+                                <label for="sortBy" class="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Urutkan:</label>
+                                <div class="relative">
+                                    <select id="sortBy" onchange="filterPlayers()" class="w-full appearance-none bg-white border-2 border-slate-200 text-slate-700 py-2.5 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:border-ace focus:ring-4 focus:ring-ace/10 transition-all cursor-pointer font-semibold text-sm">
+                                        <option value="name" selected>Abjad (A-Z)</option>
+                                        <option value="points">Total Poin</option>
+                                        <option value="winrate">Win %</option>
+                                        <option value="games">Games</option>
                                     </select>
                                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
                                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -204,16 +223,15 @@
                     <table class="w-full whitespace-nowrap text-sm text-left">
                         <thead class="bg-ace-dark text-white uppercase font-semibold text-xs tracking-wider">
                             <tr>
-                                <th scope="col" class="px-6 py-4 text-center rounded-tl-xl">Rank</th>
-                                <th scope="col" class="px-6 py-4">Player</th>
-                                <th scope="col" class="px-6 py-4 text-center bg-ace">Total Poin</th>
-                                <th scope="col" class="px-6 py-4 text-center">Record (W-L)</th>
+                                <th scope="col" class="px-6 py-4 rounded-tl-xl">Player</th>
                                 <th scope="col" class="px-6 py-4 text-center">Win %</th>
+                                <th scope="col" class="px-6 py-4 text-center">Record (W-L)</th>
                                 <th scope="col" class="px-6 py-4 text-center">Total Diff</th>
                                 <th scope="col" class="px-6 py-4 text-center">Avg Diff</th>
                                 <th scope="col" class="px-6 py-4 text-center">Diff Bonus</th>
                                 <th scope="col" class="px-6 py-4 text-center">Games Bonus</th>
-                                <th scope="col" class="px-6 py-4 text-center rounded-tr-xl">Games</th>
+                                <th scope="col" class="px-6 py-4 text-center">Games</th>
+                                <th scope="col" class="px-6 py-4 text-center bg-ace rounded-tr-xl">Total Poin</th>
                             </tr>
                         </thead>
                         <tbody id="leaderboardBody" class="divide-y divide-slate-100">
@@ -242,13 +260,13 @@
                                 <table class="w-full whitespace-nowrap text-sm text-left">
                                     <thead class="bg-slate-50 text-slate-500 uppercase font-semibold text-xs tracking-wider">
                                         <tr>
-                                            <th scope="col" class="px-6 py-4 text-center">Player</th>
-                                            <th scope="col" class="px-6 py-4 text-center text-ace">Total Poin</th>
-                                            <th scope="col" class="px-6 py-4 text-center">Record (W-L)</th>
+                                            <th scope="col" class="px-6 py-4 rounded-tl-xl">Player</th>
                                             <th scope="col" class="px-6 py-4 text-center">Win %</th>
+                                            <th scope="col" class="px-6 py-4 text-center">Record (W-L)</th>
                                             <th scope="col" class="px-6 py-4 text-center">Total Diff</th>
                                             <th scope="col" class="px-6 py-4 text-center">Avg Diff</th>
                                             <th scope="col" class="px-6 py-4 text-center">Games</th>
+                                            <th scope="col" class="px-6 py-4 text-center text-ace rounded-tr-xl">Total Poin</th>
                                         </tr>
                                     </thead>
                                     <tbody id="hostLeaderboardBody">
@@ -341,7 +359,7 @@
                     gamesBonus,
                     totalPoints: Math.max(0, totalPoints) // Mencegah poin minus
                 };
-            }).sort((a, b) => b.totalPoints - a.totalPoints);
+            });
         }
 
         const playersData = calculateStats(rawPlayersData);
@@ -351,8 +369,16 @@
 
         // FUNGSI FILTER GABUNGAN
         function filterPlayers() {
-            const minGames = parseInt(document.getElementById('minGames').value, 10);
-            const genderFilter = document.getElementById('genderFilter').value;
+            const minGamesElement = document.getElementById('minGames');
+            const genderFilterElement = document.getElementById('genderFilter');
+            const sortByElement = document.getElementById('sortBy');
+
+            // Null check to prevent errors if DOM is not fully ready
+            if (!minGamesElement || !genderFilterElement || !sortByElement) return;
+
+            const minGames = parseInt(minGamesElement.value, 10);
+            const genderFilter = genderFilterElement.value;
+            const sortBy = sortByElement.value;
 
             filteredPlayers = playersData.filter(p => {
                 const matchGames = p.games >= minGames;
@@ -361,11 +387,20 @@
                 return matchGames && matchGender;
             });
             
-            // Re-sort the filtered array just in case
-            filteredPlayers.sort((a, b) => b.totalPoints - a.totalPoints);
+            // Re-sort the filtered array based on user selection
+            filteredPlayers.sort((a, b) => {
+                if (sortBy === 'points') return b.totalPoints - a.totalPoints;
+                if (sortBy === 'winrate') return b.winRate - a.winRate;
+                if (sortBy === 'games') return b.games - a.games;
+                if (sortBy === 'name') return a.name.localeCompare(b.name);
+                return a.name.localeCompare(b.name); // Fallback to name
+            });
             
             let categoryText = genderFilter === 'ALL' ? 'Pemain' : (genderFilter === 'M' ? 'Pemain Pria' : 'Pemain Wanita');
-            document.getElementById('playerCount').innerHTML = `<b>${filteredPlayers.length}</b> ${categoryText} Ditampilkan`;
+            const countElement = document.getElementById('playerCount');
+            if (countElement) {
+                countElement.innerHTML = `<b>${filteredPlayers.length}</b> ${categoryText} Ditampilkan`;
+            }
             
             renderStats();
             renderLeaderboard();
@@ -373,6 +408,7 @@
 
         function renderStats() {
             const summaryDiv = document.getElementById('statsSummary');
+            if (!summaryDiv) return;
             
             if(filteredPlayers.length === 0) {
                  summaryDiv.innerHTML = '';
@@ -403,22 +439,21 @@
 
         function renderLeaderboard() {
             const tbody = document.getElementById('leaderboardBody');
+            const sortByElement = document.getElementById('sortBy');
+            const sortBy = sortByElement ? sortByElement.value : 'name';
+            
+            if (!tbody) return;
             
             if(filteredPlayers.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="10" class="px-6 py-8 text-center text-slate-500 font-medium">Tidak ada pemain yang sesuai dengan filter kategori ini.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="9" class="px-6 py-8 text-center text-slate-500 font-medium">Tidak ada pemain yang sesuai dengan filter kategori ini.</td></tr>`;
                 return;
             }
 
             tbody.innerHTML = filteredPlayers.map((p, index) => {
-                const isTop3 = index < 3;
-                const rowClass = isTop3 ? 'bg-purple-50/20 hover:bg-purple-50' : 'hover:bg-slate-50';
-                const nameClass = isTop3 ? 'font-bold text-slate-900 text-base' : 'font-semibold text-slate-700';
-
-                // Re-calculating Rank automatically based on the filtered view
-                let rankBadge = `<span class="text-slate-500 font-bold">${index + 1}</span>`;
-                if (index === 0) rankBadge = '<span class="text-2xl" title="1st Place">🥇</span>';
-                if (index === 1) rankBadge = '<span class="text-2xl" title="2nd Place">🥈</span>';
-                if (index === 2) rankBadge = '<span class="text-2xl" title="3rd Place">🥉</span>';
+                // Highlight tipis hanya jika tidak diurutkan berdasarkan Abjad, dan player masuk 3 besar
+                const isTopHighlight = (sortBy !== 'name' && index < 3);
+                const rowClass = isTopHighlight ? 'bg-purple-50/40 hover:bg-purple-50' : 'hover:bg-slate-50';
+                const nameClass = isTopHighlight ? 'font-bold text-slate-900 text-base' : 'font-semibold text-slate-700';
 
                 const losses = p.games - p.wins;
                 const winRateClass = p.winRate >= 60 ? 'text-emerald-600' : (p.winRate < 40 ? 'text-rose-600' : 'text-slate-600');
@@ -431,16 +466,12 @@
 
                 return `
                     <tr class="transition-colors border-b border-slate-100 last:border-0 ${rowClass}">
-                        <td class="px-6 py-4 whitespace-nowrap text-center">${rankBadge}</td>
                         <td class="px-6 py-4 whitespace-nowrap ${nameClass}">${p.name}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center bg-purple-50/40">
-                            <span class="text-lg font-black text-ace-dark">${p.totalPoints.toFixed(1)}</span>
+                        <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${winRateClass}">
+                            ${p.winRate.toFixed(1)}%
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center">
                             <span class="font-bold text-emerald-600">${p.wins}W</span> <span class="text-slate-300 mx-1">-</span> <span class="font-bold text-rose-500">${losses}L</span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${winRateClass}">
-                            ${p.winRate.toFixed(1)}%
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${diffColor}">
                             ${diffPrefix}${p.totalDiff}
@@ -457,6 +488,9 @@
                         <td class="px-6 py-4 whitespace-nowrap text-center font-bold text-slate-700">
                             ${p.games}
                         </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center bg-purple-50/40">
+                            <span class="text-lg font-black text-ace-dark">${p.totalPoints.toFixed(1)}</span>
+                        </td>
                     </tr>
                 `;
             }).join('');
@@ -464,6 +498,7 @@
 
         function renderHostLeaderboard() {
             const tbody = document.getElementById('hostLeaderboardBody');
+            if (!tbody) return;
             
             tbody.innerHTML = hostData.map((p, index) => {
                 const losses = p.games - p.wins;
@@ -475,13 +510,13 @@
 
                 return `
                     <tr class="hover:bg-slate-50 transition-colors border-b border-slate-100 last:border-0">
-                        <td class="px-6 py-4 text-center font-bold text-slate-800">${p.name} (Host)</td>
-                        <td class="px-6 py-4 text-center"><span class="text-lg font-extrabold text-ace-dark">${p.totalPoints.toFixed(1)}</span></td>
-                        <td class="px-6 py-4 text-center"><span class="text-emerald-600 font-semibold">${p.wins}W</span> <span class="text-slate-300 mx-1">-</span> <span class="text-rose-500 font-semibold">${losses}L</span></td>
+                        <td class="px-6 py-4 font-bold text-slate-800">${p.name} (Host)</td>
                         <td class="px-6 py-4 text-center"><span class="${winRateClass} font-semibold ${diffBgColor} px-2 py-1 rounded-md">${p.winRate.toFixed(1)}%</span></td>
+                        <td class="px-6 py-4 text-center"><span class="text-emerald-600 font-semibold">${p.wins}W</span> <span class="text-slate-300 mx-1">-</span> <span class="text-rose-500 font-semibold">${losses}L</span></td>
                         <td class="px-6 py-4 text-center"><span class="${diffColor} font-semibold ${diffBgColor} px-2 py-1 rounded-md">${diffPrefix}${p.totalDiff}</span></td>
                         <td class="px-6 py-4 text-center"><span class="${diffColor} font-semibold ${diffBgColor} px-2 py-1 rounded-md">${diffPrefix}${p.avgDiff.toFixed(2)}</span></td>
                         <td class="px-6 py-4 text-center font-bold text-slate-700">${p.games}</td>
+                        <td class="px-6 py-4 text-center"><span class="text-lg font-extrabold text-ace-dark">${p.totalPoints.toFixed(1)}</span></td>
                     </tr>
                 `;
             }).join('');
