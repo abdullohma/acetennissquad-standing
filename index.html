@@ -103,7 +103,7 @@
         <div class="p-6 md:p-10">
             
             <!-- Brief Introduction Section -->
-            <div class="max-w-4xl mx-auto mb-10 text-center bg-slate-50 p-6 rounded-2xl border border-slate-100">
+            <div class="max-w-4xl mx-auto mb-8 text-center bg-slate-50 p-6 rounded-2xl border border-slate-100">
                 <h2 class="text-xl md:text-2xl font-bold text-slate-800 mb-5 leading-snug">
                     Welcome to Player Stats
                     <span class="text-ace-dark block text-2xl md:text-3xl mt-2">ACE Tennis Squad</span>
@@ -122,6 +122,18 @@
                 <p class="mt-6 font-semibold text-ace text-lg md:text-xl">
                     Keep playing with ACE Tennis Squad, enjoy your progress, and have fun! 🔥
                 </p>
+            </div>
+
+            <!-- FORMAT TOGGLE BUTTONS -->
+            <div class="flex justify-center mb-10">
+                <div class="inline-flex bg-slate-100 p-1.5 rounded-full shadow-inner border border-slate-200">
+                    <button id="btnDouble" onclick="switchFormat('double')" class="px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-transparent text-slate-500 hover:text-ace">
+                        🎾 Format Double
+                    </button>
+                    <button id="btnSingle" onclick="switchFormat('single')" class="px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-ace text-white shadow-md">
+                        🏸 Format Single
+                    </button>
+                </div>
             </div>
 
             <!-- Filter & Stats Row -->
@@ -297,8 +309,10 @@
     </div>
 
     <script>
-        // Data mentah pemain dengan Kategori Gender (M = Male, F = Female)
-        const rawPlayersData = [
+        // ============================================
+        // DATA DOUBLE FORMAT
+        // ============================================
+        const rawDoublePlayersData = [
             { name: "Gian", gender: "M", games: 10, wins: 8, totalDiff: 22 },
             { name: "Tommy", gender: "M", games: 19, wins: 13, totalDiff: 19 },
             { name: "Faiz", gender: "M", games: 12, wins: 8, totalDiff: 15 },
@@ -368,12 +382,56 @@
             { name: "Try", gender: "M", games: 4, wins: 0, totalDiff: -8 }
         ];
 
-        // Data Host
-        const rawHostData = [
+        const rawDoubleHostData = [
             { name: "Aliy", gender: "M", games: 101, wins: 76, totalDiff: 112 }
         ];
 
-        // Fungsi perhitungan poin
+        // ============================================
+        // DATA SINGLE FORMAT
+        // ============================================
+        const rawSinglePlayersData = [
+            { name: "Ade", gender: "M", games: 16, wins: 11, totalDiff: 8 },
+            { name: "Adnan", gender: "M", games: 8, wins: 5, totalDiff: 2 },
+            { name: "Amani", gender: "F", games: 4, wins: 2, totalDiff: 2 },
+            { name: "Andhika", gender: "M", games: 4, wins: 4, totalDiff: 12 },
+            { name: "Angwyn", gender: "M", games: 8, wins: 4, totalDiff: -4 },
+            { name: "Arbar", gender: "M", games: 4, wins: 2, totalDiff: 0 },
+            { name: "Arief", gender: "M", games: 4, wins: 3, totalDiff: 2 },
+            { name: "Bayu", gender: "M", games: 12, wins: 5, totalDiff: 2 },
+            { name: "Dani", gender: "M", games: 4, wins: 0, totalDiff: -10 },
+            { name: "Domas", gender: "M", games: 16, wins: 1, totalDiff: -19 },
+            { name: "Eko", gender: "M", games: 4, wins: 3, totalDiff: 4 },
+            { name: "Frans", gender: "M", games: 4, wins: 3, totalDiff: 6 },
+            { name: "Ganang", gender: "M", games: 4, wins: 1, totalDiff: 0 },
+            { name: "Geri", gender: "M", games: 4, wins: 2, totalDiff: 0 },
+            { name: "Gusti", gender: "M", games: 20, wins: 14, totalDiff: 28 },
+            { name: "Hanung", gender: "M", games: 8, wins: 1, totalDiff: -10 },
+            { name: "Nanang", gender: "M", games: 4, wins: 1, totalDiff: -2 },
+            { name: "Pamungkas", gender: "M", games: 4, wins: 3, totalDiff: 4 },
+            { name: "Raka", gender: "M", games: 8, wins: 2, totalDiff: -14 },
+            { name: "Rama", gender: "M", games: 4, wins: 2, totalDiff: -4 },
+            { name: "Reiza", gender: "M", games: 8, wins: 7, totalDiff: 10 },
+            { name: "Rendi", gender: "M", games: 4, wins: 3, totalDiff: 0 },
+            { name: "Totong", gender: "M", games: 4, wins: 2, totalDiff: 2 },
+            { name: "Try", gender: "M", games: 8, wins: 0, totalDiff: -18 },
+            { name: "Windra", gender: "M", games: 4, wins: 4, totalDiff: 10 },
+            { name: "Wisnu", gender: "M", games: 4, wins: 3, totalDiff: 2 },
+            { name: "Yoses", gender: "M", games: 4, wins: 0, totalDiff: -10 }
+        ];
+
+        const rawSingleHostData = [
+            { name: "Aliy", gender: "M", games: 16, wins: 12, totalDiff: 16 }
+        ];
+
+        // ============================================
+        // LOGIC & STATE
+        // ============================================
+        let activeFormat = 'single'; // Default diubah menjadi Single
+        let playersData = [];
+        let hostData = [];
+        let filteredPlayers = [];
+
+        // Fungsi perhitungan poin universal
         function calculateStats(players) {
             return players.map(p => {
                 const winRate = p.games > 0 ? (p.wins / p.games) * 100 : 0;
@@ -388,15 +446,44 @@
                     avgDiff,
                     diffBonus,
                     gamesBonus,
-                    totalPoints: Math.max(0, totalPoints) // Mencegah poin minus
+                    totalPoints: totalPoints // Menampilkan poin asli (bisa negatif)
                 };
             });
         }
 
-        const playersData = calculateStats(rawPlayersData);
-        const hostData = calculateStats(rawHostData);
+        // Fungsi untuk mengganti format (Single/Double)
+        function switchFormat(format) {
+            activeFormat = format;
+            
+            // Update UI Button Styles
+            const btnDouble = document.getElementById('btnDouble');
+            const btnSingle = document.getElementById('btnSingle');
+            
+            if (format === 'double') {
+                btnDouble.className = "px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-ace text-white shadow-md";
+                btnSingle.className = "px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-transparent text-slate-500 hover:text-ace";
+            } else {
+                btnSingle.className = "px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-ace text-white shadow-md";
+                btnDouble.className = "px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-transparent text-slate-500 hover:text-ace";
+            }
 
-        let filteredPlayers = [...playersData];
+            // Reload data
+            initData();
+        }
+
+        // Inisialisasi data berdasarkan format yang aktif
+        function initData() {
+            if (activeFormat === 'double') {
+                playersData = calculateStats(rawDoublePlayersData);
+                hostData = calculateStats(rawDoubleHostData);
+            } else {
+                playersData = calculateStats(rawSinglePlayersData);
+                hostData = calculateStats(rawSingleHostData);
+            }
+            
+            filterPlayers();
+            renderHostLeaderboard();
+        }
 
         // FUNGSI FILTER GABUNGAN
         function filterPlayers() {
@@ -405,7 +492,6 @@
             const sortByElement = document.getElementById('sortBy');
             const searchInputElement = document.getElementById('searchInput');
 
-            // Null check to prevent errors if DOM is not fully ready
             if (!minGamesElement || !genderFilterElement || !sortByElement) return;
 
             const minGames = parseInt(minGamesElement.value, 10);
@@ -479,7 +565,7 @@
             if (!tbody) return;
             
             if(filteredPlayers.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="9" class="px-6 py-8 text-center text-slate-500 font-medium">Tidak ada pemain yang sesuai dengan filter kategori ini.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="9" class="px-6 py-8 text-center text-slate-500 font-medium">Tidak ada pemain yang sesuai dengan filter/pencarian ini.</td></tr>`;
                 return;
             }
 
@@ -575,14 +661,11 @@
 
         // Initialize on load
         document.addEventListener('DOMContentLoaded', () => {
-            filterPlayers(); // This will render stats and leaderboard
-            renderHostLeaderboard();
+            initData(); // Calls calculateStats based on default format then renders
         });
     </script>
 </body>
 </html>
-
-
 
 
 ```
