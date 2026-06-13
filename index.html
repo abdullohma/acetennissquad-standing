@@ -49,6 +49,12 @@
         .table-container::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
+        
+        /* Tooltip hint styling */
+        .tooltip-hint {
+            border-bottom: 1px dashed #cbd5e1;
+            cursor: help;
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-800 min-h-screen p-4 md:p-8 text-slate-800 antialiased selection:bg-ace-light selection:text-white">
@@ -124,16 +130,41 @@
                 </p>
             </div>
 
-            <!-- FORMAT TOGGLE BUTTONS -->
-            <div class="flex justify-center mb-10">
+            <!-- TOGGLE BUTTONS -->
+            <div class="flex flex-col lg:flex-row justify-center items-center gap-4 lg:gap-6 mb-10">
+                <!-- FORMAT TOGGLE -->
                 <div class="inline-flex bg-slate-100 p-1.5 rounded-full shadow-inner border border-slate-200">
-                    <button id="btnDouble" onclick="switchFormat('double')" class="px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-transparent text-slate-500 hover:text-ace flex items-center gap-2 justify-center">
+                    <button id="btnDouble" onclick="switchFormat('double')" class="px-5 md:px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 bg-transparent text-slate-500 hover:text-ace flex items-center gap-2 justify-center">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path></svg>
                         Double
                     </button>
-                    <button id="btnSingle" onclick="switchFormat('single')" class="px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-ace text-white shadow-md flex items-center gap-2 justify-center">
+                    <button id="btnSingle" onclick="switchFormat('single')" class="px-5 md:px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 bg-ace text-white shadow-md flex items-center gap-2 justify-center">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                         Single
+                    </button>
+                </div>
+                
+                <!-- GENDER/CATEGORY TOGGLE -->
+                <div class="inline-flex bg-slate-100 p-1.5 rounded-full shadow-inner border border-slate-200">
+                    <button id="btnCatAll" onclick="switchGender('ALL')" class="px-4 md:px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 bg-ace text-white shadow-md flex items-center gap-2 justify-center">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                           <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
+                        </svg>
+                        All
+                    </button>
+                    <button id="btnCatM" onclick="switchGender('M')" class="px-4 md:px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 bg-transparent text-slate-500 hover:text-ace flex items-center gap-2 justify-center">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="6" r="4"></circle>
+                            <path d="M16 11H8c-2.2 0-4 1.8-4 4v6h16v-6c0-2.2-1.8-4-4-4z"></path>
+                        </svg>
+                        Men
+                    </button>
+                    <button id="btnCatF" onclick="switchGender('F')" class="px-4 md:px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 bg-transparent text-slate-500 hover:text-ace flex items-center gap-2 justify-center">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="6" r="4"></circle>
+                            <path d="M12 11l-6 11h12z"></path>
+                        </svg>
+                        Women
                     </button>
                 </div>
             </div>
@@ -149,8 +180,8 @@
                     </div>
                     <div class="space-y-5">
                         
-                        <!-- 3 Columns Grid for dropdowns -->
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <!-- 2 Columns Grid for dropdowns -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <!-- Min Games Dropdown -->
                             <div>
                                 <label for="minGames" class="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Min. Games:</label>
@@ -161,21 +192,6 @@
                                         <option value="10">10+ Games</option>
                                         <option value="15">15+ Games</option>
                                         <option value="20">20+ Games</option>
-                                    </select>
-                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
-                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Gender Dropdown -->
-                            <div>
-                                <label for="genderFilter" class="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Kategori:</label>
-                                <div class="relative">
-                                    <select id="genderFilter" onchange="filterPlayers()" class="w-full appearance-none bg-white border-2 border-slate-200 text-slate-700 py-2.5 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:border-ace focus:ring-4 focus:ring-ace/10 transition-all cursor-pointer font-semibold text-sm">
-                                        <option value="ALL" selected>All Categories</option>
-                                        <option value="M">Pria (Men's)</option>
-                                        <option value="F">Wanita (Women's)</option>
                                     </select>
                                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
                                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -229,18 +245,33 @@
                 <div class="bg-purple-200/50 p-3 rounded-xl shrink-0">
                     <span class="text-xl sm:text-2xl leading-none">🧮</span>
                 </div>
-                <div>
-                    <h4 class="text-sm font-extrabold text-purple-900 mb-1.5 uppercase tracking-wider">Rumus Perhitungan Poin</h4>
-                    <div class="text-xs sm:text-sm text-purple-800 flex flex-wrap items-center gap-x-2 gap-y-2 font-medium">
+                <div class="w-full">
+                    <h4 class="text-sm font-extrabold text-purple-900 mb-2 uppercase tracking-wider flex items-center justify-between">
+                        Rumus Perhitungan Poin
+                        <span class="text-xs font-semibold bg-white/60 px-2 py-0.5 rounded text-purple-600 hidden sm:inline-block">Hybrid Margin System</span>
+                    </h4>
+                    
+                    <div class="text-xs sm:text-sm text-purple-800 flex flex-wrap items-center gap-x-2 gap-y-2 font-medium mb-3">
                         <span class="bg-purple-200/60 px-2.5 py-1 rounded-md text-purple-900 font-bold">Total Poin</span> 
                         <span class="font-bold text-purple-400">=</span>
                         <span class="bg-white px-2.5 py-1 rounded-md shadow-sm border border-purple-100/50">Win %</span> 
                         <span class="font-bold text-purple-400">+</span>
-                        <span class="bg-white px-2.5 py-1 rounded-md shadow-sm border border-purple-100/50">Total Diff × 0.2</span>
+                        <span class="bg-white px-2.5 py-1 rounded-md shadow-sm border border-purple-100/50">Diff Point</span>
                         <span class="font-bold text-purple-400">+</span>
-                        <span class="bg-white px-2.5 py-1 rounded-md shadow-sm border border-purple-100/50">Avg Diff × 2.0</span>
-                        <span class="font-bold text-purple-400">+</span>
-                        <span class="bg-white px-2.5 py-1 rounded-md shadow-sm border border-purple-100/50">Games × 0.18</span>
+                        <span class="bg-white px-2.5 py-1 rounded-md shadow-sm border border-purple-100/50 text-ace-dark">Game Point</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-purple-700 bg-white/50 p-3 rounded-lg border border-purple-100/50">
+                        <div>
+                            <strong class="text-purple-900">1. Diff Point (Poin Selisih Skor):</strong> <br>
+                            Merupakan gabungan dari selisih gol: <br>
+                            <code>(Total Diff × 0.2) + (Avg Diff × 2.0)</code>
+                        </div>
+                        <div>
+                            <strong class="text-purple-900">2. Game Point (Poin Keaktifan):</strong> <br>
+                            Gabungan Poin Dasar & Margin Rata² dengan Multiplier Share: <br>
+                            <code>(Games × 0.18) + [(Games - Rata² Skuad) × (100% + Share%)]</code>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -254,11 +285,9 @@
                                 <th scope="col" class="px-6 py-4 rounded-tl-xl">Player</th>
                                 <th scope="col" class="px-6 py-4 text-center">Win %</th>
                                 <th scope="col" class="px-6 py-4 text-center">Record (W-L)</th>
-                                <th scope="col" class="px-6 py-4 text-center">Total Diff</th>
-                                <th scope="col" class="px-6 py-4 text-center">Avg Diff</th>
-                                <th scope="col" class="px-6 py-4 text-center">Diff Bonus</th>
-                                <th scope="col" class="px-6 py-4 text-center">Games Bonus</th>
                                 <th scope="col" class="px-6 py-4 text-center">Games</th>
+                                <th scope="col" class="px-6 py-4 text-center tooltip-hint" title="Gabungan Total Diff & Avg Diff">Diff Point</th>
+                                <th scope="col" class="px-6 py-4 text-center tooltip-hint" title="Gabungan Base Pts & Margin Dinamis">Game Point</th>
                                 <th scope="col" class="px-6 py-4 text-center bg-ace rounded-tr-xl">Total Poin</th>
                             </tr>
                         </thead>
@@ -291,9 +320,9 @@
                                             <th scope="col" class="px-6 py-4 rounded-tl-xl">Player</th>
                                             <th scope="col" class="px-6 py-4 text-center">Win %</th>
                                             <th scope="col" class="px-6 py-4 text-center">Record (W-L)</th>
-                                            <th scope="col" class="px-6 py-4 text-center">Total Diff</th>
-                                            <th scope="col" class="px-6 py-4 text-center">Avg Diff</th>
                                             <th scope="col" class="px-6 py-4 text-center">Games</th>
+                                            <th scope="col" class="px-6 py-4 text-center">Diff Point</th>
+                                            <th scope="col" class="px-6 py-4 text-center">Game Point</th>
                                             <th scope="col" class="px-6 py-4 text-center text-ace rounded-tr-xl">Total Poin</th>
                                         </tr>
                                     </thead>
@@ -394,7 +423,7 @@
         const rawSinglePlayersData = [
             { name: "Ade", gender: "M", games: 16, wins: 11, totalDiff: 8 },
             { name: "Adnan", gender: "M", games: 8, wins: 5, totalDiff: 2 },
-            { name: "Amani", gender: "F", games: 4, wins: 2, totalDiff: 2 },
+            { name: "Amani", gender: "M", games: 4, wins: 2, totalDiff: 2 },
             { name: "Andhika", gender: "M", games: 4, wins: 4, totalDiff: 12 },
             { name: "Angwyn", gender: "M", games: 8, wins: 4, totalDiff: -4 },
             { name: "Arbar", gender: "M", games: 4, wins: 2, totalDiff: 0 },
@@ -428,27 +457,59 @@
         // ============================================
         // LOGIC & STATE
         // ============================================
-        let activeFormat = 'single'; // Default diubah menjadi Single
+        let activeFormat = 'single'; // Default
+        let activeGender = 'ALL'; // Default
         let playersData = [];
         let hostData = [];
         let filteredPlayers = [];
 
-        // Fungsi perhitungan poin universal
-        function calculateStats(players) {
+        // Helper untuk mencari total seluruh game
+        function getTotalGames(playersArray) {
+            return playersArray.reduce((sum, p) => sum + (p.games > 0 ? p.games : 0), 0);
+        }
+
+        // Fungsi perhitungan poin universal menggunakan pengali persentase dinamis
+        function calculateStats(players, squadTotalGames) {
+            // 1. Cari rata-rata jumlah main (games) seluruh pemain (yg aktif) di format ini
+            const activePlayersOnly = players.filter(p => p.games > 0);
+            const totalGames = activePlayersOnly.reduce((sum, p) => sum + p.games, 0);
+            const avgSquadGames = activePlayersOnly.length > 0 ? (totalGames / activePlayersOnly.length) : 0;
+
             return players.map(p => {
                 const winRate = p.games > 0 ? (p.wins / p.games) * 100 : 0;
+                
+                // KOMPONEN DIFF POINT
                 const avgDiff = p.games > 0 ? p.totalDiff / p.games : 0;
-                const diffBonus = (p.totalDiff * 0.2) + (avgDiff * 2.0);
-                const gamesBonus = p.games * 0.18;
-                const totalPoints = winRate + diffBonus + gamesBonus;
+                const diffPoint = (p.totalDiff * 0.2) + (avgDiff * 2.0);
+                
+                // KOMPONEN GAME POINT (Poin Dasar + Hybrid Margin)
+                const baseGamePts = p.games * 0.18; // Poin Dasar flat 0.18
+                let marginPts = 0;
+                let sharePct = 0;
+                
+                if (p.games > 0 && squadTotalGames > 0) {
+                    const shareRatio = p.games / squadTotalGames; // misal Gusti: 20/172 = 0.116
+                    sharePct = shareRatio * 100;
+                    const multiplier = 1 + shareRatio; // 1 + 0.116 = 1.116 (atau 111.6%)
+                    marginPts = (p.games - avgSquadGames) * multiplier; 
+                }
+                
+                const gamePoint = baseGamePts + marginPts;
+                
+                // TOTAL
+                const totalPoints = winRate + diffPoint + gamePoint;
 
                 return {
                     ...p,
                     winRate,
-                    avgDiff,
-                    diffBonus,
-                    gamesBonus,
-                    totalPoints: totalPoints // Menampilkan poin asli (bisa negatif)
+                    avgDiff,      // disimpan untuk tooltip
+                    totalDiff: p.totalDiff, // disimpan untuk tooltip
+                    diffPoint,
+                    baseGamePts,  // disimpan untuk tooltip
+                    marginPts,    // disimpan untuk tooltip
+                    sharePct,     // disimpan untuk tooltip
+                    gamePoint,
+                    totalPoints 
                 };
             });
         }
@@ -461,8 +522,8 @@
             const btnDouble = document.getElementById('btnDouble');
             const btnSingle = document.getElementById('btnSingle');
             
-            const activeClass = "px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-ace text-white shadow-md flex items-center gap-2 justify-center";
-            const inactiveClass = "px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-transparent text-slate-500 hover:text-ace flex items-center gap-2 justify-center";
+            const activeClass = "px-5 md:px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 bg-ace text-white shadow-md flex items-center gap-2 justify-center";
+            const inactiveClass = "px-5 md:px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 bg-transparent text-slate-500 hover:text-ace flex items-center gap-2 justify-center";
             
             if (format === 'double') {
                 btnDouble.className = activeClass;
@@ -476,14 +537,34 @@
             initData();
         }
 
+        // Fungsi untuk mengganti Kategori (All/Men/Women)
+        function switchGender(gender) {
+            activeGender = gender;
+            
+            const btnAll = document.getElementById('btnCatAll');
+            const btnM = document.getElementById('btnCatM');
+            const btnF = document.getElementById('btnCatF');
+            
+            const activeClass = "px-4 md:px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 bg-ace text-white shadow-md flex items-center gap-2 justify-center";
+            const inactiveClass = "px-4 md:px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 bg-transparent text-slate-500 hover:text-ace flex items-center gap-2 justify-center";
+            
+            if (btnAll) btnAll.className = gender === 'ALL' ? activeClass : inactiveClass;
+            if (btnM) btnM.className = gender === 'M' ? activeClass : inactiveClass;
+            if (btnF) btnF.className = gender === 'F' ? activeClass : inactiveClass;
+            
+            filterPlayers();
+        }
+
         // Inisialisasi data berdasarkan format yang aktif
         function initData() {
             if (activeFormat === 'double') {
-                playersData = calculateStats(rawDoublePlayersData);
-                hostData = calculateStats(rawDoubleHostData);
+                const totalSquadGamesDouble = getTotalGames(rawDoublePlayersData);
+                playersData = calculateStats(rawDoublePlayersData, totalSquadGamesDouble);
+                hostData = calculateStats(rawDoubleHostData, totalSquadGamesDouble);
             } else {
-                playersData = calculateStats(rawSinglePlayersData);
-                hostData = calculateStats(rawSingleHostData);
+                const totalSquadGamesSingle = getTotalGames(rawSinglePlayersData);
+                playersData = calculateStats(rawSinglePlayersData, totalSquadGamesSingle);
+                hostData = calculateStats(rawSingleHostData, totalSquadGamesSingle);
             }
             
             filterPlayers();
@@ -493,14 +574,13 @@
         // FUNGSI FILTER GABUNGAN
         function filterPlayers() {
             const minGamesElement = document.getElementById('minGames');
-            const genderFilterElement = document.getElementById('genderFilter');
             const sortByElement = document.getElementById('sortBy');
             const searchInputElement = document.getElementById('searchInput');
 
-            if (!minGamesElement || !genderFilterElement || !sortByElement) return;
+            if (!minGamesElement || !sortByElement) return;
 
             const minGames = parseInt(minGamesElement.value, 10);
-            const genderFilter = genderFilterElement.value;
+            const genderFilter = activeGender;
             const sortBy = sortByElement.value;
             const searchTerm = searchInputElement ? searchInputElement.value.toLowerCase() : '';
 
@@ -570,7 +650,7 @@
             if (!tbody) return;
             
             if(filteredPlayers.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="9" class="px-6 py-8 text-center text-slate-500 font-medium">Tidak ada pemain yang sesuai dengan filter/pencarian ini.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="px-6 py-8 text-center text-slate-500 font-medium">Tidak ada pemain yang sesuai dengan filter/pencarian ini.</td></tr>`;
                 return;
             }
 
@@ -583,11 +663,17 @@
                 const losses = p.games - p.wins;
                 const winRateClass = p.winRate >= 60 ? 'text-emerald-600' : (p.winRate < 40 ? 'text-rose-600' : 'text-slate-600');
                 
-                const diffColor = p.totalDiff > 0 ? 'text-emerald-600' : (p.totalDiff < 0 ? 'text-rose-600' : 'text-slate-600');
-                const diffPrefix = p.totalDiff > 0 ? '+' : '';
+                // Formatting untuk Tooltip & Color
+                const totalDiffPrefix = p.totalDiff > 0 ? '+' : '';
+                const avgDiffPrefix = p.avgDiff > 0 ? '+' : '';
+                const diffPointColor = p.diffPoint > 0 ? 'text-purple-600' : (p.diffPoint < 0 ? 'text-rose-600' : 'text-slate-500');
+                const diffPointPrefix = p.diffPoint > 0 ? '+' : '';
 
-                const bonusColor = p.diffBonus > 0 ? 'text-purple-600' : (p.diffBonus < 0 ? 'text-rose-600' : 'text-slate-500');
-                const bonusPrefix = p.diffBonus > 0 ? '+' : '';
+                const gamePointColor = p.gamePoint > 5 ? 'text-blue-600' : (p.gamePoint < 0 ? 'text-rose-500' : 'text-slate-600');
+                const gamePointPrefix = p.gamePoint > 0 ? '+' : '';
+                
+                const baseGamePrefix = p.baseGamePts > 0 ? '+' : '';
+                const marginPrefix = p.marginPts > 0 ? '+' : '';
 
                 return `
                     <tr class="transition-colors border-b border-slate-100 last:border-0 ${rowClass}">
@@ -598,20 +684,14 @@
                         <td class="px-6 py-4 whitespace-nowrap text-center">
                             <span class="font-bold text-emerald-600">${p.wins}W</span> <span class="text-slate-300 mx-1">-</span> <span class="font-bold text-rose-500">${losses}L</span>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${diffColor}">
-                            ${diffPrefix}${p.totalDiff}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${diffColor}">
-                            ${diffPrefix}${p.avgDiff.toFixed(2)}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center font-semibold ${bonusColor}">
-                            ${bonusPrefix}${p.diffBonus.toFixed(1)}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center font-semibold text-lime-600">
-                            +${p.gamesBonus.toFixed(1)}
-                        </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center font-bold text-slate-700">
                             ${p.games}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${diffPointColor} tooltip-hint" title="Berasal dari perhitungan: (Total Diff: ${totalDiffPrefix}${p.totalDiff} × 0.2) + (Avg Diff: ${avgDiffPrefix}${p.avgDiff.toFixed(2)} × 2.0)">
+                            ${diffPointPrefix}${p.diffPoint.toFixed(1)}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${gamePointColor} tooltip-hint" title="Base Pts: ${baseGamePrefix}${p.baseGamePts.toFixed(1)} | Margin Pts: ${marginPrefix}${p.marginPts.toFixed(1)} (Share: ${p.sharePct.toFixed(1)}%)">
+                            ${gamePointPrefix}${p.gamePoint.toFixed(1)}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center bg-purple-50/40">
                             <span class="text-lg font-black text-ace-dark">${p.totalPoints.toFixed(1)}</span>
@@ -629,18 +709,26 @@
                 const losses = p.games - p.wins;
                 const winRateClass = p.winRate >= 60 ? 'text-emerald-600' : (p.winRate < 40 ? 'text-rose-600' : 'text-slate-600');
                 
-                const diffColor = p.totalDiff > 0 ? 'text-emerald-600' : (p.totalDiff < 0 ? 'text-rose-600' : 'text-slate-600');
-                const diffBgColor = p.totalDiff > 0 ? 'bg-emerald-50' : (p.totalDiff < 0 ? 'bg-rose-50' : 'bg-slate-50');
-                const diffPrefix = p.totalDiff > 0 ? '+' : '';
+                // Formatting untuk Tooltip
+                const totalDiffPrefix = p.totalDiff > 0 ? '+' : '';
+                const avgDiffPrefix = p.avgDiff > 0 ? '+' : '';
+                const diffPointColor = p.diffPoint > 0 ? 'text-purple-600' : (p.diffPoint < 0 ? 'text-rose-600' : 'text-slate-500');
+                const diffPointPrefix = p.diffPoint > 0 ? '+' : '';
+
+                const gamePointColor = p.gamePoint > 5 ? 'text-blue-600' : (p.gamePoint < 0 ? 'text-rose-500' : 'text-slate-600');
+                const gamePointPrefix = p.gamePoint > 0 ? '+' : '';
+                
+                const baseGamePrefix = p.baseGamePts > 0 ? '+' : '';
+                const marginPrefix = p.marginPts > 0 ? '+' : '';
 
                 return `
                     <tr class="hover:bg-slate-50 transition-colors border-b border-slate-100 last:border-0">
                         <td class="px-6 py-4 font-bold text-slate-800">${p.name} (Host)</td>
-                        <td class="px-6 py-4 text-center"><span class="${winRateClass} font-semibold ${diffBgColor} px-2 py-1 rounded-md">${p.winRate.toFixed(1)}%</span></td>
-                        <td class="px-6 py-4 text-center"><span class="text-emerald-600 font-semibold">${p.wins}W</span> <span class="text-slate-300 mx-1">-</span> <span class="text-rose-500 font-semibold">${losses}L</span></td>
-                        <td class="px-6 py-4 text-center"><span class="${diffColor} font-semibold ${diffBgColor} px-2 py-1 rounded-md">${diffPrefix}${p.totalDiff}</span></td>
-                        <td class="px-6 py-4 text-center"><span class="${diffColor} font-semibold ${diffBgColor} px-2 py-1 rounded-md">${diffPrefix}${p.avgDiff.toFixed(2)}</span></td>
+                        <td class="px-6 py-4 text-center"><span class="${winRateClass} font-bold">${p.winRate.toFixed(1)}%</span></td>
+                        <td class="px-6 py-4 text-center"><span class="text-emerald-600 font-bold">${p.wins}W</span> <span class="text-slate-300 mx-1">-</span> <span class="text-rose-500 font-bold">${losses}L</span></td>
                         <td class="px-6 py-4 text-center font-bold text-slate-700">${p.games}</td>
+                        <td class="px-6 py-4 text-center font-bold ${diffPointColor} tooltip-hint" title="Berasal dari perhitungan: (Total Diff: ${totalDiffPrefix}${p.totalDiff} × 0.2) + (Avg Diff: ${avgDiffPrefix}${p.avgDiff.toFixed(2)} × 2.0)">${diffPointPrefix}${p.diffPoint.toFixed(1)}</td>
+                        <td class="px-6 py-4 text-center font-bold ${gamePointColor} tooltip-hint" title="Base Pts: ${baseGamePrefix}${p.baseGamePts.toFixed(1)} | Margin Pts: ${marginPrefix}${p.marginPts.toFixed(1)} (Share: ${p.sharePct.toFixed(1)}%)">${gamePointPrefix}${p.gamePoint.toFixed(1)}</td>
                         <td class="px-6 py-4 text-center"><span class="text-lg font-extrabold text-ace-dark">${p.totalPoints.toFixed(1)}</span></td>
                     </tr>
                 `;
@@ -671,6 +759,8 @@
     </script>
 </body>
 </html>
+
+
 
 
 
