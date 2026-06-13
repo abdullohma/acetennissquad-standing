@@ -127,11 +127,13 @@
             <!-- FORMAT TOGGLE BUTTONS -->
             <div class="flex justify-center mb-10">
                 <div class="inline-flex bg-slate-100 p-1.5 rounded-full shadow-inner border border-slate-200">
-                    <button id="btnDouble" onclick="switchFormat('double')" class="px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-transparent text-slate-500 hover:text-ace">
-                        🎾 Format Double
+                    <button id="btnDouble" onclick="switchFormat('double')" class="px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-transparent text-slate-500 hover:text-ace flex items-center gap-2 justify-center">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path></svg>
+                        Double
                     </button>
-                    <button id="btnSingle" onclick="switchFormat('single')" class="px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-ace text-white shadow-md">
-                        🏸 Format Single
+                    <button id="btnSingle" onclick="switchFormat('single')" class="px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-ace text-white shadow-md flex items-center gap-2 justify-center">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                        Single
                     </button>
                 </div>
             </div>
@@ -459,12 +461,15 @@
             const btnDouble = document.getElementById('btnDouble');
             const btnSingle = document.getElementById('btnSingle');
             
+            const activeClass = "px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-ace text-white shadow-md flex items-center gap-2 justify-center";
+            const inactiveClass = "px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-transparent text-slate-500 hover:text-ace flex items-center gap-2 justify-center";
+            
             if (format === 'double') {
-                btnDouble.className = "px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-ace text-white shadow-md";
-                btnSingle.className = "px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-transparent text-slate-500 hover:text-ace";
+                btnDouble.className = activeClass;
+                btnSingle.className = inactiveClass;
             } else {
-                btnSingle.className = "px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-ace text-white shadow-md";
-                btnDouble.className = "px-6 md:px-10 py-3 rounded-full text-sm font-bold transition-all duration-300 bg-transparent text-slate-500 hover:text-ace";
+                btnSingle.className = activeClass;
+                btnDouble.className = inactiveClass;
             }
 
             // Reload data
@@ -666,6 +671,7 @@
     </script>
 </body>
 </html>
+
 
 
 ```
