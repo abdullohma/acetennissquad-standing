@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -119,9 +120,8 @@
                     Sistem ini dirancang murni untuk mencatat statistik performa kita agar lebih terstruktur dan seru. Di sini kita fokus pada <em>improvement</em> pribadi, baik dari <em>Win Rate</em> maupun <em>Diff</em> (selisih poin).
                 </p>
 
-                <div class="bg-purple-50/80 p-4 md:p-5 rounded-xl border border-purple-100/50 inline-block text-left text-sm md:text-base shadow-sm text-purple-700 space-y-2">
+                <div class="bg-purple-50/80 p-4 md:p-5 rounded-xl border border-purple-100/50 inline-block text-left text-sm md:text-base shadow-sm text-purple-700">
                     <p>📌 <strong>Btw,</strong> ini bukan peringkat kompetisi resmi yang tegang ya, murni buat <strong>seru-seruan & ngukur statistik pribadi</strong> aja.</p>
-                    <p>📌 Statistik yang ada sekarang juga hasil <em>carry over</em> dari <em>match history</em> waktu teman-teman main bareng host di sesi dengan <em>host</em> lain sepanjang tahun 2026 <strong>(terbatas pada match yang sempat dicatat host)</strong>.</p>
                 </div>
 
                 <p class="mt-6 font-semibold text-ace text-lg md:text-xl">
@@ -412,7 +412,7 @@
         ];
 
         // ============================================
-        // DATA SINGLE FORMAT
+        // DATA SINGLE FORMAT (UPDATED!)
         // ============================================
         const rawSinglePlayersData = [
             { name: "Ade", gender: "M", games: 16, wins: 11, totalDiff: 8 },
@@ -423,7 +423,6 @@
             { name: "Arbar", gender: "M", games: 4, wins: 2, totalDiff: 0 },
             { name: "Arief", gender: "M", games: 4, wins: 3, totalDiff: 2 },
             { name: "Ayub", gender: "M", games: 4, wins: 1, totalDiff: -2 },
-            { name: "Bayu", gender: "M", games: 12, wins: 5, totalDiff: 2 },
             { name: "Dani", gender: "M", games: 4, wins: 0, totalDiff: -10 },
             { name: "Domas", gender: "M", games: 16, wins: 1, totalDiff: -19 },
             { name: "Eko", gender: "M", games: 4, wins: 3, totalDiff: 4 },
@@ -432,20 +431,27 @@
             { name: "Ganang", gender: "M", games: 4, wins: 1, totalDiff: 0 },
             { name: "Geri", gender: "M", games: 4, wins: 2, totalDiff: 0 },
             { name: "Gian", gender: "M", games: 4, wins: 2, totalDiff: 2 },
-            { name: "Gusti", gender: "M", games: 20, wins: 14, totalDiff: 28 },
-            { name: "Hanung", gender: "M", games: 8, wins: 1, totalDiff: -10 },
             { name: "Kamil", gender: "M", games: 4, wins: 4, totalDiff: 9 },
             { name: "Nanang", gender: "M", games: 4, wins: 1, totalDiff: -2 },
             { name: "Pamungkas", gender: "M", games: 4, wins: 3, totalDiff: 4 },
             { name: "Raka", gender: "M", games: 8, wins: 2, totalDiff: -14 },
-            { name: "Rama", gender: "M", games: 4, wins: 2, totalDiff: -4 },
-            { name: "Reiza", gender: "M", games: 8, wins: 7, totalDiff: 10 },
             { name: "Rendi", gender: "M", games: 4, wins: 3, totalDiff: 0 },
             { name: "Totong", gender: "M", games: 4, wins: 2, totalDiff: 2 },
-            { name: "Try", gender: "M", games: 12, wins: 0, totalDiff: -28 },
             { name: "Windra", gender: "M", games: 4, wins: 4, totalDiff: 10 },
             { name: "Wisnu", gender: "M", games: 4, wins: 3, totalDiff: 2 },
-            { name: "Yoses", gender: "M", games: 4, wins: 0, totalDiff: -10 }
+            { name: "Yoses", gender: "M", games: 4, wins: 0, totalDiff: -10 },
+            
+            // --- UPDATED STATS FROM RECENT GAMES ---
+            { name: "Reiza", gender: "M", games: 12, wins: 11, totalDiff: 20 },
+            { name: "Try", gender: "M", games: 16, wins: 2, totalDiff: -30 },
+            { name: "Geo", gender: "M", games: 4, wins: 3, totalDiff: 4 },
+            { name: "Alief", gender: "M", games: 4, wins: 1, totalDiff: -2 },
+            { name: "Yakin", gender: "M", games: 4, wins: 0, totalDiff: -10 },
+            { name: "Rizki", gender: "M", games: 4, wins: 4, totalDiff: 10 },
+            { name: "Gusti", gender: "M", games: 24, wins: 17, totalDiff: 32 },
+            { name: "Bayu", gender: "M", games: 14, wins: 7, totalDiff: 2 },
+            { name: "Hanung", gender: "M", games: 12, wins: 2, totalDiff: -12 },
+            { name: "Rama", gender: "M", games: 8, wins: 2, totalDiff: -16 }
         ];
 
         const rawSingleHostData = [
@@ -757,3 +763,7 @@
     </script>
 </body>
 </html>
+
+
+
+```
