@@ -120,8 +120,9 @@
                     Sistem ini dirancang murni untuk mencatat statistik performa kita agar lebih terstruktur dan seru. Di sini kita fokus pada <em>improvement</em> pribadi, baik dari <em>Win Rate</em> maupun <em>Diff</em> (selisih poin).
                 </p>
 
-                <div class="bg-purple-50/80 p-4 md:p-5 rounded-xl border border-purple-100/50 inline-block text-left text-sm md:text-base shadow-sm text-purple-700">
+                <div class="bg-purple-50/80 p-4 md:p-5 rounded-xl border border-purple-100/50 inline-block text-left text-sm md:text-base shadow-sm text-purple-700 space-y-3">
                     <p>📌 <strong>Btw,</strong> ini bukan peringkat kompetisi resmi yang tegang ya, murni buat <strong>seru-seruan & ngukur statistik pribadi</strong> aja.</p>
+                    <p>🎁 <strong>Kejutan Akhir Tahun!</strong> Pemain yang berhasil menduduki puncak Leaderboard di akhir tahun nanti akan mendapatkan <strong>suvenir menarik</strong>! Tetap semangat mainnya! 🏆</p>
                 </div>
 
                 <p class="mt-6 font-semibold text-ace text-lg md:text-xl">
@@ -172,15 +173,15 @@
             <div class="flex flex-col lg:flex-row gap-8 mb-10">
                 
                 <!-- Filter Section -->
-                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 flex-1 lg:max-w-lg shadow-sm">
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 flex-1 lg:max-w-2xl shadow-sm">
                     <div class="flex items-center gap-2 mb-4">
                         <span class="text-xl">📊</span>
                         <h3 class="text-lg font-bold text-slate-800">Filter Tampilan</h3>
                     </div>
                     <div class="space-y-5">
                         
-                        <!-- 2 Columns Grid for dropdowns -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- 3 Columns Grid for dropdowns -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <!-- Min Games Dropdown -->
                             <div>
                                 <label for="minGames" class="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Min. Games:</label>
@@ -197,6 +198,22 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            <!-- Win % Dropdown -->
+                            <div>
+                                <label for="tierFilter" class="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Win %:</label>
+                                <div class="relative">
+                                    <select id="tierFilter" onchange="filterPlayers()" class="w-full appearance-none bg-white border-2 border-slate-200 text-slate-700 py-2.5 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:border-ace focus:ring-4 focus:ring-ace/10 transition-all cursor-pointer font-semibold text-sm">
+                                        <option value="ALL" selected>Semua Win %</option>
+                                        <option value="ATAS">> 80%</option>
+                                        <option value="TENGAH">51% - 80%</option>
+                                        <option value="BAWAH">0% - 50%</option>
+                                    </select>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                    </div>
+                                </div>
+                            </div>
 
                             <!-- Sort By Dropdown -->
                             <div>
@@ -205,7 +222,6 @@
                                     <select id="sortBy" onchange="filterPlayers()" class="w-full appearance-none bg-white border-2 border-slate-200 text-slate-700 py-2.5 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:border-ace focus:ring-4 focus:ring-ace/10 transition-all cursor-pointer font-semibold text-sm">
                                         <option value="name" selected>Abjad (A-Z)</option>
                                         <option value="points">Total Poin</option>
-                                        <option value="winrate">Win %</option>
                                         <option value="games">Games</option>
                                     </select>
                                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
@@ -234,7 +250,7 @@
                 </div>
 
                 <!-- Stats Summary Section -->
-                <div class="flex-1 grid grid-cols-2 md:grid-cols-4 gap-4" id="statsSummary">
+                <div class="flex-1 grid grid-cols-2 md:grid-cols-2 gap-4" id="statsSummary">
                     <!-- Cards injected by JS -->
                 </div>
             </div>
@@ -282,8 +298,8 @@
                         <thead class="bg-ace-dark text-white uppercase font-semibold text-xs tracking-wider">
                             <tr>
                                 <th scope="col" class="px-6 py-4 rounded-tl-xl">Player</th>
-                                <th scope="col" class="px-6 py-4 text-center">Win %</th>
                                 <th scope="col" class="px-6 py-4 text-center">Record (W-L)</th>
+                                <th scope="col" class="px-6 py-4 text-center">Win %</th>
                                 <th scope="col" class="px-6 py-4 text-center">Games</th>
                                 <th scope="col" class="px-6 py-4 text-center tooltip-hint" title="Gabungan Total Diff & Avg Diff">Diff Point</th>
                                 <th scope="col" class="px-6 py-4 text-center tooltip-hint" title="Gabungan Base Pts & Margin Dinamis">Game Point</th>
@@ -294,44 +310,6 @@
                             <!-- Rows injected by JS -->
                         </tbody>
                     </table>
-                </div>
-            </div>
-            
-            <!-- Host Stats Reveal -->
-            <div class="mt-8">
-                <button onclick="toggleAdminStats()" class="w-full bg-slate-50 hover:bg-purple-50 border border-slate-200 rounded-xl p-4 text-center cursor-pointer transition-all duration-300 group hover:shadow-inner">
-                    <span class="text-slate-500 group-hover:text-ace font-semibold flex items-center justify-center gap-2">
-                        <svg class="w-5 h-5 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                        Lihat Statistik Host 👀
-                    </span>
-                </button>
-                
-                <div id="adminStatsContent" class="hidden mt-4 transition-all duration-500 opacity-0 transform translate-y-4">
-                    <div class="bg-gradient-to-br from-slate-800 to-purple-900 rounded-2xl p-1 shadow-lg">
-                        <div class="bg-white rounded-xl overflow-hidden">
-                            <div class="bg-slate-800 px-6 py-3 text-white text-center font-bold tracking-wider text-sm flex items-center justify-center gap-2">
-                                Statistik Host (Bisa nyusul poin sampai akhir tahun? Ada suvenir menarik! 🎁)
-                            </div>
-                            <div class="table-container overflow-x-auto">
-                                <table class="w-full whitespace-nowrap text-sm text-left">
-                                    <thead class="bg-slate-50 text-slate-500 uppercase font-semibold text-xs tracking-wider">
-                                        <tr>
-                                            <th scope="col" class="px-6 py-4 rounded-tl-xl">Player</th>
-                                            <th scope="col" class="px-6 py-4 text-center">Win %</th>
-                                            <th scope="col" class="px-6 py-4 text-center">Record (W-L)</th>
-                                            <th scope="col" class="px-6 py-4 text-center">Games</th>
-                                            <th scope="col" class="px-6 py-4 text-center">Diff Point</th>
-                                            <th scope="col" class="px-6 py-4 text-center">Game Point</th>
-                                            <th scope="col" class="px-6 py-4 text-center text-ace rounded-tr-xl">Total Poin</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="hostLeaderboardBody">
-                                        <!-- Host rows injected by JS -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -404,18 +382,16 @@
             { name: "Yoga", gender: "M", games: 8, wins: 5, totalDiff: 4 },
             { name: "Yasaya", gender: "M", games: 7, wins: 3, totalDiff: -3 },
             { name: "Khairul", gender: "M", games: 7, wins: 2, totalDiff: -13 },
-            { name: "Eko", gender: "M", games: 4, wins: 3, totalDiff: 4 }
-        ];
-
-        const rawDoubleHostData = [
+            { name: "Eko", gender: "M", games: 4, wins: 3, totalDiff: 4 },
             { name: "Aliy", gender: "M", games: 101, wins: 76, totalDiff: 112 }
         ];
 
         // ============================================
-        // DATA SINGLE FORMAT (UPDATED!)
+        // DATA SINGLE FORMAT
         // ============================================
         const rawSinglePlayersData = [
             { name: "Ade", gender: "M", games: 16, wins: 11, totalDiff: 8 },
+            { name: "Adhan", gender: "M", games: 4, wins: 3, totalDiff: 4 },
             { name: "Adnan", gender: "M", games: 8, wins: 5, totalDiff: 2 },
             { name: "Amani", gender: "M", games: 4, wins: 2, totalDiff: 2 },
             { name: "Andhika", gender: "M", games: 4, wins: 4, totalDiff: 12 },
@@ -423,8 +399,9 @@
             { name: "Arbar", gender: "M", games: 4, wins: 2, totalDiff: 0 },
             { name: "Arief", gender: "M", games: 4, wins: 3, totalDiff: 2 },
             { name: "Ayub", gender: "M", games: 4, wins: 1, totalDiff: -2 },
+            { name: "Bayu", gender: "M", games: 14, wins: 7, totalDiff: 2 },
             { name: "Dani", gender: "M", games: 4, wins: 0, totalDiff: -10 },
-            { name: "Domas", gender: "M", games: 16, wins: 1, totalDiff: -19 },
+            { name: "Domas", gender: "M", games: 20, wins: 3, totalDiff: -21 },
             { name: "Eko", gender: "M", games: 4, wins: 3, totalDiff: 4 },
             { name: "Fahmi", gender: "M", games: 4, wins: 3, totalDiff: 4 },
             { name: "Frans", gender: "M", games: 4, wins: 3, totalDiff: 6 },
@@ -436,12 +413,10 @@
             { name: "Pamungkas", gender: "M", games: 4, wins: 3, totalDiff: 4 },
             { name: "Raka", gender: "M", games: 8, wins: 2, totalDiff: -14 },
             { name: "Rendi", gender: "M", games: 4, wins: 3, totalDiff: 0 },
-            { name: "Totong", gender: "M", games: 4, wins: 2, totalDiff: 2 },
+            { name: "Totong", gender: "M", games: 8, wins: 6, totalDiff: 12 },
             { name: "Windra", gender: "M", games: 4, wins: 4, totalDiff: 10 },
             { name: "Wisnu", gender: "M", games: 4, wins: 3, totalDiff: 2 },
             { name: "Yoses", gender: "M", games: 4, wins: 0, totalDiff: -10 },
-            
-            // --- UPDATED STATS FROM RECENT GAMES ---
             { name: "Reiza", gender: "M", games: 12, wins: 11, totalDiff: 20 },
             { name: "Try", gender: "M", games: 16, wins: 2, totalDiff: -30 },
             { name: "Geo", gender: "M", games: 4, wins: 3, totalDiff: 4 },
@@ -449,12 +424,8 @@
             { name: "Yakin", gender: "M", games: 4, wins: 0, totalDiff: -10 },
             { name: "Rizki", gender: "M", games: 4, wins: 4, totalDiff: 10 },
             { name: "Gusti", gender: "M", games: 24, wins: 17, totalDiff: 32 },
-            { name: "Bayu", gender: "M", games: 14, wins: 7, totalDiff: 2 },
-            { name: "Hanung", gender: "M", games: 12, wins: 2, totalDiff: -12 },
-            { name: "Rama", gender: "M", games: 8, wins: 2, totalDiff: -16 }
-        ];
-
-        const rawSingleHostData = [
+            { name: "Hanung", gender: "M", games: 16, wins: 3, totalDiff: -12 },
+            { name: "Rama", gender: "M", games: 12, wins: 2, totalDiff: -26 },
             { name: "Aliy", gender: "M", games: 16, wins: 12, totalDiff: 16 }
         ];
 
@@ -464,7 +435,6 @@
         let activeFormat = 'single'; // Default
         let activeGender = 'ALL'; // Default
         let playersData = [];
-        let hostData = [];
         let filteredPlayers = [];
 
         // Helper untuk mencari total seluruh game
@@ -564,26 +534,25 @@
             if (activeFormat === 'double') {
                 const totalSquadGamesDouble = getTotalGames(rawDoublePlayersData);
                 playersData = calculateStats(rawDoublePlayersData, totalSquadGamesDouble);
-                hostData = calculateStats(rawDoubleHostData, totalSquadGamesDouble);
             } else {
                 const totalSquadGamesSingle = getTotalGames(rawSinglePlayersData);
                 playersData = calculateStats(rawSinglePlayersData, totalSquadGamesSingle);
-                hostData = calculateStats(rawSingleHostData, totalSquadGamesSingle);
             }
             
             filterPlayers();
-            renderHostLeaderboard();
         }
 
         // FUNGSI FILTER GABUNGAN
         function filterPlayers() {
             const minGamesElement = document.getElementById('minGames');
+            const tierElement = document.getElementById('tierFilter');
             const sortByElement = document.getElementById('sortBy');
             const searchInputElement = document.getElementById('searchInput');
 
-            if (!minGamesElement || !sortByElement) return;
+            if (!minGamesElement || !sortByElement || !tierElement) return;
 
             const minGames = parseInt(minGamesElement.value, 10);
+            const tier = tierElement.value;
             const genderFilter = activeGender;
             const sortBy = sortByElement.value;
             const searchTerm = searchInputElement ? searchInputElement.value.toLowerCase() : '';
@@ -593,16 +562,25 @@
                 const matchGender = genderFilter === 'ALL' ? true : p.gender === genderFilter;
                 const matchSearch = p.name.toLowerCase().includes(searchTerm);
                 
-                return matchGames && matchGender && matchSearch;
+                // Tier Logic (Hanya menggunakan persentase)
+                let matchTier = true;
+                if (tier === 'ATAS') {
+                    matchTier = p.winRate > 80;
+                } else if (tier === 'TENGAH') {
+                    matchTier = p.winRate > 50 && p.winRate <= 80;
+                } else if (tier === 'BAWAH') {
+                    matchTier = p.winRate <= 50;
+                }
+                
+                return matchGames && matchGender && matchSearch && matchTier;
             });
             
             // Re-sort the filtered array based on user selection
             filteredPlayers.sort((a, b) => {
                 if (sortBy === 'points') return b.totalPoints - a.totalPoints;
-                if (sortBy === 'winrate') return b.winRate - a.winRate;
                 if (sortBy === 'games') return b.games - a.games;
                 if (sortBy === 'name') return a.name.localeCompare(b.name);
-                return a.name.localeCompare(b.name); // Fallback to name
+                return a.name.localeCompare(b.name); // Default fallback: Abjad A-Z
             });
             
             let categoryText = genderFilter === 'ALL' ? 'Pemain' : (genderFilter === 'M' ? 'Pemain Pria' : 'Pemain Wanita');
@@ -629,7 +607,7 @@
             const totalWins = filteredPlayers.reduce((sum, p) => sum + p.wins, 0);
 
             const stats = [
-                { label: 'Pemain Aktif', value: filteredPlayers.length, icon: '👥', color: 'text-blue-600', bg: 'bg-blue-100' },
+                { label: 'Pemain Ditampilkan', value: filteredPlayers.length, icon: '👥', color: 'text-blue-600', bg: 'bg-blue-100' },
                 { label: 'Total Games', value: totalGamesPlayed, icon: '🎾', color: 'text-emerald-600', bg: 'bg-emerald-100' },
                 { label: 'Rata-rata Games', value: avgGamesPlayed, icon: '📊', color: 'text-purple-600', bg: 'bg-purple-100' },
                 { label: 'Total Wins', value: totalWins, icon: '🔥', color: 'text-amber-600', bg: 'bg-amber-100' }
@@ -662,10 +640,12 @@
                 // Highlight tipis hanya jika tidak diurutkan berdasarkan Abjad, dan player masuk 3 besar
                 const isTopHighlight = (sortBy !== 'name' && index < 3);
                 const rowClass = isTopHighlight ? 'bg-purple-50/40 hover:bg-purple-50' : 'hover:bg-slate-50';
+                
+                // Tidak ada lagi logo mahkota
                 const nameClass = isTopHighlight ? 'font-bold text-slate-900 text-base' : 'font-semibold text-slate-700';
 
                 const losses = p.games - p.wins;
-                const winRateClass = p.winRate >= 60 ? 'text-emerald-600' : (p.winRate < 40 ? 'text-rose-600' : 'text-slate-600');
+                const winRateClass = p.winRate > 80 ? 'text-emerald-600' : (p.winRate <= 50 ? 'text-rose-600' : 'text-amber-500');
                 
                 // Formatting untuk Tooltip & Color
                 const totalDiffPrefix = p.totalDiff > 0 ? '+' : '';
@@ -682,11 +662,11 @@
                 return `
                     <tr class="transition-colors border-b border-slate-100 last:border-0 ${rowClass}">
                         <td class="px-6 py-4 whitespace-nowrap ${nameClass}">${p.name}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${winRateClass}">
-                            ${p.winRate.toFixed(1)}%
-                        </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center">
                             <span class="font-bold text-emerald-600">${p.wins}W</span> <span class="text-slate-300 mx-1">-</span> <span class="font-bold text-rose-500">${losses}L</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${winRateClass}">
+                            ${p.winRate.toFixed(1)}%
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center font-bold text-slate-700">
                             ${p.games}
@@ -703,57 +683,6 @@
                     </tr>
                 `;
             }).join('');
-        }
-
-        function renderHostLeaderboard() {
-            const tbody = document.getElementById('hostLeaderboardBody');
-            if (!tbody) return;
-            
-            tbody.innerHTML = hostData.map((p, index) => {
-                const losses = p.games - p.wins;
-                const winRateClass = p.winRate >= 60 ? 'text-emerald-600' : (p.winRate < 40 ? 'text-rose-600' : 'text-slate-600');
-                
-                // Formatting untuk Tooltip
-                const totalDiffPrefix = p.totalDiff > 0 ? '+' : '';
-                const avgDiffPrefix = p.avgDiff > 0 ? '+' : '';
-                const diffPointColor = p.diffPoint > 0 ? 'text-purple-600' : (p.diffPoint < 0 ? 'text-rose-600' : 'text-slate-500');
-                const diffPointPrefix = p.diffPoint > 0 ? '+' : '';
-
-                const gamePointColor = p.gamePoint > 5 ? 'text-blue-600' : (p.gamePoint < 0 ? 'text-rose-500' : 'text-slate-600');
-                const gamePointPrefix = p.gamePoint > 0 ? '+' : '';
-                
-                const baseGamePrefix = p.baseGamePts > 0 ? '+' : '';
-                const marginPrefix = p.marginPts > 0 ? '+' : '';
-
-                return `
-                    <tr class="hover:bg-slate-50 transition-colors border-b border-slate-100 last:border-0">
-                        <td class="px-6 py-4 font-bold text-slate-800">${p.name} (Host)</td>
-                        <td class="px-6 py-4 text-center"><span class="${winRateClass} font-bold">${p.winRate.toFixed(1)}%</span></td>
-                        <td class="px-6 py-4 text-center"><span class="text-emerald-600 font-bold">${p.wins}W</span> <span class="text-slate-300 mx-1">-</span> <span class="text-rose-500 font-bold">${losses}L</span></td>
-                        <td class="px-6 py-4 text-center font-bold text-slate-700">${p.games}</td>
-                        <td class="px-6 py-4 text-center font-bold ${diffPointColor} tooltip-hint" title="Berasal dari perhitungan: (Total Diff: ${totalDiffPrefix}${p.totalDiff} × 0.2) + (Avg Diff: ${avgDiffPrefix}${p.avgDiff.toFixed(2)} × 2.0)">${diffPointPrefix}${p.diffPoint.toFixed(1)}</td>
-                        <td class="px-6 py-4 text-center font-bold ${gamePointColor} tooltip-hint" title="Base Pts: ${baseGamePrefix}${p.baseGamePts.toFixed(1)} | Margin Pts: ${marginPrefix}${p.marginPts.toFixed(1)} (Share: ${p.sharePct.toFixed(1)}%)">${gamePointPrefix}${p.gamePoint.toFixed(1)}</td>
-                        <td class="px-6 py-4 text-center"><span class="text-lg font-extrabold text-ace-dark">${p.totalPoints.toFixed(1)}</span></td>
-                    </tr>
-                `;
-            }).join('');
-        }
-
-        function toggleAdminStats() {
-            const content = document.getElementById('adminStatsContent');
-            if (content.classList.contains('hidden')) {
-                content.classList.remove('hidden');
-                setTimeout(() => {
-                    content.classList.remove('opacity-0', 'translate-y-4');
-                    content.classList.add('opacity-100', 'translate-y-0');
-                }, 20);
-            } else {
-                content.classList.remove('opacity-100', 'translate-y-0');
-                content.classList.add('opacity-0', 'translate-y-4');
-                setTimeout(() => {
-                    content.classList.add('hidden');
-                }, 500); 
-            }
         }
 
         // Initialize on load
