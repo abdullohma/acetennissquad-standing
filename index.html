@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -284,8 +283,8 @@
                         </div>
                         <div>
                             <strong class="text-purple-900">2. Game Point (Poin Keaktifan):</strong> <br>
-                            Gabungan Poin Dasar & Margin Rata² dengan Multiplier Share: <br>
-                            <code>(Games × 0.18) + [(Games - Rata² Skuad) × (100% + Share%)]</code>
+                            Poin Dasar + (Margin Akar × Faktor Share): <br>
+                            <code>(Games × 0.18) + [ (±√|Selisih|) × 1.5 × (1 + Share Ratio) ]</code>
                         </div>
                     </div>
                 </div>
@@ -390,43 +389,48 @@
         // DATA SINGLE FORMAT
         // ============================================
         const rawSinglePlayersData = [
+            { name: "Aby", gender: "M", games: 4, wins: 3, totalDiff: 0 },
             { name: "Ade", gender: "M", games: 16, wins: 11, totalDiff: 8 },
             { name: "Adhan", gender: "M", games: 4, wins: 3, totalDiff: 4 },
             { name: "Adnan", gender: "M", games: 8, wins: 5, totalDiff: 2 },
+            { name: "Alief", gender: "M", games: 4, wins: 1, totalDiff: -2 },
+            { name: "Aliy", gender: "M", games: 23, wins: 19, totalDiff: 35 },
             { name: "Amani", gender: "M", games: 4, wins: 2, totalDiff: 2 },
             { name: "Andhika", gender: "M", games: 4, wins: 4, totalDiff: 12 },
             { name: "Angwyn", gender: "M", games: 8, wins: 4, totalDiff: -4 },
             { name: "Arbar", gender: "M", games: 4, wins: 2, totalDiff: 0 },
             { name: "Arief", gender: "M", games: 4, wins: 3, totalDiff: 2 },
             { name: "Ayub", gender: "M", games: 4, wins: 1, totalDiff: -2 },
-            { name: "Bayu", gender: "M", games: 14, wins: 7, totalDiff: 2 },
+            { name: "Bayu", gender: "M", games: 18, wins: 10, totalDiff: 8 },
+            { name: "Bayuw", gender: "M", games: 4, wins: 2, totalDiff: 0 },
             { name: "Dani", gender: "M", games: 4, wins: 0, totalDiff: -10 },
             { name: "Domas", gender: "M", games: 20, wins: 3, totalDiff: -21 },
             { name: "Eko", gender: "M", games: 4, wins: 3, totalDiff: 4 },
+            { name: "Fadly", gender: "M", games: 4, wins: 2, totalDiff: -2 },
             { name: "Fahmi", gender: "M", games: 4, wins: 3, totalDiff: 4 },
             { name: "Frans", gender: "M", games: 4, wins: 3, totalDiff: 6 },
             { name: "Ganang", gender: "M", games: 4, wins: 1, totalDiff: 0 },
-            { name: "Geri", gender: "M", games: 4, wins: 2, totalDiff: 0 },
+            { name: "Geo", gender: "M", games: 8, wins: 4, totalDiff: -2 },
+            { name: "Geri", gender: "M", games: 8, wins: 4, totalDiff: -2 },
             { name: "Gian", gender: "M", games: 4, wins: 2, totalDiff: 2 },
+            { name: "Gusti", gender: "M", games: 24, wins: 17, totalDiff: 32 },
+            { name: "Hanung", gender: "M", games: 20, wins: 3, totalDiff: -16 },
             { name: "Kamil", gender: "M", games: 4, wins: 4, totalDiff: 9 },
-            { name: "Nanang", gender: "M", games: 4, wins: 1, totalDiff: -2 },
+            { name: "Nanang", gender: "M", games: 8, wins: 2, totalDiff: -4 },
             { name: "Pamungkas", gender: "M", games: 4, wins: 3, totalDiff: 4 },
             { name: "Raka", gender: "M", games: 8, wins: 2, totalDiff: -14 },
-            { name: "Rendi", gender: "M", games: 4, wins: 3, totalDiff: 0 },
-            { name: "Totong", gender: "M", games: 8, wins: 6, totalDiff: 12 },
+            { name: "Rama", gender: "M", games: 12, wins: 2, totalDiff: -26 },
+            { name: "Reiza", gender: "M", games: 15, wins: 13, totalDiff: 25 },
+            { name: "Rendi", gender: "M", games: 8, wins: 6, totalDiff: 4 },
+            { name: "Rifian", gender: "M", games: 4, wins: 0, totalDiff: -12 },
+            { name: "Rifki", gender: "M", games: 4, wins: 1, totalDiff: -6 },
+            { name: "Rizki", gender: "M", games: 8, wins: 7, totalDiff: 16 },
+            { name: "Totong", gender: "M", games: 12, wins: 8, totalDiff: 16 },
+            { name: "Try", gender: "M", games: 20, wins: 5, totalDiff: -24 },
             { name: "Windra", gender: "M", games: 4, wins: 4, totalDiff: 10 },
             { name: "Wisnu", gender: "M", games: 4, wins: 3, totalDiff: 2 },
-            { name: "Yoses", gender: "M", games: 4, wins: 0, totalDiff: -10 },
-            { name: "Reiza", gender: "M", games: 12, wins: 11, totalDiff: 20 },
-            { name: "Try", gender: "M", games: 16, wins: 2, totalDiff: -30 },
-            { name: "Geo", gender: "M", games: 4, wins: 3, totalDiff: 4 },
-            { name: "Alief", gender: "M", games: 4, wins: 1, totalDiff: -2 },
-            { name: "Yakin", gender: "M", games: 4, wins: 0, totalDiff: -10 },
-            { name: "Rizki", gender: "M", games: 4, wins: 4, totalDiff: 10 },
-            { name: "Gusti", gender: "M", games: 24, wins: 17, totalDiff: 32 },
-            { name: "Hanung", gender: "M", games: 16, wins: 3, totalDiff: -12 },
-            { name: "Rama", gender: "M", games: 12, wins: 2, totalDiff: -26 },
-            { name: "Aliy", gender: "M", games: 16, wins: 12, totalDiff: 16 }
+            { name: "Yakin", gender: "M", games: 8, wins: 1, totalDiff: -16 },
+            { name: "Yoses", gender: "M", games: 4, wins: 0, totalDiff: -10 }
         ];
 
         // ============================================
@@ -442,7 +446,7 @@
             return playersArray.reduce((sum, p) => sum + (p.games > 0 ? p.games : 0), 0);
         }
 
-        // Fungsi perhitungan poin universal menggunakan pengali persentase dinamis
+        // Fungsi perhitungan poin universal menggunakan Akar Kuadrat + Share Ratio
         function calculateStats(players, squadTotalGames) {
             // 1. Cari rata-rata jumlah main (games) seluruh pemain (yg aktif) di format ini
             const activePlayersOnly = players.filter(p => p.games > 0);
@@ -456,16 +460,20 @@
                 const avgDiff = p.games > 0 ? p.totalDiff / p.games : 0;
                 const diffPoint = (p.totalDiff * 0.2) + (avgDiff * 2.0);
                 
-                // KOMPONEN GAME POINT (Poin Dasar + Hybrid Margin)
+                // KOMPONEN GAME POINT
                 const baseGamePts = p.games * 0.18; // Poin Dasar flat 0.18
                 let marginPts = 0;
                 let sharePct = 0;
                 
                 if (p.games > 0 && squadTotalGames > 0) {
-                    const shareRatio = p.games / squadTotalGames; // misal Gusti: 20/172 = 0.116
+                    const shareRatio = p.games / squadTotalGames;
                     sharePct = shareRatio * 100;
-                    const multiplier = 1 + shareRatio; // 1 + 0.116 = 1.116 (atau 111.6%)
-                    marginPts = (p.games - avgSquadGames) * multiplier; 
+                    const multiplier = 1 + shareRatio; 
+                    
+                    const diffGames = p.games - avgSquadGames;
+                    
+                    // Rumus Gabungan: (Akar dari Selisih) * 1.5 * (Multiplier Share)
+                    marginPts = Math.sign(diffGames) * Math.sqrt(Math.abs(diffGames)) * 1.5 * multiplier; 
                 }
                 
                 const gamePoint = baseGamePts + marginPts;
@@ -641,7 +649,7 @@
                 const isTopHighlight = (sortBy !== 'name' && index < 3);
                 const rowClass = isTopHighlight ? 'bg-purple-50/40 hover:bg-purple-50' : 'hover:bg-slate-50';
                 
-                // Tidak ada lagi logo mahkota
+                // Tidak ada logo mahkota
                 const nameClass = isTopHighlight ? 'font-bold text-slate-900 text-base' : 'font-semibold text-slate-700';
 
                 const losses = p.games - p.wins;
@@ -674,7 +682,7 @@
                         <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${diffPointColor} tooltip-hint" title="Berasal dari perhitungan: (Total Diff: ${totalDiffPrefix}${p.totalDiff} × 0.2) + (Avg Diff: ${avgDiffPrefix}${p.avgDiff.toFixed(2)} × 2.0)">
                             ${diffPointPrefix}${p.diffPoint.toFixed(1)}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${gamePointColor} tooltip-hint" title="Base Pts: ${baseGamePrefix}${p.baseGamePts.toFixed(1)} | Margin Pts: ${marginPrefix}${p.marginPts.toFixed(1)} (Share: ${p.sharePct.toFixed(1)}%)">
+                        <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${gamePointColor} tooltip-hint" title="Base Pts: ${baseGamePrefix}${p.baseGamePts.toFixed(1)} | Margin Pts: ${marginPrefix}${p.marginPts.toFixed(1)} (Akar & Share: ${p.sharePct.toFixed(1)}%)">
                             ${gamePointPrefix}${p.gamePoint.toFixed(1)}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center bg-purple-50/40">
@@ -692,7 +700,3 @@
     </script>
 </body>
 </html>
-
-
-
-```
