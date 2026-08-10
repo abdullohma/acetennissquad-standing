@@ -262,7 +262,7 @@
                 <div class="w-full">
                     <h4 class="text-sm font-extrabold text-purple-900 mb-2 uppercase tracking-wider flex items-center justify-between">
                         Rumus Perhitungan Poin
-                        <span class="text-xs font-semibold bg-white/60 px-2 py-0.5 rounded text-purple-600 hidden sm:inline-block">Minimum Share Penalty</span>
+                        <span class="text-xs font-semibold bg-white/60 px-2 py-0.5 rounded text-purple-600 hidden sm:inline-block">Hybrid Margin System</span>
                     </h4>
                     
                     <div class="text-xs sm:text-sm text-purple-800 flex flex-wrap items-center gap-x-2 gap-y-2 font-medium mb-3">
@@ -283,8 +283,11 @@
                         </div>
                         <div>
                             <strong class="text-purple-900">2. Game Point (Poin Keaktifan):</strong> <br>
-                            Margin Linear - Penalti Share (&lt; 2%): <br>
-                            <code>[(Games - Rata²) × 0.8] - [(2 - Share%) × 1.5]</code>
+                            Margin Linear dengan batas aktif minimal (2.0%): <br>
+                            <code>(Selisih thd Rata-rata × 0.8) - Penalti Share</code><br>
+                            <span class="text-[10px] text-purple-500 leading-tight block mt-1">
+                                *Penalti Share: Jika porsi bermain di bawah batas minimal (2.0%), dikenakan penalti (Kekurangan Share × 1.5).
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -301,7 +304,7 @@
                                 <th scope="col" class="px-6 py-4 text-center">Win %</th>
                                 <th scope="col" class="px-6 py-4 text-center">Games</th>
                                 <th scope="col" class="px-6 py-4 text-center tooltip-hint" title="Gabungan Total Diff & Avg Diff">Diff Point</th>
-                                <th scope="col" class="px-6 py-4 text-center tooltip-hint" title="Margin Linear & Share Penalty">Game Point</th>
+                                <th scope="col" class="px-6 py-4 text-center tooltip-hint" title="Margin Linear + Share Penalty (jika < 2%)">Game Point</th>
                                 <th scope="col" class="px-6 py-4 text-center bg-ace rounded-tr-xl">Total Poin</th>
                             </tr>
                         </thead>
@@ -394,9 +397,10 @@
             { name: "Adhan", gender: "M", games: 4, wins: 3, totalDiff: 4 },
             { name: "Adnan", gender: "M", games: 8, wins: 5, totalDiff: 2 },
             { name: "Alfred", gender: "M", games: 4, wins: 1, totalDiff: 0 },
-            { name: "Alief", gender: "M", games: 4, wins: 1, totalDiff: -2 },
-            { name: "Aliy", gender: "M", games: 23, wins: 19, totalDiff: 35 },
+            { name: "Alief", gender: "M", games: 8, wins: 3, totalDiff: -4 },
+            { name: "Aliy", gender: "M", games: 32, wins: 27, totalDiff: 49 },
             { name: "Amani", gender: "M", games: 4, wins: 2, totalDiff: 2 },
+            { name: "Ambar", gender: "F", games: 4, wins: 0, totalDiff: -7 },
             { name: "Andhika", gender: "M", games: 4, wins: 4, totalDiff: 12 },
             { name: "Angwyn", gender: "M", games: 8, wins: 4, totalDiff: -4 },
             { name: "Arbar", gender: "M", games: 4, wins: 2, totalDiff: 0 },
@@ -405,7 +409,8 @@
             { name: "Bayu", gender: "M", games: 18, wins: 10, totalDiff: 8 },
             { name: "Bayuw", gender: "M", games: 4, wins: 2, totalDiff: 0 },
             { name: "Binka", gender: "M", games: 4, wins: 3, totalDiff: 6 },
-            { name: "Dani", gender: "M", games: 4, wins: 0, totalDiff: -10 },
+            { name: "Dani", gender: "M", games: 8, wins: 0, totalDiff: -21 },
+            { name: "Deny", gender: "M", games: 8, wins: 4, totalDiff: 0 },
             { name: "Domas", gender: "M", games: 20, wins: 3, totalDiff: -21 },
             { name: "Dwiki", gender: "M", games: 4, wins: 2, totalDiff: 0 },
             { name: "Eko", gender: "M", games: 4, wins: 3, totalDiff: 4 },
@@ -413,25 +418,30 @@
             { name: "Fahmi", gender: "M", games: 4, wins: 3, totalDiff: 4 },
             { name: "Frans", gender: "M", games: 4, wins: 3, totalDiff: 6 },
             { name: "Ganang", gender: "M", games: 4, wins: 1, totalDiff: 0 },
-            { name: "Geo", gender: "M", games: 8, wins: 4, totalDiff: -2 },
-            { name: "Geri", gender: "M", games: 12, wins: 6, totalDiff: -2 },
+            { name: "Geri", gender: "M", games: 16, wins: 9, totalDiff: 1 },
             { name: "Gian", gender: "M", games: 4, wins: 2, totalDiff: 2 },
             { name: "Gusti", gender: "M", games: 24, wins: 17, totalDiff: 32 },
-            { name: "Hanung", gender: "M", games: 24, wins: 3, totalDiff: -20 },
-            { name: "Iqbal", gender: "M", games: 4, wins: 2, totalDiff: -4 },
-            { name: "Kamil", gender: "M", games: 8, wins: 7, totalDiff: 13 },
+            { name: "Hanung", gender: "M", games: 36, wins: 7, totalDiff: -23 },
+            { name: "Ichal", gender: "M", games: 4, wins: 3, totalDiff: 8 },
+            { name: "Indra", gender: "M", games: 2, wins: 1, totalDiff: 0 },
+            { name: "Iqbal", gender: "M", games: 8, wins: 3, totalDiff: -12 },
+            { name: "Kamil", gender: "M", games: 12, wins: 9, totalDiff: 17 },
+            { name: "Kurniawan", gender: "M", games: 4, wins: 0, totalDiff: -12 },
             { name: "Nanang", gender: "M", games: 8, wins: 2, totalDiff: -4 },
-            { name: "Octano", gender: "M", games: 4, wins: 2, totalDiff: 0 },
+            { name: "Octano", gender: "M", games: 8, wins: 4, totalDiff: 0 },
             { name: "Pamungkas", gender: "M", games: 4, wins: 3, totalDiff: 4 },
             { name: "Raka", gender: "M", games: 8, wins: 2, totalDiff: -14 },
             { name: "Rama", gender: "M", games: 12, wins: 2, totalDiff: -26 },
-            { name: "Reiza", gender: "M", games: 15, wins: 13, totalDiff: 25 },
+            { name: "Rayest", gender: "M", games: 4, wins: 0, totalDiff: -10 },
+            { name: "Reiza", gender: "M", games: 23, wins: 21, totalDiff: 44 },
             { name: "Rendi", gender: "M", games: 8, wins: 6, totalDiff: 4 },
+            { name: "Rezza", gender: "M", games: 4, wins: 4, totalDiff: 9 },
             { name: "Rifian", gender: "M", games: 4, wins: 0, totalDiff: -12 },
             { name: "Rifki", gender: "M", games: 4, wins: 1, totalDiff: -6 },
             { name: "Rizki", gender: "M", games: 8, wins: 7, totalDiff: 16 },
-            { name: "Totong", gender: "M", games: 16, wins: 12, totalDiff: 20 },
-            { name: "Try", gender: "M", games: 24, wins: 6, totalDiff: -30 },
+            { name: "Soni", gender: "M", games: 4, wins: 2, totalDiff: 0 },
+            { name: "Totong", gender: "M", games: 20, wins: 16, totalDiff: 29 },
+            { name: "Try", gender: "M", games: 32, wins: 7, totalDiff: -43 },
             { name: "Windra", gender: "M", games: 4, wins: 4, totalDiff: 10 },
             { name: "Wisnu", gender: "M", games: 4, wins: 3, totalDiff: 2 },
             { name: "Yakin", gender: "M", games: 8, wins: 1, totalDiff: -16 },
@@ -451,7 +461,7 @@
             return playersArray.reduce((sum, p) => sum + (p.games > 0 ? p.games : 0), 0);
         }
 
-        // Fungsi perhitungan statistik terpusat
+        // Fungsi perhitungan poin universal
         function calculateStats(players, squadTotalGames) {
             // 1. Cari rata-rata jumlah main (games) seluruh pemain (yg aktif) di format ini
             const activePlayersOnly = players.filter(p => p.games > 0);
@@ -465,27 +475,28 @@
                 const avgDiff = p.games > 0 ? p.totalDiff / p.games : 0;
                 const diffPoint = (p.totalDiff * 0.2) + (avgDiff * 2.0);
                 
-                // KOMPONEN GAME POINT
-                let marginLinear = 0;
-                let sharePenalty = 0;
+                // KOMPONEN GAME POINT (Margin Linear + Minimum Share Penalty)
+                let marginPts = 0;
                 let sharePct = 0;
+                let sharePenalty = 0;
                 
                 if (p.games > 0 && squadTotalGames > 0) {
-                    // Margin Linear (Selisih dengan rata-rata dikali bobot 0.8)
-                    marginLinear = (p.games - avgSquadGames) * 0.8;
-                    
-                    // Cek Minimum Share Penalty
                     const shareRatio = p.games / squadTotalGames;
                     sharePct = shareRatio * 100;
                     
-                    // Jika share di bawah batas aman 2.0%, terapkan penalti ekstra
-                    // (2.0% - Aktual Share%) * 1.5 (Faktor Hukuman diturunkan agar lebih soft)
+                    const diffGames = p.games - avgSquadGames;
+                    
+                    // 1. Margin Linear (0.8 poin per selisih game)
+                    marginPts = diffGames * 0.8; 
+                    
+                    // 2. Share Penalty (Jika share di bawah 2.0%, selisihnya dikali 1.5 sebagai penalti)
                     if (sharePct < 2.0) {
-                        sharePenalty = (2.0 - sharePct) * 1.5; 
+                        sharePenalty = (2.0 - sharePct) * 1.5;
                     }
                 }
                 
-                let gamePoint = marginLinear - sharePenalty;
+                // Gabungan Game Point = Nilai Linear Margin dikurangi Hukuman Share (jika ada)
+                let gamePoint = marginPts - sharePenalty;
                 
                 // TOTAL
                 const totalPoints = winRate + diffPoint + gamePoint;
@@ -496,9 +507,9 @@
                     avgDiff,      // disimpan untuk tooltip
                     totalDiff: p.totalDiff, // disimpan untuk tooltip
                     diffPoint,
-                    marginLinear, // disimpan untuk tooltip
-                    sharePenalty, // disimpan untuk tooltip
+                    marginPts,    // disimpan untuk tooltip (linear base point)
                     sharePct,     // disimpan untuk tooltip
+                    sharePenalty, // disimpan untuk tooltip
                     gamePoint,
                     totalPoints 
                 };
@@ -663,19 +674,17 @@
                 const losses = p.games - p.wins;
                 const winRateClass = p.winRate > 80 ? 'text-emerald-600' : (p.winRate <= 50 ? 'text-rose-600' : 'text-amber-500');
                 
-                // Formatting untuk Tooltip & Color
+                // Formatting untuk Tooltip & Color Diff Point
                 const totalDiffPrefix = p.totalDiff > 0 ? '+' : '';
                 const avgDiffPrefix = p.avgDiff > 0 ? '+' : '';
                 const diffPointColor = p.diffPoint > 0 ? 'text-purple-600' : (p.diffPoint < 0 ? 'text-rose-600' : 'text-slate-500');
                 const diffPointPrefix = p.diffPoint > 0 ? '+' : '';
 
+                // Formatting untuk Tooltip & Color Game Point
                 const gamePointColor = p.gamePoint > 5 ? 'text-blue-600' : (p.gamePoint < 0 ? 'text-rose-500' : 'text-slate-600');
                 const gamePointPrefix = p.gamePoint > 0 ? '+' : '';
-                
-                const marginPrefix = p.marginLinear > 0 ? '+' : '';
-                
-                // Indicator & Tooltip text untuk Game Point
-                const tooltipGamePoint = `Margin Linear: ${marginPrefix}${p.marginLinear.toFixed(1)} | Share Penalty: -${p.sharePenalty.toFixed(1)} (Share: ${p.sharePct.toFixed(1)}%)`;
+                const marginPrefix = p.marginPts > 0 ? '+' : '';
+                const penaltyText = p.sharePenalty > 0 ? ` | Penalti Aktif (-${p.sharePenalty.toFixed(1)})` : '';
 
                 return `
                     <tr class="transition-colors border-b border-slate-100 last:border-0 ${rowClass}">
@@ -692,7 +701,7 @@
                         <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${diffPointColor} tooltip-hint" title="Berasal dari perhitungan: (Total Diff: ${totalDiffPrefix}${p.totalDiff} × 0.2) + (Avg Diff: ${avgDiffPrefix}${p.avgDiff.toFixed(2)} × 2.0)">
                             ${diffPointPrefix}${p.diffPoint.toFixed(1)}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${gamePointColor} tooltip-hint" title="${tooltipGamePoint}">
+                        <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${gamePointColor} tooltip-hint" title="Margin Linear: ${marginPrefix}${p.marginPts.toFixed(1)}${penaltyText} | Share Skuad: ${p.sharePct.toFixed(1)}%">
                             ${gamePointPrefix}${p.gamePoint.toFixed(1)}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center bg-purple-50/40">
@@ -710,3 +719,5 @@
     </script>
 </body>
 </html>
+
+
