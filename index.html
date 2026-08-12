@@ -284,7 +284,7 @@
                         <div>
                             <strong class="text-purple-900">2. Game Point (Poin Keaktifan):</strong> <br>
                             Margin Linear dengan batas aktif minimal (2.0%): <br>
-                            <code>(Selisih thd Rata-rata × 0.8) - Penalti Share</code><br>
+                            <code>(Selisih thd Rata-rata × 0.25) - Penalti Share</code><br>
                             <span class="text-[10px] text-purple-500 leading-tight block mt-1">
                                 *Penalti Share: Jika porsi bermain di bawah batas minimal (2.0%), dikenakan penalti (Kekurangan Share × 1.5).
                             </span>
@@ -396,9 +396,10 @@
             { name: "Ade", gender: "M", games: 16, wins: 11, totalDiff: 8 },
             { name: "Adhan", gender: "M", games: 4, wins: 3, totalDiff: 4 },
             { name: "Adnan", gender: "M", games: 8, wins: 5, totalDiff: 2 },
+            { name: "Akhmad", gender: "M", games: 4, wins: 0, totalDiff: -10 },
             { name: "Alfred", gender: "M", games: 4, wins: 1, totalDiff: 0 },
             { name: "Alief", gender: "M", games: 8, wins: 3, totalDiff: -4 },
-            { name: "Aliy", gender: "M", games: 32, wins: 27, totalDiff: 49 },
+            { name: "Aliy", gender: "M", games: 36, wins: 31, totalDiff: 59 },
             { name: "Amani", gender: "M", games: 4, wins: 2, totalDiff: 2 },
             { name: "Ambar", gender: "F", games: 4, wins: 0, totalDiff: -7 },
             { name: "Andhika", gender: "M", games: 4, wins: 4, totalDiff: 12 },
@@ -410,7 +411,7 @@
             { name: "Bayuw", gender: "M", games: 4, wins: 2, totalDiff: 0 },
             { name: "Binka", gender: "M", games: 4, wins: 3, totalDiff: 6 },
             { name: "Dani", gender: "M", games: 8, wins: 0, totalDiff: -21 },
-            { name: "Deny", gender: "M", games: 8, wins: 4, totalDiff: 0 },
+            { name: "Deny", gender: "M", games: 12, wins: 5, totalDiff: -4 },
             { name: "Domas", gender: "M", games: 20, wins: 3, totalDiff: -21 },
             { name: "Dwiki", gender: "M", games: 4, wins: 2, totalDiff: 0 },
             { name: "Eko", gender: "M", games: 4, wins: 3, totalDiff: 4 },
@@ -425,8 +426,9 @@
             { name: "Ichal", gender: "M", games: 4, wins: 3, totalDiff: 8 },
             { name: "Indra", gender: "M", games: 2, wins: 1, totalDiff: 0 },
             { name: "Iqbal", gender: "M", games: 8, wins: 3, totalDiff: -12 },
+            { name: "Iqfal", gender: "M", games: 4, wins: 3, totalDiff: 4 },
             { name: "Kamil", gender: "M", games: 12, wins: 9, totalDiff: 17 },
-            { name: "Kurniawan", gender: "M", games: 4, wins: 0, totalDiff: -12 },
+            { name: "Kurniawan", gender: "M", games: 8, wins: 2, totalDiff: -12 },
             { name: "Nanang", gender: "M", games: 8, wins: 2, totalDiff: -4 },
             { name: "Octano", gender: "M", games: 8, wins: 4, totalDiff: 0 },
             { name: "Pamungkas", gender: "M", games: 4, wins: 3, totalDiff: 4 },
@@ -486,8 +488,8 @@
                     
                     const diffGames = p.games - avgSquadGames;
                     
-                    // 1. Margin Linear (0.8 poin per selisih game)
-                    marginPts = diffGames * 0.8; 
+                    // 1. Margin Linear (0.25 poin per selisih game)
+                    marginPts = diffGames * 0.25; 
                     
                     // 2. Share Penalty (Jika share di bawah 2.0%, selisihnya dikali 1.5 sebagai penalti)
                     if (sharePct < 2.0) {
@@ -719,5 +721,6 @@
     </script>
 </body>
 </html>
+
 
 
