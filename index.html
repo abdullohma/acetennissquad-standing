@@ -268,25 +268,30 @@
                     <div class="text-xs sm:text-sm text-purple-800 flex flex-wrap items-center gap-x-2 gap-y-2 font-medium mb-3">
                         <span class="bg-purple-200/60 px-2.5 py-1 rounded-md text-purple-900 font-bold">Total Poin</span> 
                         <span class="font-bold text-purple-400">=</span>
-                        <span class="bg-white px-2.5 py-1 rounded-md shadow-sm border border-purple-100/50">Win %</span> 
+                        <span class="bg-white px-2.5 py-1 rounded-md shadow-sm border border-purple-100/50">Base Poin (Win)</span> 
                         <span class="font-bold text-purple-400">+</span>
                         <span class="bg-white px-2.5 py-1 rounded-md shadow-sm border border-purple-100/50">Diff Point</span>
                         <span class="font-bold text-purple-400">+</span>
                         <span class="bg-white px-2.5 py-1 rounded-md shadow-sm border border-purple-100/50 text-ace-dark">Game Point</span>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-purple-700 bg-white/50 p-3 rounded-lg border border-purple-100/50">
+                    <!-- Layout 3 Kolom -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-purple-700 bg-white/50 p-3 rounded-lg border border-purple-100/50">
                         <div>
-                            <strong class="text-purple-900">1. Diff Point (Poin Selisih Skor):</strong> <br>
-                            Merupakan gabungan dari selisih gol: <br>
-                            <code>(Total Diff × 0.2) + (Avg Diff × 2.0)</code>
+                            <strong class="text-purple-900">1. Base Poin (Win %):</strong> <br>
+                            Murni dari persentase kemenangan (100% = 100 Poin). <br>
                         </div>
                         <div>
-                            <strong class="text-purple-900">2. Game Point (Poin Keaktifan):</strong> <br>
-                            Margin Linear dengan batas aktif minimal (2.0%): <br>
-                            <code>(Selisih thd Rata-rata × 0.25) - Penalti Share</code><br>
+                            <strong class="text-purple-900">2. Diff Point:</strong> <br>
+                            Poin Selisih Skor: <br>
+                            <code>(Tot Diff × 0.15) + <br>(Avg Diff × 2.0)</code>
+                        </div>
+                        <div>
+                            <strong class="text-purple-900">3. Game Point:</strong> <br>
+                            <code>Margin Linear - Penalti Inaktif</code><br>
                             <span class="text-[10px] text-purple-500 leading-tight block mt-1">
-                                *Penalti Share: Jika porsi bermain di bawah batas minimal (2.0%), dikenakan penalti (Kekurangan Share × 1.5).
+                                *Margin Linear: Selisih dr rata-rata × 0.20 (Game > 24 × 0.10).<br>
+                                *Penalti Inaktif: Dipotong 10% dari Win Rate per bulan absen/tidak main.
                             </span>
                         </div>
                     </div>
@@ -304,7 +309,7 @@
                                 <th scope="col" class="px-6 py-4 text-center">Win %</th>
                                 <th scope="col" class="px-6 py-4 text-center">Games</th>
                                 <th scope="col" class="px-6 py-4 text-center tooltip-hint" title="Gabungan Total Diff & Avg Diff">Diff Point</th>
-                                <th scope="col" class="px-6 py-4 text-center tooltip-hint" title="Margin Linear + Share Penalty (jika < 2%)">Game Point</th>
+                                <th scope="col" class="px-6 py-4 text-center tooltip-hint" title="Margin Linear dari Rata-rata dikurangi Penalti Inaktif">Game Point</th>
                                 <th scope="col" class="px-6 py-4 text-center bg-ace rounded-tr-xl">Total Poin</th>
                             </tr>
                         </thead>
@@ -323,131 +328,136 @@
         // DATA DOUBLE FORMAT
         // ============================================
         const rawDoublePlayersData = [
-            { name: "Gian", gender: "M", games: 10, wins: 8, totalDiff: 22 },
-            { name: "Tommy", gender: "M", games: 19, wins: 13, totalDiff: 19 },
-            { name: "Faiz", gender: "M", games: 12, wins: 8, totalDiff: 15 },
-            { name: "Whika", gender: "M", games: 16, wins: 10, totalDiff: 13 },
-            { name: "Leo", gender: "M", games: 26, wins: 14, totalDiff: 14 },
-            { name: "Frans", gender: "M", games: 25, wins: 14, totalDiff: 1 },
-            { name: "Reiza", gender: "M", games: 22, wins: 12, totalDiff: 8 },
-            { name: "Kurniawan", gender: "M", games: 8, wins: 2, totalDiff: -7 },
-            { name: "Bayu", gender: "M", games: 19, wins: 8, totalDiff: -8 },
-            { name: "Zidan", gender: "M", games: 14, wins: 5, totalDiff: -14 },
-            { name: "Huda", gender: "M", games: 14, wins: 4, totalDiff: -10 },
-            { name: "Betty", gender: "F", games: 32, wins: 17, totalDiff: -7 },
-            { name: "Gusti", gender: "M", games: 31, wins: 22, totalDiff: 29 },
-            { name: "Raka", gender: "M", games: 20, wins: 8, totalDiff: -19 },
-            { name: "Kiswoyo", gender: "M", games: 13, wins: 5, totalDiff: -14 },
-            { name: "Adnan", gender: "M", games: 37, wins: 17, totalDiff: 2 },
-            { name: "Yoses", gender: "M", games: 19, wins: 10, totalDiff: 5 },
-            { name: "Bimo", gender: "M", games: 10, wins: 6, totalDiff: 10 },
-            { name: "Reno", gender: "F", games: 10, wins: 6, totalDiff: 10 },
-            { name: "Syafrul", gender: "M", games: 6, wins: 2, totalDiff: -6 },
-            { name: "Ade", gender: "M", games: 16, wins: 11, totalDiff: 8 },
-            { name: "Wils", gender: "M", games: 31, wins: 22, totalDiff: 38 },
-            { name: "Danar", gender: "M", games: 19, wins: 12, totalDiff: 15 },
-            { name: "Hanif", gender: "M", games: 13, wins: 6, totalDiff: -5 },
-            { name: "Uti", gender: "F", games: 10, wins: 4, totalDiff: -2 },
-            { name: "Shania", gender: "F", games: 6, wins: 0, totalDiff: -12 },
-            { name: "Adi", gender: "M", games: 4, wins: 1, totalDiff: -4 },
-            { name: "Anri", gender: "M", games: 6, wins: 2, totalDiff: -6 },
-            { name: "Devia", gender: "F", games: 4, wins: 0, totalDiff: -8 },
-            { name: "Barkah", gender: "M", games: 4, wins: 2, totalDiff: 0 },
-            { name: "Totong", gender: "M", games: 4, wins: 2, totalDiff: 2 },
-            { name: "Cesie", gender: "F", games: 6, wins: 2, totalDiff: -3 },
-            { name: "Dee", gender: "F", games: 10, wins: 2, totalDiff: -13 },
-            { name: "Haidir", gender: "M", games: 11, wins: 5, totalDiff: -11 },
-            { name: "Rama", gender: "M", games: 6, wins: 2, totalDiff: -9 },
-            { name: "Ridha", gender: "F", games: 8, wins: 3, totalDiff: -6 },
-            { name: "Agam", gender: "M", games: 8, wins: 4, totalDiff: 8 },
-            { name: "Winda", gender: "F", games: 8, wins: 2, totalDiff: -10 },
-            { name: "Nisa", gender: "F", games: 6, wins: 4, totalDiff: 2 },
-            { name: "Robertus", gender: "M", games: 7, wins: 4, totalDiff: 0 },
-            { name: "Tiara", gender: "F", games: 6, wins: 2, totalDiff: -3 },
-            { name: "Tyan", gender: "F", games: 7, wins: 4, totalDiff: -3 },
-            { name: "Ivo", gender: "F", games: 27, wins: 11, totalDiff: -3 },
-            { name: "Alief", gender: "M", games: 14, wins: 4, totalDiff: -8 },
-            { name: "Dzaky", gender: "M", games: 14, wins: 4, totalDiff: -14 },
-            { name: "Heru", gender: "M", games: 14, wins: 8, totalDiff: 8 },
-            { name: "Bima", gender: "M", games: 2, wins: 1, totalDiff: 1 },
-            { name: "Danang", gender: "M", games: 2, wins: 1, totalDiff: -1 },
-            { name: "Dina", gender: "F", games: 3, wins: 0, totalDiff: -10 },
-            { name: "Fauza", gender: "F", games: 5, wins: 3, totalDiff: 3 },
-            { name: "Hendra", gender: "M", games: 4, wins: 1, totalDiff: -6 },
-            { name: "Irfann", gender: "M", games: 4, wins: 2, totalDiff: 4 },
-            { name: "Irfaan", gender: "M", games: 7, wins: 3, totalDiff: -9 },
-            { name: "Lidya", gender: "F", games: 5, wins: 2, totalDiff: -3 },
-            { name: "Metrik", gender: "M", games: 5, wins: 2, totalDiff: -1 },
-            { name: "Tika", gender: "F", games: 2, wins: 1, totalDiff: -1 },
-            { name: "Yusuf", gender: "M", games: 11, wins: 6, totalDiff: 1 },
-            { name: "Geo", gender: "M", games: 2, wins: 1, totalDiff: -2 },
-            { name: "Yoga", gender: "M", games: 8, wins: 5, totalDiff: 4 },
-            { name: "Yasaya", gender: "M", games: 7, wins: 3, totalDiff: -3 },
-            { name: "Khairul", gender: "M", games: 7, wins: 2, totalDiff: -13 },
-            { name: "Eko", gender: "M", games: 4, wins: 3, totalDiff: 4 },
-            { name: "Aliy", gender: "M", games: 101, wins: 76, totalDiff: 112 }
+            { name: "Gian", gender: "M", games: 10, wins: 8, totalDiff: 22, joinMonth: "Juni" },
+            { name: "Tommy", gender: "M", games: 19, wins: 13, totalDiff: 19, joinMonth: "Veteran" },
+            { name: "Faiz", gender: "M", games: 12, wins: 8, totalDiff: 15, joinMonth: "Veteran" },
+            { name: "Whika", gender: "M", games: 16, wins: 10, totalDiff: 13, joinMonth: "Veteran" },
+            { name: "Leo", gender: "M", games: 26, wins: 14, totalDiff: 14, joinMonth: "Veteran" },
+            { name: "Frans", gender: "M", games: 25, wins: 14, totalDiff: 1, joinMonth: "Agustus" },
+            { name: "Reiza", gender: "M", games: 22, wins: 12, totalDiff: 8, joinMonth: "Agustus" },
+            { name: "Kurniawan", gender: "M", games: 8, wins: 2, totalDiff: -7, joinMonth: "Agustus" },
+            { name: "Bayu", gender: "M", games: 19, wins: 8, totalDiff: -8, joinMonth: "Agustus" },
+            { name: "Zidan", gender: "M", games: 14, wins: 5, totalDiff: -14, joinMonth: "Veteran" },
+            { name: "Huda", gender: "M", games: 14, wins: 4, totalDiff: -10, joinMonth: "Veteran" },
+            { name: "Betty", gender: "F", games: 32, wins: 17, totalDiff: -7, joinMonth: "Veteran" },
+            { name: "Gusti", gender: "M", games: 31, wins: 22, totalDiff: 29, joinMonth: "Juni" },
+            { name: "Raka", gender: "M", games: 20, wins: 8, totalDiff: -19, joinMonth: "Juli" },
+            { name: "Kiswoyo", gender: "M", games: 13, wins: 5, totalDiff: -14, joinMonth: "Veteran" },
+            { name: "Adnan", gender: "M", games: 37, wins: 17, totalDiff: 2, joinMonth: "Mei" },
+            { name: "Yoses", gender: "M", games: 19, wins: 10, totalDiff: 5, joinMonth: "Juni" },
+            { name: "Bimo", gender: "M", games: 10, wins: 6, totalDiff: 10, joinMonth: "Veteran" },
+            { name: "Reno", gender: "F", games: 10, wins: 6, totalDiff: 10, joinMonth: "Veteran" },
+            { name: "Syafrul", gender: "M", games: 6, wins: 2, totalDiff: -6, joinMonth: "Veteran" },
+            { name: "Ade", gender: "M", games: 16, wins: 11, totalDiff: 8, joinMonth: "Juni" },
+            { name: "Wils", gender: "M", games: 31, wins: 22, totalDiff: 38, joinMonth: "Veteran" },
+            { name: "Danar", gender: "M", games: 19, wins: 12, totalDiff: 15, joinMonth: "Veteran" },
+            { name: "Hanif", gender: "M", games: 13, wins: 6, totalDiff: -5, joinMonth: "Veteran" },
+            { name: "Uti", gender: "F", games: 10, wins: 4, totalDiff: -2, joinMonth: "Veteran" },
+            { name: "Shania", gender: "F", games: 6, wins: 0, totalDiff: -12, joinMonth: "Veteran" },
+            { name: "Adi", gender: "M", games: 4, wins: 1, totalDiff: -4, joinMonth: "Veteran" },
+            { name: "Anri", gender: "M", games: 6, wins: 2, totalDiff: -6, joinMonth: "Veteran" },
+            { name: "Devia", gender: "F", games: 4, wins: 0, totalDiff: -8, joinMonth: "Veteran" },
+            { name: "Barkah", gender: "M", games: 4, wins: 2, totalDiff: 0, joinMonth: "Veteran" },
+            { name: "Totong", gender: "M", games: 4, wins: 2, totalDiff: 2, joinMonth: "Juli" },
+            { name: "Cesie", gender: "F", games: 6, wins: 2, totalDiff: -3, joinMonth: "Veteran" },
+            { name: "Dee", gender: "F", games: 10, wins: 2, totalDiff: -13, joinMonth: "Veteran" },
+            { name: "Haidir", gender: "M", games: 11, wins: 5, totalDiff: -11, joinMonth: "Veteran" },
+            { name: "Rama", gender: "M", games: 6, wins: 2, totalDiff: -9, joinMonth: "Agustus" },
+            { name: "Ridha", gender: "F", games: 8, wins: 3, totalDiff: -6, joinMonth: "Veteran" },
+            { name: "Agam", gender: "M", games: 8, wins: 4, totalDiff: 8, joinMonth: "Veteran" },
+            { name: "Winda", gender: "F", games: 8, wins: 2, totalDiff: -10, joinMonth: "Mei" },
+            { name: "Nisa", gender: "F", games: 6, wins: 4, totalDiff: 2, joinMonth: "Veteran" },
+            { name: "Robertus", gender: "M", games: 7, wins: 4, totalDiff: 0, joinMonth: "Veteran" },
+            { name: "Tiara", gender: "F", games: 6, wins: 2, totalDiff: -3, joinMonth: "Veteran" },
+            { name: "Tyan", gender: "F", games: 7, wins: 4, totalDiff: -3, joinMonth: "Veteran" },
+            { name: "Ivo", gender: "F", games: 27, wins: 11, totalDiff: -3, joinMonth: "Veteran" },
+            { name: "Alief", gender: "M", games: 14, wins: 4, totalDiff: -8, joinMonth: "Juli" },
+            { name: "Dzaky", gender: "M", games: 14, wins: 4, totalDiff: -14, joinMonth: "Veteran" },
+            { name: "Heru", gender: "M", games: 14, wins: 8, totalDiff: 8, joinMonth: "Veteran" },
+            { name: "Bima", gender: "M", games: 2, wins: 1, totalDiff: 1, joinMonth: "Veteran" },
+            { name: "Danang", gender: "M", games: 2, wins: 1, totalDiff: -1, joinMonth: "Veteran" },
+            { name: "Dina", gender: "F", games: 3, wins: 0, totalDiff: -10, joinMonth: "Veteran" },
+            { name: "Fauza", gender: "F", games: 5, wins: 3, totalDiff: 3, joinMonth: "Veteran" },
+            { name: "Hendra", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "Veteran" },
+            { name: "Irfann", gender: "M", games: 4, wins: 2, totalDiff: 4, joinMonth: "Veteran" },
+            { name: "Irfaan", gender: "M", games: 7, wins: 3, totalDiff: -9, joinMonth: "Veteran" },
+            { name: "Lidya", gender: "F", games: 5, wins: 2, totalDiff: -3, joinMonth: "Veteran" },
+            { name: "Metrik", gender: "M", games: 5, wins: 2, totalDiff: -1, joinMonth: "Veteran" },
+            { name: "Tika", gender: "F", games: 2, wins: 1, totalDiff: -1, joinMonth: "Veteran" },
+            { name: "Yusuf", gender: "M", games: 11, wins: 6, totalDiff: 1, joinMonth: "Veteran" },
+            { name: "Geo", gender: "M", games: 2, wins: 1, totalDiff: -2, joinMonth: "Juni" },
+            { name: "Yoga", gender: "M", games: 8, wins: 5, totalDiff: 4, joinMonth: "Veteran" },
+            { name: "Yasaya", gender: "M", games: 7, wins: 3, totalDiff: -3, joinMonth: "Veteran" },
+            { name: "Khairul", gender: "M", games: 7, wins: 2, totalDiff: -13, joinMonth: "Veteran" },
+            { name: "Eko", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Mei" },
+            { name: "Aliy", gender: "M", games: 101, wins: 76, totalDiff: 112, joinMonth: "Agustus" }
         ];
 
         // ============================================
-        // DATA SINGLE FORMAT
+        // DATA SINGLE FORMAT (Dengan Timestamp Bulanan)
         // ============================================
         const rawSinglePlayersData = [
-            { name: "Aby", gender: "M", games: 4, wins: 3, totalDiff: 0 },
-            { name: "Ade", gender: "M", games: 16, wins: 11, totalDiff: 8 },
-            { name: "Adhan", gender: "M", games: 4, wins: 3, totalDiff: 4 },
-            { name: "Adnan", gender: "M", games: 8, wins: 5, totalDiff: 2 },
-            { name: "Akhmad", gender: "M", games: 4, wins: 0, totalDiff: -10 },
-            { name: "Alfred", gender: "M", games: 4, wins: 1, totalDiff: 0 },
-            { name: "Alief", gender: "M", games: 8, wins: 3, totalDiff: -4 },
-            { name: "Aliy", gender: "M", games: 40, wins: 34, totalDiff: 68 },
-            { name: "Amani", gender: "M", games: 4, wins: 2, totalDiff: 2 },
-            { name: "Ambar", gender: "F", games: 4, wins: 0, totalDiff: -7 },
-            { name: "Andhika", gender: "M", games: 4, wins: 4, totalDiff: 12 },
-            { name: "Angwyn", gender: "M", games: 8, wins: 4, totalDiff: -4 },
-            { name: "Arbar", gender: "M", games: 4, wins: 2, totalDiff: 0 },
-            { name: "Arief", gender: "M", games: 4, wins: 3, totalDiff: 2 },
-            { name: "Ayub", gender: "M", games: 4, wins: 1, totalDiff: -2 },
-            { name: "Bayu", gender: "M", games: 22, wins: 11, totalDiff: 4 },
-            { name: "Bayuw", gender: "M", games: 4, wins: 2, totalDiff: 0 },
-            { name: "Binka", gender: "M", games: 4, wins: 3, totalDiff: 6 },
-            { name: "Dani", gender: "M", games: 8, wins: 0, totalDiff: -21 },
-            { name: "Deny", gender: "M", games: 12, wins: 5, totalDiff: -4 },
-            { name: "Domas", gender: "M", games: 20, wins: 3, totalDiff: -21 },
-            { name: "Dwiki", gender: "M", games: 4, wins: 2, totalDiff: 0 },
-            { name: "Eko", gender: "M", games: 4, wins: 3, totalDiff: 4 },
-            { name: "Fadly", gender: "M", games: 4, wins: 2, totalDiff: -2 },
-            { name: "Fahmi", gender: "M", games: 4, wins: 3, totalDiff: 4 },
-            { name: "Frans", gender: "M", games: 8, wins: 5, totalDiff: 6 },
-            { name: "Ganang", gender: "M", games: 4, wins: 1, totalDiff: 0 },
-            { name: "Geri", gender: "M", games: 16, wins: 9, totalDiff: 1 },
-            { name: "Gian", gender: "M", games: 4, wins: 2, totalDiff: 2 },
-            { name: "Gusti", gender: "M", games: 24, wins: 17, totalDiff: 32 },
-            { name: "Hanung", gender: "M", games: 36, wins: 7, totalDiff: -23 },
-            { name: "Ichal", gender: "M", games: 4, wins: 3, totalDiff: 8 },
-            { name: "Indra", gender: "M", games: 2, wins: 1, totalDiff: 0 },
-            { name: "Iqbal", gender: "M", games: 8, wins: 3, totalDiff: -12 },
-            { name: "Iqfal", gender: "M", games: 4, wins: 3, totalDiff: 4 },
-            { name: "Kamil", gender: "M", games: 12, wins: 9, totalDiff: 17 },
-            { name: "Kurniawan", gender: "M", games: 8, wins: 2, totalDiff: -12 },
-            { name: "Nanang", gender: "M", games: 8, wins: 2, totalDiff: -4 },
-            { name: "Octano", gender: "M", games: 8, wins: 4, totalDiff: 0 },
-            { name: "Pamungkas", gender: "M", games: 4, wins: 3, totalDiff: 4 },
-            { name: "Raka", gender: "M", games: 8, wins: 2, totalDiff: -14 },
-            { name: "Rama", gender: "M", games: 16, wins: 2, totalDiff: -37 },
-            { name: "Rayest", gender: "M", games: 4, wins: 0, totalDiff: -10 },
-            { name: "Reiza", gender: "M", games: 27, wins: 25, totalDiff: 54 },
-            { name: "Rendi", gender: "M", games: 8, wins: 6, totalDiff: 4 },
-            { name: "Rezza", gender: "M", games: 4, wins: 4, totalDiff: 9 },
-            { name: "Rifian", gender: "M", games: 4, wins: 0, totalDiff: -12 },
-            { name: "Rifki", gender: "M", games: 4, wins: 1, totalDiff: -6 },
-            { name: "Rizki", gender: "M", games: 8, wins: 7, totalDiff: 16 },
-            { name: "Soni", gender: "M", games: 4, wins: 2, totalDiff: 0 },
-            { name: "Totong", gender: "M", games: 20, wins: 16, totalDiff: 29 },
-            { name: "Try", gender: "M", games: 32, wins: 7, totalDiff: -43 },
-            { name: "Windra", gender: "M", games: 4, wins: 4, totalDiff: 10 },
-            { name: "Wisnu", gender: "M", games: 4, wins: 3, totalDiff: 2 },
-            { name: "Yakin", gender: "M", games: 8, wins: 1, totalDiff: -16 },
-            { name: "Yoses", gender: "M", games: 4, wins: 0, totalDiff: -10 }
+            { name: "Aby", gender: "M", games: 4, wins: 3, totalDiff: 0, joinMonth: "Juli" },
+            { name: "Ade", gender: "M", games: 16, wins: 11, totalDiff: 8, joinMonth: "Juni" },
+            { name: "Adhan", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Juni" },
+            { name: "Adnan", gender: "M", games: 8, wins: 5, totalDiff: 2, joinMonth: "Mei" },
+            { name: "Akhmad", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Agustus" },
+            { name: "Alfred", gender: "M", games: 4, wins: 1, totalDiff: 0, joinMonth: "Juli" },
+            { name: "Alief", gender: "M", games: 8, wins: 3, totalDiff: -4, joinMonth: "Juli" },
+            { name: "Aliy", gender: "M", games: 44, wins: 37, totalDiff: 77, joinMonth: "Agustus" },
+            { name: "Amani", gender: "M", games: 4, wins: 2, totalDiff: 2, joinMonth: "Juni" },
+            { name: "Ambar", gender: "F", games: 4, wins: 0, totalDiff: -7, joinMonth: "Agustus" },
+            { name: "Andhika", gender: "M", games: 4, wins: 4, totalDiff: 12, joinMonth: "Juni" },
+            { name: "Angwyn", gender: "M", games: 8, wins: 4, totalDiff: -4, joinMonth: "Mei" },
+            { name: "Arbar", gender: "M", games: 4, wins: 2, totalDiff: 0, joinMonth: "Mei" },
+            { name: "Arief", gender: "M", games: 4, wins: 3, totalDiff: 2, joinMonth: "Mei" },
+            { name: "Ayub", gender: "M", games: 4, wins: 1, totalDiff: -2, joinMonth: "Agustus" },
+            { name: "Azzam", gender: "M", games: 4, wins: 0, totalDiff: -7, joinMonth: "Agustus" },
+            { name: "Bayu", gender: "M", games: 26, wins: 12, totalDiff: 0, joinMonth: "Agustus" },
+            { name: "Bayuw", gender: "M", games: 4, wins: 2, totalDiff: 0, joinMonth: "Juli" },
+            { name: "Binka", gender: "M", games: 4, wins: 3, totalDiff: 6, joinMonth: "Juli" },
+            { name: "Dani", gender: "M", games: 8, wins: 0, totalDiff: -21, joinMonth: "Agustus" },
+            { name: "Davy", gender: "M", games: 4, wins: 4, totalDiff: 8, joinMonth: "Agustus" },
+            { name: "Deny", gender: "M", games: 12, wins: 5, totalDiff: -4, joinMonth: "Agustus" },
+            { name: "Domas", gender: "M", games: 20, wins: 3, totalDiff: -21, joinMonth: "Juni" },
+            { name: "Dwiki", gender: "M", games: 4, wins: 2, totalDiff: 0, joinMonth: "Juli" },
+            { name: "Eko", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Mei" },
+            { name: "Fadly", gender: "M", games: 4, wins: 2, totalDiff: -2, joinMonth: "Juli" },
+            { name: "Fahmi", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Juni" },
+            { name: "Fien", gender: "F", games: 0, wins: 0, totalDiff: 0, joinMonth: "Juli" },
+            { name: "Frans", gender: "M", games: 12, wins: 7, totalDiff: 6, joinMonth: "Agustus" },
+            { name: "Ganang", gender: "M", games: 4, wins: 1, totalDiff: 0, joinMonth: "Mei" },
+            { name: "Geri", gender: "M", games: 24, wins: 13, totalDiff: 3, joinMonth: "Agustus" },
+            { name: "Gian", gender: "M", games: 4, wins: 2, totalDiff: 2, joinMonth: "Juni" },
+            { name: "Gusti", gender: "M", games: 24, wins: 17, totalDiff: 32, joinMonth: "Juni" },
+            { name: "Hanung", gender: "M", games: 36, wins: 7, totalDiff: -23, joinMonth: "Agustus" },
+            { name: "Ichal", gender: "M", games: 4, wins: 3, totalDiff: 8, joinMonth: "Juli" },
+            { name: "Indra", gender: "M", games: 2, wins: 1, totalDiff: 0, joinMonth: "Juli" },
+            { name: "Intan", gender: "F", games: 0, wins: 0, totalDiff: 0, joinMonth: "Juli" },
+            { name: "Iqbal", gender: "M", games: 8, wins: 3, totalDiff: -12, joinMonth: "Agustus" },
+            { name: "Iqfal", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Agustus" },
+            { name: "Kamil", gender: "M", games: 12, wins: 9, totalDiff: 17, joinMonth: "Agustus" },
+            { name: "Kurniawan", gender: "M", games: 16, wins: 6, totalDiff: -18, joinMonth: "Agustus" },
+            { name: "Nanang", gender: "M", games: 8, wins: 2, totalDiff: -4, joinMonth: "Juli" },
+            { name: "Octano", gender: "M", games: 16, wins: 8, totalDiff: 2, joinMonth: "Agustus" },
+            { name: "Okta", gender: "F", games: 0, wins: 0, totalDiff: 0, joinMonth: "Juli" },
+            { name: "Pamungkas", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Mei" },
+            { name: "Raka", gender: "M", games: 8, wins: 2, totalDiff: -14, joinMonth: "Juli" },
+            { name: "Rama", gender: "M", games: 20, wins: 2, totalDiff: -48, joinMonth: "Agustus" },
+            { name: "Rayest", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Juli" },
+            { name: "Reiza", gender: "M", games: 31, wins: 29, totalDiff: 64, joinMonth: "Agustus" },
+            { name: "Rendi", gender: "M", games: 8, wins: 6, totalDiff: 4, joinMonth: "Juli" },
+            { name: "Rezza", gender: "M", games: 4, wins: 4, totalDiff: 9, joinMonth: "Juli" },
+            { name: "Rifian", gender: "M", games: 4, wins: 0, totalDiff: -12, joinMonth: "Juli" },
+            { name: "Rifki", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "Juli" },
+            { name: "Rizki", gender: "M", games: 8, wins: 7, totalDiff: 16, joinMonth: "Juli" },
+            { name: "Soni", gender: "M", games: 4, wins: 2, totalDiff: 0, joinMonth: "Agustus" },
+            { name: "Totong", gender: "M", games: 20, wins: 16, totalDiff: 29, joinMonth: "Juli" },
+            { name: "Try", gender: "M", games: 32, wins: 7, totalDiff: -43, joinMonth: "Agustus" },
+            { name: "Windra", gender: "M", games: 4, wins: 4, totalDiff: 10, joinMonth: "Mei" },
+            { name: "Wisnu", gender: "M", games: 4, wins: 3, totalDiff: 2, joinMonth: "Juni" },
+            { name: "Yakin", gender: "M", games: 8, wins: 1, totalDiff: -16, joinMonth: "Juli" },
+            { name: "Yoses", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Juni" }
         ];
 
         // ============================================
@@ -465,53 +475,61 @@
 
         // Fungsi perhitungan poin universal
         function calculateStats(players, squadTotalGames) {
-            // 1. Cari rata-rata jumlah main (games) seluruh pemain (yg aktif) di format ini
             const activePlayersOnly = players.filter(p => p.games > 0);
             const totalGames = activePlayersOnly.reduce((sum, p) => sum + p.games, 0);
             const avgSquadGames = activePlayersOnly.length > 0 ? (totalGames / activePlayersOnly.length) : 0;
 
             return players.map(p => {
+                // 1. KOMPONEN MURNI WIN RATE
                 const winRate = p.games > 0 ? (p.wins / p.games) * 100 : 0;
                 
-                // KOMPONEN DIFF POINT
-                const avgDiff = p.games > 0 ? p.totalDiff / p.games : 0;
-                const diffPoint = (p.totalDiff * 0.2) + (avgDiff * 2.0);
+                // 2. MENGHITUNG BULAN INAKTIF
+                let monthsMissed = 0;
+                if (p.joinMonth === 'Agustus') monthsMissed = 0;
+                else if (p.joinMonth === 'Juli') monthsMissed = 1;
+                else if (p.joinMonth === 'Juni') monthsMissed = 2;
+                else if (p.joinMonth === 'Mei') monthsMissed = 3;
+                else if (p.joinMonth === 'Veteran') monthsMissed = 4; // Default untuk yg join sebelum Mei
+
+                // 3. KOMPONEN PENALTI INAKTIF (Dipotong dari Game Point)
+                // Penalti = 10% dari Win Rate per bulan inaktif (tanpa max limit)
+                const penaltyRatio = monthsMissed * 0.10;
+                const penalty = winRate * penaltyRatio;
                 
-                // KOMPONEN GAME POINT (Margin Linear + Minimum Share Penalty)
+                // 4. KOMPONEN DIFF POINT (Total Diff x 0.15 + Avg Diff x 2.0)
+                const avgDiff = p.games > 0 ? p.totalDiff / p.games : 0;
+                const diffPoint = (p.totalDiff * 0.15) + (avgDiff * 2.0);
+                
+                // 5. KOMPONEN GAME POINT (Margin Linear - Penalti Inaktif)
                 let marginPts = 0;
-                let sharePct = 0;
-                let sharePenalty = 0;
                 
                 if (p.games > 0 && squadTotalGames > 0) {
-                    const shareRatio = p.games / squadTotalGames;
-                    sharePct = shareRatio * 100;
-                    
-                    const diffGames = p.games - avgSquadGames;
-                    
-                    // 1. Margin Linear (0.25 poin per selisih game)
-                    marginPts = diffGames * 0.25; 
-                    
-                    // 2. Share Penalty (Jika share di bawah 2.0%, selisihnya dikali 1.5 sebagai penalti)
-                    if (sharePct < 2.0) {
-                        sharePenalty = (2.0 - sharePct) * 1.5;
+                    // Margin Linear dengan Diminishing Return (Batas 24 Game)
+                    if (p.games <= 24) {
+                        const diffGames = p.games - avgSquadGames;
+                        marginPts = diffGames * 0.20; 
+                    } else {
+                        // Game sampai 24 dihitung 0.20, sisanya dihitung 0.10
+                        const baseDiff = 24 - avgSquadGames;
+                        const extraGames = p.games - 24;
+                        marginPts = (baseDiff * 0.20) + (extraGames * 0.10);
                     }
                 }
                 
-                // Gabungan Game Point = Nilai Linear Margin dikurangi Hukuman Share (jika ada)
-                let gamePoint = marginPts - sharePenalty;
+                let gamePoint = marginPts - penalty;
                 
                 // TOTAL
                 const totalPoints = winRate + diffPoint + gamePoint;
 
                 return {
                     ...p,
+                    monthsMissed,
                     winRate,
+                    penalty,      // disimpan untuk tooltip
                     avgDiff,      // disimpan untuk tooltip
                     totalDiff: p.totalDiff, // disimpan untuk tooltip
                     diffPoint,
-                    marginPts,    // disimpan untuk tooltip (linear base point)
-                    sharePct,     // disimpan untuk tooltip
-                    sharePenalty, // disimpan untuk tooltip
+                    marginPts,    // disimpan untuk tooltip
                     gamePoint,
                     totalPoints 
                 };
@@ -587,12 +605,16 @@
             const sortBy = sortByElement.value;
             const searchTerm = searchInputElement ? searchInputElement.value.toLowerCase() : '';
 
+            // Cuma nampilin yang sudah main (games > 0) ATAU cocok dengan filter
             filteredPlayers = playersData.filter(p => {
+                if (p.games === 0 && minGames > 0) return false;
+                if (p.games === 0 && searchTerm === '') return false; // Hide 0 games by default unless searched
+
                 const matchGames = p.games >= minGames;
                 const matchGender = genderFilter === 'ALL' ? true : p.gender === genderFilter;
                 const matchSearch = p.name.toLowerCase().includes(searchTerm);
                 
-                // Tier Logic (Hanya menggunakan persentase)
+                // Tier Logic (Hanya menggunakan persentase asli)
                 let matchTier = true;
                 if (tier === 'ATAS') {
                     matchTier = p.winRate > 80;
@@ -676,6 +698,18 @@
                 const losses = p.games - p.wins;
                 const winRateClass = p.winRate > 80 ? 'text-emerald-600' : (p.winRate <= 50 ? 'text-rose-600' : 'text-amber-500');
                 
+                // Indikator Win Rate MURNI
+                const winRateDisplay = `${p.winRate.toFixed(1)}%`;
+                
+                // Label kecil untuk status inaktif bulan (digabung di bawah Record)
+                let joinBadge = '';
+                if (p.monthsMissed === 0) {
+                    joinBadge = `<span class="text-[10px] text-emerald-500 font-semibold block mt-0.5 uppercase tracking-wider">Current</span>`;
+                } else {
+                    const monthStr = p.monthsMissed > 1 ? 'months' : 'month';
+                    joinBadge = `<span class="text-[10px] text-rose-400 font-medium block mt-0.5 uppercase tracking-wider">${p.monthsMissed} ${monthStr} ago</span>`;
+                }
+
                 // Formatting untuk Tooltip & Color Diff Point
                 const totalDiffPrefix = p.totalDiff > 0 ? '+' : '';
                 const avgDiffPrefix = p.avgDiff > 0 ? '+' : '';
@@ -686,24 +720,31 @@
                 const gamePointColor = p.gamePoint > 5 ? 'text-blue-600' : (p.gamePoint < 0 ? 'text-rose-500' : 'text-slate-600');
                 const gamePointPrefix = p.gamePoint > 0 ? '+' : '';
                 const marginPrefix = p.marginPts > 0 ? '+' : '';
-                const penaltyText = p.sharePenalty > 0 ? ` | Penalti Aktif (-${p.sharePenalty.toFixed(1)})` : '';
+                
+                let gamePointTooltip = `Margin Linear Asli: ${marginPrefix}${p.marginPts.toFixed(1)} Poin`;
+                if (p.penalty > 0) {
+                    gamePointTooltip += ` | Penalti Inaktif (${p.monthsMissed} bln): -${p.penalty.toFixed(1)} Poin (10% x ${p.monthsMissed} x WinRate)`;
+                }
 
                 return `
                     <tr class="transition-colors border-b border-slate-100 last:border-0 ${rowClass}">
-                        <td class="px-6 py-4 whitespace-nowrap ${nameClass}">${p.name}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="${nameClass}">${p.name}</span>
+                        </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center">
-                            <span class="font-bold text-emerald-600">${p.wins}W</span> <span class="text-slate-300 mx-1">-</span> <span class="font-bold text-rose-500">${losses}L</span>
+                            <div><span class="font-bold text-emerald-600">${p.wins}W</span> <span class="text-slate-300 mx-1">-</span> <span class="font-bold text-rose-500">${losses}L</span></div>
+                            ${joinBadge}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${winRateClass}">
-                            ${p.winRate.toFixed(1)}%
+                            ${winRateDisplay}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center font-bold text-slate-700">
                             ${p.games}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${diffPointColor} tooltip-hint" title="Berasal dari perhitungan: (Total Diff: ${totalDiffPrefix}${p.totalDiff} × 0.2) + (Avg Diff: ${avgDiffPrefix}${p.avgDiff.toFixed(2)} × 2.0)">
+                        <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${diffPointColor} tooltip-hint" title="Berasal dari perhitungan: (Total Diff: ${totalDiffPrefix}${p.totalDiff} × 0.15) + (Avg Diff: ${avgDiffPrefix}${p.avgDiff.toFixed(2)} × 2.0)">
                             ${diffPointPrefix}${p.diffPoint.toFixed(1)}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${gamePointColor} tooltip-hint" title="Margin Linear: ${marginPrefix}${p.marginPts.toFixed(1)}${penaltyText} | Share Skuad: ${p.sharePct.toFixed(1)}%">
+                        <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${gamePointColor} tooltip-hint" title="${gamePointTooltip}">
                             ${gamePointPrefix}${p.gamePoint.toFixed(1)}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center bg-purple-50/40">
