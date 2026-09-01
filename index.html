@@ -404,7 +404,7 @@
             { name: "Akhmad", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Agustus" },
             { name: "Alfred", gender: "M", games: 4, wins: 1, totalDiff: 0, joinMonth: "Juli" },
             { name: "Alief", gender: "M", games: 8, wins: 3, totalDiff: -4, joinMonth: "Juli" },
-            { name: "Aliy", gender: "M", games: 44, wins: 37, totalDiff: 77, joinMonth: "Agustus" },
+            { name: "Aliy", gender: "M", games: 48, wins: 39, totalDiff: 80, joinMonth: "Agustus" },
             { name: "Amani", gender: "M", games: 4, wins: 2, totalDiff: 2, joinMonth: "Juni" },
             { name: "Ambar", gender: "F", games: 4, wins: 0, totalDiff: -7, joinMonth: "Agustus" },
             { name: "Andhika", gender: "M", games: 4, wins: 4, totalDiff: 12, joinMonth: "Juni" },
@@ -422,6 +422,7 @@
             { name: "Domas", gender: "M", games: 20, wins: 3, totalDiff: -21, joinMonth: "Juni" },
             { name: "Dwiki", gender: "M", games: 4, wins: 2, totalDiff: 0, joinMonth: "Juli" },
             { name: "Eko", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Mei" },
+            { name: "Evan", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Agustus" },
             { name: "Fadly", gender: "M", games: 4, wins: 2, totalDiff: -2, joinMonth: "Juli" },
             { name: "Fahmi", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Juni" },
             { name: "Fien", gender: "F", games: 0, wins: 0, totalDiff: 0, joinMonth: "Juli" },
@@ -429,7 +430,7 @@
             { name: "Ganang", gender: "M", games: 4, wins: 1, totalDiff: 0, joinMonth: "Mei" },
             { name: "Geri", gender: "M", games: 24, wins: 13, totalDiff: 3, joinMonth: "Agustus" },
             { name: "Gian", gender: "M", games: 4, wins: 2, totalDiff: 2, joinMonth: "Juni" },
-            { name: "Gusti", gender: "M", games: 24, wins: 17, totalDiff: 32, joinMonth: "Juni" },
+            { name: "Gusti", gender: "M", games: 28, wins: 20, totalDiff: 36, joinMonth: "Agustus" },
             { name: "Hanung", gender: "M", games: 36, wins: 7, totalDiff: -23, joinMonth: "Agustus" },
             { name: "Ichal", gender: "M", games: 4, wins: 3, totalDiff: 8, joinMonth: "Juli" },
             { name: "Indra", gender: "M", games: 2, wins: 1, totalDiff: 0, joinMonth: "Juli" },
@@ -437,7 +438,7 @@
             { name: "Iqbal", gender: "M", games: 8, wins: 3, totalDiff: -12, joinMonth: "Agustus" },
             { name: "Iqfal", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Agustus" },
             { name: "Kamil", gender: "M", games: 12, wins: 9, totalDiff: 17, joinMonth: "Agustus" },
-            { name: "Kurniawan", gender: "M", games: 16, wins: 6, totalDiff: -18, joinMonth: "Agustus" },
+            { name: "Kurniawan", gender: "M", games: 20, wins: 7, totalDiff: -23, joinMonth: "Agustus" },
             { name: "Nanang", gender: "M", games: 8, wins: 2, totalDiff: -4, joinMonth: "Juli" },
             { name: "Octano", gender: "M", games: 16, wins: 8, totalDiff: 2, joinMonth: "Agustus" },
             { name: "Okta", gender: "F", games: 0, wins: 0, totalDiff: 0, joinMonth: "Juli" },
@@ -457,6 +458,7 @@
             { name: "Windra", gender: "M", games: 4, wins: 4, totalDiff: 10, joinMonth: "Mei" },
             { name: "Wisnu", gender: "M", games: 4, wins: 3, totalDiff: 2, joinMonth: "Juni" },
             { name: "Yakin", gender: "M", games: 8, wins: 1, totalDiff: -16, joinMonth: "Juli" },
+            { name: "Yoga", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "Agustus" },
             { name: "Yoses", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Juni" }
         ];
 
@@ -726,6 +728,9 @@
                     gamePointTooltip += ` | Penalti Inaktif (${p.monthsMissed} bln): -${p.penalty.toFixed(1)} Poin (10% x ${p.monthsMissed} x WinRate)`;
                 }
 
+                // Tambahkan icon warning jika ada penalti di Game Point
+                const penaltyIcon = p.penalty > 0 ? `<span class="text-amber-500 ml-1 text-[10px] cursor-help">⚠️</span>` : '';
+
                 return `
                     <tr class="transition-colors border-b border-slate-100 last:border-0 ${rowClass}">
                         <td class="px-6 py-4 whitespace-nowrap">
@@ -745,7 +750,7 @@
                             ${diffPointPrefix}${p.diffPoint.toFixed(1)}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${gamePointColor} tooltip-hint" title="${gamePointTooltip}">
-                            ${gamePointPrefix}${p.gamePoint.toFixed(1)}
+                            ${gamePointPrefix}${p.gamePoint.toFixed(1)} ${penaltyIcon}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center bg-purple-50/40">
                             <span class="text-lg font-black text-ace-dark">${p.totalPoints.toFixed(1)}</span>
