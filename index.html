@@ -219,8 +219,8 @@
                                 <label for="sortBy" class="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Urutkan:</label>
                                 <div class="relative">
                                     <select id="sortBy" onchange="filterPlayers()" class="w-full appearance-none bg-white border-2 border-slate-200 text-slate-700 py-2.5 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:border-ace focus:ring-4 focus:ring-ace/10 transition-all cursor-pointer font-semibold text-sm">
-                                        <option value="name" selected>Abjad (A-Z)</option>
-                                        <option value="points">Total Poin</option>
+                                        <option value="name">Abjad (A-Z)</option>
+                                        <option value="points" selected>Total Poin</option>
                                         <option value="games">Games</option>
                                     </select>
                                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
@@ -304,7 +304,8 @@
                     <table class="w-full whitespace-nowrap text-sm text-left">
                         <thead class="bg-ace-dark text-white uppercase font-semibold text-xs tracking-wider">
                             <tr>
-                                <th scope="col" class="px-6 py-4 rounded-tl-xl">Player</th>
+                                <th scope="col" class="px-4 py-4 rounded-tl-xl text-center w-12">#</th>
+                                <th scope="col" class="px-6 py-4">Player</th>
                                 <th scope="col" class="px-6 py-4 text-center">Record (W-L)</th>
                                 <th scope="col" class="px-6 py-4 text-center">Win %</th>
                                 <th scope="col" class="px-6 py-4 text-center">Games</th>
@@ -394,7 +395,7 @@
         ];
 
         // ============================================
-        // DATA SINGLE FORMAT (Dengan Timestamp Bulanan)
+        // DATA SINGLE FORMAT (Dengan Update Terbaru & Penanda lastUpdate)
         // ============================================
         const rawSinglePlayersData = [
             { name: "Aby", gender: "M", games: 4, wins: 3, totalDiff: 0, joinMonth: "Juli" },
@@ -404,7 +405,7 @@
             { name: "Akhmad", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Agustus" },
             { name: "Alfred", gender: "M", games: 4, wins: 1, totalDiff: 0, joinMonth: "Juli" },
             { name: "Alief", gender: "M", games: 8, wins: 3, totalDiff: -4, joinMonth: "Juli" },
-            { name: "Aliy", gender: "M", games: 48, wins: 39, totalDiff: 80, joinMonth: "Agustus" },
+            { name: "Aliy", gender: "M", games: 52, wins: 43, totalDiff: 90, joinMonth: "Agustus", lastUpdate: { games: 4, wins: 4, diff: 10 } },
             { name: "Amani", gender: "M", games: 4, wins: 2, totalDiff: 2, joinMonth: "Juni" },
             { name: "Ambar", gender: "F", games: 4, wins: 0, totalDiff: -7, joinMonth: "Agustus" },
             { name: "Andhika", gender: "M", games: 4, wins: 4, totalDiff: 12, joinMonth: "Juni" },
@@ -422,43 +423,43 @@
             { name: "Domas", gender: "M", games: 20, wins: 3, totalDiff: -21, joinMonth: "Juni" },
             { name: "Dwiki", gender: "M", games: 4, wins: 2, totalDiff: 0, joinMonth: "Juli" },
             { name: "Eko", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Mei" },
-            { name: "Evan", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Agustus" },
             { name: "Fadly", gender: "M", games: 4, wins: 2, totalDiff: -2, joinMonth: "Juli" },
             { name: "Fahmi", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Juni" },
-            { name: "Fien", gender: "F", games: 0, wins: 0, totalDiff: 0, joinMonth: "Juli" },
+            { name: "Fien", gender: "F", games: 5, wins: 1, totalDiff: -3, joinMonth: "Juli", lastUpdate: { games: 5, wins: 1, diff: -3 } },
             { name: "Frans", gender: "M", games: 12, wins: 7, totalDiff: 6, joinMonth: "Agustus" },
             { name: "Ganang", gender: "M", games: 4, wins: 1, totalDiff: 0, joinMonth: "Mei" },
             { name: "Geri", gender: "M", games: 24, wins: 13, totalDiff: 3, joinMonth: "Agustus" },
             { name: "Gian", gender: "M", games: 4, wins: 2, totalDiff: 2, joinMonth: "Juni" },
-            { name: "Gusti", gender: "M", games: 28, wins: 20, totalDiff: 36, joinMonth: "Agustus" },
+            { name: "Gusti", gender: "M", games: 24, wins: 17, totalDiff: 32, joinMonth: "Juni" },
             { name: "Hanung", gender: "M", games: 36, wins: 7, totalDiff: -23, joinMonth: "Agustus" },
             { name: "Ichal", gender: "M", games: 4, wins: 3, totalDiff: 8, joinMonth: "Juli" },
             { name: "Indra", gender: "M", games: 2, wins: 1, totalDiff: 0, joinMonth: "Juli" },
-            { name: "Intan", gender: "F", games: 0, wins: 0, totalDiff: 0, joinMonth: "Juli" },
+            { name: "Intan", gender: "F", games: 5, wins: 3, totalDiff: 3, joinMonth: "Juli", lastUpdate: { games: 5, wins: 3, diff: 3 } },
             { name: "Iqbal", gender: "M", games: 8, wins: 3, totalDiff: -12, joinMonth: "Agustus" },
             { name: "Iqfal", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Agustus" },
             { name: "Kamil", gender: "M", games: 12, wins: 9, totalDiff: 17, joinMonth: "Agustus" },
-            { name: "Kurniawan", gender: "M", games: 20, wins: 7, totalDiff: -23, joinMonth: "Agustus" },
+            { name: "Kurniawan", gender: "M", games: 16, wins: 6, totalDiff: -18, joinMonth: "Agustus" },
             { name: "Nanang", gender: "M", games: 8, wins: 2, totalDiff: -4, joinMonth: "Juli" },
+            { name: "Nurul", gender: "F", games: 4, wins: 1, totalDiff: -5, joinMonth: "Agustus", lastUpdate: { newPlayer: true } },
             { name: "Octano", gender: "M", games: 16, wins: 8, totalDiff: 2, joinMonth: "Agustus" },
-            { name: "Okta", gender: "F", games: 0, wins: 0, totalDiff: 0, joinMonth: "Juli" },
+            { name: "Okta", gender: "F", games: 5, wins: 2, totalDiff: -8, joinMonth: "Juli", lastUpdate: { games: 5, wins: 2, diff: -8 } },
             { name: "Pamungkas", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Mei" },
             { name: "Raka", gender: "M", games: 8, wins: 2, totalDiff: -14, joinMonth: "Juli" },
-            { name: "Rama", gender: "M", games: 20, wins: 2, totalDiff: -48, joinMonth: "Agustus" },
+            { name: "Rama", gender: "M", games: 24, wins: 4, totalDiff: -51, joinMonth: "Agustus", lastUpdate: { games: 4, wins: 2, diff: -3 } },
             { name: "Rayest", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Juli" },
             { name: "Reiza", gender: "M", games: 31, wins: 29, totalDiff: 64, joinMonth: "Agustus" },
             { name: "Rendi", gender: "M", games: 8, wins: 6, totalDiff: 4, joinMonth: "Juli" },
-            { name: "Rezza", gender: "M", games: 4, wins: 4, totalDiff: 9, joinMonth: "Juli" },
+            { name: "Rezza", gender: "M", games: 8, wins: 7, totalDiff: 16, joinMonth: "Agustus", lastUpdate: { games: 4, wins: 3, diff: 7, oldJoinMonth: "Juli" } },
             { name: "Rifian", gender: "M", games: 4, wins: 0, totalDiff: -12, joinMonth: "Juli" },
             { name: "Rifki", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "Juli" },
             { name: "Rizki", gender: "M", games: 8, wins: 7, totalDiff: 16, joinMonth: "Juli" },
             { name: "Soni", gender: "M", games: 4, wins: 2, totalDiff: 0, joinMonth: "Agustus" },
+            { name: "Taufik", gender: "M", games: 4, wins: 0, totalDiff: -9, joinMonth: "Agustus", lastUpdate: { newPlayer: true } },
             { name: "Totong", gender: "M", games: 20, wins: 16, totalDiff: 29, joinMonth: "Juli" },
             { name: "Try", gender: "M", games: 32, wins: 7, totalDiff: -43, joinMonth: "Agustus" },
             { name: "Windra", gender: "M", games: 4, wins: 4, totalDiff: 10, joinMonth: "Mei" },
             { name: "Wisnu", gender: "M", games: 4, wins: 3, totalDiff: 2, joinMonth: "Juni" },
             { name: "Yakin", gender: "M", games: 8, wins: 1, totalDiff: -16, joinMonth: "Juli" },
-            { name: "Yoga", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "Agustus" },
             { name: "Yoses", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Juni" }
         ];
 
@@ -468,6 +469,7 @@
         let activeFormat = 'single'; // Default
         let activeGender = 'ALL'; // Default
         let playersData = [];
+        let prevPlayersData = []; // Untuk komparasi rank
         let filteredPlayers = [];
 
         // Helper untuk mencari total seluruh game
@@ -494,11 +496,10 @@
                 else if (p.joinMonth === 'Veteran') monthsMissed = 4; // Default untuk yg join sebelum Mei
 
                 // 3. KOMPONEN PENALTI INAKTIF (Dipotong dari Game Point)
-                // Penalti = 10% dari Win Rate per bulan inaktif (tanpa max limit)
                 const penaltyRatio = monthsMissed * 0.10;
                 const penalty = winRate * penaltyRatio;
                 
-                // 4. KOMPONEN DIFF POINT (Total Diff x 0.15 + Avg Diff x 2.0)
+                // 4. KOMPONEN DIFF POINT
                 const avgDiff = p.games > 0 ? p.totalDiff / p.games : 0;
                 const diffPoint = (p.totalDiff * 0.15) + (avgDiff * 2.0);
                 
@@ -506,12 +507,10 @@
                 let marginPts = 0;
                 
                 if (p.games > 0 && squadTotalGames > 0) {
-                    // Margin Linear dengan Diminishing Return (Batas 24 Game)
                     if (p.games <= 24) {
                         const diffGames = p.games - avgSquadGames;
                         marginPts = diffGames * 0.20; 
                     } else {
-                        // Game sampai 24 dihitung 0.20, sisanya dihitung 0.10
                         const baseDiff = 24 - avgSquadGames;
                         const extraGames = p.games - 24;
                         marginPts = (baseDiff * 0.20) + (extraGames * 0.10);
@@ -527,25 +526,22 @@
                     ...p,
                     monthsMissed,
                     winRate,
-                    penalty,      // disimpan untuk tooltip
-                    avgDiff,      // disimpan untuk tooltip
-                    totalDiff: p.totalDiff, // disimpan untuk tooltip
+                    penalty,
+                    avgDiff,
+                    totalDiff: p.totalDiff,
                     diffPoint,
-                    marginPts,    // disimpan untuk tooltip
+                    marginPts,
                     gamePoint,
                     totalPoints 
                 };
             });
         }
 
-        // Fungsi untuk mengganti format (Single/Double)
         function switchFormat(format) {
             activeFormat = format;
             
-            // Update UI Button Styles
             const btnDouble = document.getElementById('btnDouble');
             const btnSingle = document.getElementById('btnSingle');
-            
             const activeClass = "px-5 md:px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 bg-ace text-white shadow-md flex items-center gap-2 justify-center";
             const inactiveClass = "px-5 md:px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 bg-transparent text-slate-500 hover:text-ace flex items-center gap-2 justify-center";
             
@@ -557,18 +553,15 @@
                 btnDouble.className = inactiveClass;
             }
 
-            // Reload data
             initData();
         }
 
-        // Fungsi untuk mengganti Kategori (All/Men/Women)
         function switchGender(gender) {
             activeGender = gender;
             
             const btnAll = document.getElementById('btnCatAll');
             const btnM = document.getElementById('btnCatM');
             const btnF = document.getElementById('btnCatF');
-            
             const activeClass = "px-4 md:px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 bg-ace text-white shadow-md flex items-center gap-2 justify-center";
             const inactiveClass = "px-4 md:px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 bg-transparent text-slate-500 hover:text-ace flex items-center gap-2 justify-center";
             
@@ -579,64 +572,86 @@
             filterPlayers();
         }
 
-        // Inisialisasi data berdasarkan format yang aktif
         function initData() {
-            if (activeFormat === 'double') {
-                const totalSquadGamesDouble = getTotalGames(rawDoublePlayersData);
-                playersData = calculateStats(rawDoublePlayersData, totalSquadGamesDouble);
-            } else {
-                const totalSquadGamesSingle = getTotalGames(rawSinglePlayersData);
-                playersData = calculateStats(rawSinglePlayersData, totalSquadGamesSingle);
-            }
+            const rawData = activeFormat === 'double' ? rawDoublePlayersData : rawSinglePlayersData;
+            
+            // Generate Data Peringkat Saat Ini
+            const currentTotalGames = getTotalGames(rawData);
+            playersData = calculateStats(rawData, currentTotalGames);
+            
+            // Generate Data Peringkat Sebelum Update (Dengan mundur 1 step lewat logika lastUpdate)
+            const prevRawData = rawData.map(p => {
+                if (p.lastUpdate?.newPlayer) return null; // Pemain baru tidak ada di data lama
+                if (p.lastUpdate) {
+                    return {
+                        ...p,
+                        games: p.games - (p.lastUpdate.games || 0),
+                        wins: p.wins - (p.lastUpdate.wins || 0),
+                        totalDiff: p.totalDiff - (p.lastUpdate.diff || 0),
+                        joinMonth: p.lastUpdate.oldJoinMonth || p.joinMonth
+                    };
+                }
+                return p;
+            }).filter(Boolean); // Buang yang null
+
+            const prevTotalGames = getTotalGames(prevRawData);
+            prevPlayersData = calculateStats(prevRawData, prevTotalGames);
             
             filterPlayers();
         }
 
-        // FUNGSI FILTER GABUNGAN
-        function filterPlayers() {
+        // Helper fungsi filter & sort terpusat
+        function applyFilters(data) {
             const minGamesElement = document.getElementById('minGames');
             const tierElement = document.getElementById('tierFilter');
-            const sortByElement = document.getElementById('sortBy');
             const searchInputElement = document.getElementById('searchInput');
 
-            if (!minGamesElement || !sortByElement || !tierElement) return;
+            if (!minGamesElement || !tierElement) return [];
 
             const minGames = parseInt(minGamesElement.value, 10);
             const tier = tierElement.value;
             const genderFilter = activeGender;
-            const sortBy = sortByElement.value;
             const searchTerm = searchInputElement ? searchInputElement.value.toLowerCase() : '';
 
-            // Cuma nampilin yang sudah main (games > 0) ATAU cocok dengan filter
-            filteredPlayers = playersData.filter(p => {
+            return data.filter(p => {
                 if (p.games === 0 && minGames > 0) return false;
-                if (p.games === 0 && searchTerm === '') return false; // Hide 0 games by default unless searched
+                if (p.games === 0 && searchTerm === '') return false; // Hide 0 games by default
 
                 const matchGames = p.games >= minGames;
                 const matchGender = genderFilter === 'ALL' ? true : p.gender === genderFilter;
                 const matchSearch = p.name.toLowerCase().includes(searchTerm);
                 
-                // Tier Logic (Hanya menggunakan persentase asli)
                 let matchTier = true;
-                if (tier === 'ATAS') {
-                    matchTier = p.winRate > 80;
-                } else if (tier === 'TENGAH') {
-                    matchTier = p.winRate > 50 && p.winRate <= 80;
-                } else if (tier === 'BAWAH') {
-                    matchTier = p.winRate <= 50;
-                }
+                if (tier === 'ATAS') matchTier = p.winRate > 80;
+                else if (tier === 'TENGAH') matchTier = p.winRate > 50 && p.winRate <= 80;
+                else if (tier === 'BAWAH') matchTier = p.winRate <= 50;
                 
                 return matchGames && matchGender && matchSearch && matchTier;
             });
-            
-            // Re-sort the filtered array based on user selection
-            filteredPlayers.sort((a, b) => {
+        }
+
+        function sortData(data) {
+            const sortBy = document.getElementById('sortBy').value;
+            return data.sort((a, b) => {
                 if (sortBy === 'points') return b.totalPoints - a.totalPoints;
                 if (sortBy === 'games') return b.games - a.games;
                 if (sortBy === 'name') return a.name.localeCompare(b.name);
-                return a.name.localeCompare(b.name); // Default fallback: Abjad A-Z
+                return a.name.localeCompare(b.name);
+            });
+        }
+
+        function filterPlayers() {
+            // Filter Data Current
+            filteredPlayers = sortData(applyFilters(playersData));
+            
+            // Filter Data Previous (Untuk Tracking Rank Lama)
+            let prevFiltered = sortData(applyFilters(prevPlayersData));
+            window.prevRankMap = new Map();
+            prevFiltered.forEach((p, index) => {
+                window.prevRankMap.set(p.name, index);
             });
             
+            const genderFilter = activeGender;
             let categoryText = genderFilter === 'ALL' ? 'Pemain' : (genderFilter === 'M' ? 'Pemain Pria' : 'Pemain Wanita');
             const countElement = document.getElementById('playerCount');
             if (countElement) {
@@ -681,29 +696,48 @@
         function renderLeaderboard() {
             const tbody = document.getElementById('leaderboardBody');
             const sortByElement = document.getElementById('sortBy');
-            const sortBy = sortByElement ? sortByElement.value : 'name';
+            const sortBy = sortByElement ? sortByElement.value : 'points';
             
             if (!tbody) return;
             
             if(filteredPlayers.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="px-6 py-8 text-center text-slate-500 font-medium">Tidak ada pemain yang sesuai dengan filter/pencarian ini.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="8" class="px-6 py-8 text-center text-slate-500 font-medium">Tidak ada pemain yang sesuai dengan filter/pencarian ini.</td></tr>`;
                 return;
             }
 
             tbody.innerHTML = filteredPlayers.map((p, index) => {
-                // Highlight tipis hanya jika tidak diurutkan berdasarkan Abjad, dan player masuk 3 besar
                 const isTopHighlight = (sortBy !== 'name' && index < 3);
                 const rowClass = isTopHighlight ? 'bg-purple-50/40 hover:bg-purple-50' : 'hover:bg-slate-50';
-                
                 const nameClass = isTopHighlight ? 'font-bold text-slate-900 text-base' : 'font-semibold text-slate-700';
+
+                // ==========================
+                // LOGIKA PANAH NAIK/TURUN
+                // ==========================
+                let currentRank = index;
+                let oldRank = window.prevRankMap.get(p.name);
+                let rankChangeHTML = '';
+
+                if (sortBy === 'name') {
+                    // Kalau diurutkan pakai Abjad, panah rank tidak ada gunanya.
+                    rankChangeHTML = `<span class="text-[10px] font-black text-slate-300">-</span>`;
+                } else if (p.lastUpdate?.newPlayer || oldRank === undefined) {
+                    rankChangeHTML = `<span class="text-[9px] font-black text-blue-500 bg-blue-50 px-1.5 py-0.5 rounded uppercase tracking-wider border border-blue-200 shadow-sm">New</span>`;
+                } else {
+                    const diff = oldRank - currentRank; // Kalau diff positif = Peringkat naik (misal dari rank 5 ke 3)
+                    if (diff > 0) {
+                        rankChangeHTML = `<span class="text-[10px] font-bold text-emerald-500 flex items-center gap-0.5"><svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 15l7-7 7 7"></path></svg>${diff}</span>`;
+                    } else if (diff < 0) {
+                        rankChangeHTML = `<span class="text-[10px] font-bold text-rose-500 flex items-center gap-0.5"><svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M19 9l-7 7-7-7"></path></svg>${Math.abs(diff)}</span>`;
+                    } else {
+                        rankChangeHTML = `<span class="text-[10px] font-black text-slate-300">-</span>`;
+                    }
+                }
 
                 const losses = p.games - p.wins;
                 const winRateClass = p.winRate > 80 ? 'text-emerald-600' : (p.winRate <= 50 ? 'text-rose-600' : 'text-amber-500');
                 
-                // Indikator Win Rate MURNI
                 const winRateDisplay = `${p.winRate.toFixed(1)}%`;
                 
-                // Label kecil untuk status inaktif bulan (digabung di bawah Record)
                 let joinBadge = '';
                 if (p.monthsMissed === 0) {
                     joinBadge = `<span class="text-[10px] text-emerald-500 font-semibold block mt-0.5 uppercase tracking-wider">Current</span>`;
@@ -712,13 +746,11 @@
                     joinBadge = `<span class="text-[10px] text-rose-400 font-medium block mt-0.5 uppercase tracking-wider">${p.monthsMissed} ${monthStr} ago</span>`;
                 }
 
-                // Formatting untuk Tooltip & Color Diff Point
                 const totalDiffPrefix = p.totalDiff > 0 ? '+' : '';
                 const avgDiffPrefix = p.avgDiff > 0 ? '+' : '';
                 const diffPointColor = p.diffPoint > 0 ? 'text-purple-600' : (p.diffPoint < 0 ? 'text-rose-600' : 'text-slate-500');
                 const diffPointPrefix = p.diffPoint > 0 ? '+' : '';
 
-                // Formatting untuk Tooltip & Color Game Point
                 const gamePointColor = p.gamePoint > 5 ? 'text-blue-600' : (p.gamePoint < 0 ? 'text-rose-500' : 'text-slate-600');
                 const gamePointPrefix = p.gamePoint > 0 ? '+' : '';
                 const marginPrefix = p.marginPts > 0 ? '+' : '';
@@ -728,11 +760,16 @@
                     gamePointTooltip += ` | Penalti Inaktif (${p.monthsMissed} bln): -${p.penalty.toFixed(1)} Poin (10% x ${p.monthsMissed} x WinRate)`;
                 }
 
-                // Tambahkan icon warning jika ada penalti di Game Point
                 const penaltyIcon = p.penalty > 0 ? `<span class="text-amber-500 ml-1 text-[10px] cursor-help">⚠️</span>` : '';
 
                 return `
                     <tr class="transition-colors border-b border-slate-100 last:border-0 ${rowClass}">
+                        <td class="px-4 py-4 whitespace-nowrap text-center">
+                            <div class="flex flex-col items-center justify-center gap-0.5">
+                                <span class="text-sm font-black text-slate-400">${index + 1}</span>
+                                ${rankChangeHTML}
+                            </div>
+                        </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <span class="${nameClass}">${p.name}</span>
                         </td>
@@ -762,7 +799,7 @@
 
         // Initialize on load
         document.addEventListener('DOMContentLoaded', () => {
-            initData(); // Calls calculateStats based on default format then renders
+            initData(); 
         });
     </script>
 </body>
