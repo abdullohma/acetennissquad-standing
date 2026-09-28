@@ -75,7 +75,7 @@
                 <div class="relative mb-6 group">
                     <!-- Subtle glowing aura behind logo -->
                     <div class="absolute inset-0 bg-gradient-to-tr from-purple-200 to-lime-200 rounded-full blur-2xl opacity-40 group-hover:opacity-70 transition-opacity duration-500"></div>
-                    <img src="https://github.com/abdullohma/shareable-figure/blob/main/IMG_1528.png?raw=true" alt="ACE Tennis Squad Logo" class="relative z-10 h-48 md:h-60 w-auto object-contain hover:scale-105 transition-transform duration-500 mix-blend-multiply brightness-105">
+                    <img src="https://github.com/abdullohma/shareable-figure/blob/main/9BC08737-12C5-4A1E-9B4F-87CD7DEAFD12.png?raw=true" alt="ACE Tennis Squad Logo" class="relative z-10 h-48 md:h-60 w-auto object-contain hover:scale-105 transition-transform duration-500 mix-blend-multiply brightness-105">
                 </div>
                 
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-3 tracking-tight leading-tight">
@@ -181,16 +181,22 @@
                         
                         <!-- 3 Columns Grid for dropdowns -->
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <!-- Game Range Dropdown -->
+                            <!-- Game Range Filter Dropdown -->
                             <div>
-                                <label for="gameRange" class="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Range Games:</label>
+                                <label for="gameFilter" class="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Filter Games:</label>
                                 <div class="relative">
-                                    <select id="gameRange" onchange="filterPlayers()" class="w-full appearance-none bg-white border-2 border-slate-200 text-slate-700 py-2.5 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:border-ace focus:ring-4 focus:ring-ace/10 transition-all cursor-pointer font-semibold text-sm">
+                                    <select id="gameFilter" onchange="filterPlayers()" class="w-full appearance-none bg-white border-2 border-slate-200 text-slate-700 py-2.5 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:border-ace focus:ring-4 focus:ring-ace/10 transition-all cursor-pointer font-semibold text-sm">
                                         <option value="ALL" selected>Semua Games</option>
-                                        <option value="1-10">1 - 10 Games (Casual)</option>
-                                        <option value="11-20">11 - 20 Games (Reguler)</option>
-                                        <option value="21-40">21 - 40 Games (Aktif)</option>
-                                        <option value="41+">> 40 Games (Veteran)</option>
+                                        <optgroup label="Berdasarkan Range">
+                                            <option value="RANGE_1_10">1 - 10 Games</option>
+                                            <option value="RANGE_11_20">11 - 20 Games</option>
+                                            <option value="RANGE_21_MAX">21+ Games</option>
+                                        </optgroup>
+                                        <optgroup label="Berdasarkan Minimal">
+                                            <option value="MIN_5">Min. 5 Games</option>
+                                            <option value="MIN_10">Min. 10 Games</option>
+                                            <option value="MIN_20">Min. 20 Games</option>
+                                        </optgroup>
                                     </select>
                                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
                                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -273,26 +279,32 @@
                         <span class="bg-white px-2.5 py-1 rounded-md shadow-sm border border-purple-100/50">Diff Point</span>
                         <span class="font-bold text-purple-400">+</span>
                         <span class="bg-white px-2.5 py-1 rounded-md shadow-sm border border-purple-100/50 text-ace-dark">Game Point</span>
+                        <span class="font-bold text-rose-500">-</span>
+                        <span class="bg-rose-50 px-2.5 py-1 rounded-md shadow-sm border border-rose-200 text-rose-700">Boss Tax</span>
                     </div>
 
-                    <!-- Layout 3 Kolom -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-purple-700 bg-white/50 p-3 rounded-lg border border-purple-100/50">
+                    <!-- Layout 4 Kolom -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs text-purple-700 bg-white/50 p-3 rounded-lg border border-purple-100/50">
                         <div>
                             <strong class="text-purple-900">1. Base Poin (Win %):</strong> <br>
-                            Murni dari persentase kemenangan (100% = 100 Poin). <br>
+                            Murni dari persentase kemenangan (100% = 100 Poin).
                         </div>
                         <div>
                             <strong class="text-purple-900">2. Diff Point:</strong> <br>
                             Poin Selisih Skor: <br>
-                            <code>(Tot Diff × 0.15) + <br>(Avg Diff × 2.0)</code>
+                            <code>(Tot Diff × 0.15) + (Avg Diff × 2.0)</code>
                         </div>
                         <div>
                             <strong class="text-purple-900">3. Game Point:</strong> <br>
-                            <code>Margin Linear - Penalti Inaktif</code><br>
+                            <code>Margin Linear - Penalti</code><br>
                             <span class="text-[10px] text-purple-500 leading-tight block mt-1">
-                                *Margin Linear: Selisih dr rata-rata × 0.20 (Game > 24 × 0.10).<br>
-                                *Penalti Inaktif: Dipotong 10% dari Win Rate per bln absen (September = 0 bulan absen).
+                                *Margin: Selisih dari rata-rata × 0.20 (Game > 24 × 0.10).
+                                *Penalti: Dipotong 10% x Win Rate per bln absen.
                             </span>
+                        </div>
+                        <div>
+                            <strong class="text-rose-700">4. Boss Tax (Pajak Puncak):</strong> <br>
+                            Potongan <strong class="text-rose-600">10 Poin</strong> khusus pemain OP (Win Rate ≥ 90% & min. 20 Game).
                         </div>
                     </div>
                 </div>
@@ -439,7 +451,7 @@
             { name: "Geri", gender: "M", games: 24, wins: 13, totalDiff: 3, joinMonth: "Agustus" },
             { name: "Gian", gender: "M", games: 4, wins: 2, totalDiff: 2, joinMonth: "Juni" },
             { name: "Gusti", gender: "M", games: 32, wins: 23, totalDiff: 42, joinMonth: "September" },
-            { name: "Hanung", gender: "M", games: 44, wins: 10, totalDiff: -28, joinMonth: "September" },
+            { name: "Hanung", gender: "M", games: 40, wins: 9, totalDiff: -22, joinMonth: "September" },
             { name: "Hendra", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "September" },
             { name: "Icank", gender: "M", games: 4, wins: 3, totalDiff: 3, joinMonth: "September" },
             { name: "Ichal", gender: "M", games: 4, wins: 3, totalDiff: 8, joinMonth: "Juli" },
@@ -461,22 +473,22 @@
             { name: "Rakan", gender: "M", games: 8, wins: 8, totalDiff: 21, joinMonth: "September" },
             { name: "Rama", gender: "M", games: 24, wins: 4, totalDiff: -51, joinMonth: "September" },
             { name: "Rayest", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Juli" },
-            { name: "Reiza", gender: "M", games: 43, wins: 41, totalDiff: 97, joinMonth: "September", lastUpdate: { games: 4, wins: 4, diff: 11 } },
+            { name: "Reiza", gender: "M", games: 43, wins: 41, totalDiff: 97, joinMonth: "September" },
             { name: "Rendi", gender: "M", games: 8, wins: 6, totalDiff: 4, joinMonth: "Juli" },
             { name: "Rezza", gender: "M", games: 12, wins: 11, totalDiff: 26, joinMonth: "September" },
             { name: "Rifian", gender: "M", games: 4, wins: 0, totalDiff: -12, joinMonth: "Juli" },
             { name: "Rifki", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "Juli" },
             { name: "Riski", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "September" },
             { name: "Rizki", gender: "M", games: 8, wins: 7, totalDiff: 16, joinMonth: "Juli" },
-            { name: "Soni", gender: "M", games: 20, wins: 12, totalDiff: 10, joinMonth: "September", lastUpdate: { games: 8, wins: 5, diff: 2 } },
-            { name: "Sulthan", gender: "M", games: 4, wins: 0, totalDiff: -11, joinMonth: "September", lastUpdate: { newPlayer: true } },
+            { name: "Soni", gender: "M", games: 20, wins: 12, totalDiff: 10, joinMonth: "September" },
+            { name: "Sulthan", gender: "M", games: 4, wins: 0, totalDiff: -11, joinMonth: "September" },
             { name: "Taufik", gender: "M", games: 4, wins: 0, totalDiff: -9, joinMonth: "September" },
-            { name: "Totong", gender: "M", games: 24, wins: 18, totalDiff: 28, joinMonth: "September", lastUpdate: { games: 4, wins: 2, diff: -1, oldJoinMonth: "Juli" } },
-            { name: "Try", gender: "M", games: 36, wins: 10, totalDiff: -38, joinMonth: "September", lastUpdate: { games: 4, wins: 3, diff: 5, oldJoinMonth: "Agustus" } },
+            { name: "Totong", gender: "M", games: 24, wins: 18, totalDiff: 28, joinMonth: "September" },
+            { name: "Try", gender: "M", games: 36, wins: 10, totalDiff: -38, joinMonth: "September" },
             { name: "Windra", gender: "M", games: 4, wins: 4, totalDiff: 10, joinMonth: "Mei" },
             { name: "Wisnu", gender: "M", games: 4, wins: 3, totalDiff: 2, joinMonth: "Juni" },
             { name: "Yakin", gender: "M", games: 8, wins: 1, totalDiff: -16, joinMonth: "Juli" },
-            { name: "Yoga", gender: "M", games: 8, wins: 3, totalDiff: -5, joinMonth: "September", lastUpdate: { games: 4, wins: 2, diff: 1 } },
+            { name: "Yoga", gender: "M", games: 8, wins: 3, totalDiff: -5, joinMonth: "September" },
             { name: "Yon", gender: "M", games: 4, wins: 3, totalDiff: 5, joinMonth: "September" },
             { name: "Yoses", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Juni" }
         ];
@@ -506,7 +518,6 @@
                 const winRate = p.games > 0 ? (p.wins / p.games) * 100 : 0;
                 
                 // 2. MENGHITUNG BULAN INAKTIF
-                // Aturan: Karena sekarang September, maka Agustus = absen 1 bulan.
                 let monthsMissed = 0;
                 if (p.joinMonth === 'September') monthsMissed = 0;
                 else if (p.joinMonth === 'Agustus') monthsMissed = 1;
@@ -538,9 +549,15 @@
                 }
                 
                 let gamePoint = marginPts - penalty;
+
+                // 6. KOMPONEN BOSS TAX
+                let bossTax = 0;
+                if (winRate >= 90 && p.games >= 20) {
+                    bossTax = 10;
+                }
                 
                 // TOTAL
-                const totalPoints = winRate + diffPoint + gamePoint;
+                const totalPoints = winRate + diffPoint + gamePoint - bossTax;
 
                 return {
                     ...p,
@@ -552,6 +569,7 @@
                     diffPoint,
                     marginPts,
                     gamePoint,
+                    bossTax,
                     totalPoints 
                 };
             });
@@ -622,26 +640,28 @@
 
         // Helper fungsi filter & sort terpusat
         function applyFilters(data) {
-            const gameRangeElement = document.getElementById('gameRange');
+            const gameFilterElement = document.getElementById('gameFilter');
             const tierElement = document.getElementById('tierFilter');
             const searchInputElement = document.getElementById('searchInput');
 
-            if (!gameRangeElement || !tierElement) return [];
+            if (!gameFilterElement || !tierElement) return [];
 
-            const gameRange = gameRangeElement.value;
+            const gameFilter = gameFilterElement.value;
             const tier = tierElement.value;
             const genderFilter = activeGender;
             const searchTerm = searchInputElement ? searchInputElement.value.toLowerCase() : '';
 
             return data.filter(p => {
-                // Jangan tampilkan yg 0 game kecuali dicari secara spesifik
+                // Jangan tampilkan pemain dengan 0 game kecuali dicari namanya
                 if (p.games === 0 && searchTerm === '') return false;
 
                 let matchGames = true;
-                if (gameRange === '1-10') matchGames = p.games >= 1 && p.games <= 10;
-                else if (gameRange === '11-20') matchGames = p.games >= 11 && p.games <= 20;
-                else if (gameRange === '21-40') matchGames = p.games >= 21 && p.games <= 40;
-                else if (gameRange === '41+') matchGames = p.games > 40;
+                if (gameFilter === 'RANGE_1_10') matchGames = p.games >= 1 && p.games <= 10;
+                else if (gameFilter === 'RANGE_11_20') matchGames = p.games >= 11 && p.games <= 20;
+                else if (gameFilter === 'RANGE_21_MAX') matchGames = p.games >= 21;
+                else if (gameFilter === 'MIN_5') matchGames = p.games >= 5;
+                else if (gameFilter === 'MIN_10') matchGames = p.games >= 10;
+                else if (gameFilter === 'MIN_20') matchGames = p.games >= 20;
 
                 const matchGender = genderFilter === 'ALL' ? true : p.gender === genderFilter;
                 const matchSearch = p.name.toLowerCase().includes(searchTerm);
@@ -770,6 +790,9 @@
                     joinBadge = `<span class="text-[10px] text-rose-400 font-medium block mt-0.5 uppercase tracking-wider">${p.monthsMissed} ${monthStr} ago</span>`;
                 }
 
+                // Boss Tax icon (Mahkota turun merah)
+                const bossTaxIcon = p.bossTax > 0 ? `<span class="text-rose-500 ml-1 text-[12px] cursor-help tooltip-hint" title="Terkena Boss Tax: -10 Poin karena Win Rate ≥ 90% dan Games ≥ 20">👑⬇️</span>` : '';
+
                 const totalDiffPrefix = p.totalDiff > 0 ? '+' : '';
                 const avgDiffPrefix = p.avgDiff > 0 ? '+' : '';
                 const diffPointColor = p.diffPoint > 0 ? 'text-purple-600' : (p.diffPoint < 0 ? 'text-rose-600' : 'text-slate-500');
@@ -795,7 +818,7 @@
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="${nameClass}">${p.name}</span>
+                            <span class="${nameClass}">${p.name}</span> ${bossTaxIcon}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center">
                             <div><span class="font-bold text-emerald-600">${p.wins}W</span> <span class="text-slate-300 mx-1">-</span> <span class="font-bold text-rose-500">${losses}L</span></div>
