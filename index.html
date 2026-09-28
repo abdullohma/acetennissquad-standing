@@ -75,7 +75,7 @@
                 <div class="relative mb-6 group">
                     <!-- Subtle glowing aura behind logo -->
                     <div class="absolute inset-0 bg-gradient-to-tr from-purple-200 to-lime-200 rounded-full blur-2xl opacity-40 group-hover:opacity-70 transition-opacity duration-500"></div>
-                    <img src="https://github.com/abdullohma/shareable-figure/blob/main/9BC08737-12C5-4A1E-9B4F-87CD7DEAFD12.png?raw=true" alt="ACE Tennis Squad Logo" class="relative z-10 h-48 md:h-60 w-auto object-contain hover:scale-105 transition-transform duration-500 mix-blend-multiply brightness-105">
+                    <img src="https://github.com/abdullohma/shareable-figure/blob/main/IMG_1528.png?raw=true" alt="ACE Tennis Squad Logo" class="relative z-10 h-48 md:h-60 w-auto object-contain hover:scale-105 transition-transform duration-500 mix-blend-multiply brightness-105">
                 </div>
                 
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-3 tracking-tight leading-tight">
@@ -181,16 +181,16 @@
                         
                         <!-- 3 Columns Grid for dropdowns -->
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <!-- Min Games Dropdown -->
+                            <!-- Game Range Dropdown -->
                             <div>
-                                <label for="minGames" class="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Min. Games:</label>
+                                <label for="gameRange" class="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Range Games:</label>
                                 <div class="relative">
-                                    <select id="minGames" onchange="filterPlayers()" class="w-full appearance-none bg-white border-2 border-slate-200 text-slate-700 py-2.5 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:border-ace focus:ring-4 focus:ring-ace/10 transition-all cursor-pointer font-semibold text-sm">
-                                        <option value="0" selected>All Games</option>
-                                        <option value="5">5+ Games</option>
-                                        <option value="10">10+ Games</option>
-                                        <option value="15">15+ Games</option>
-                                        <option value="20">20+ Games</option>
+                                    <select id="gameRange" onchange="filterPlayers()" class="w-full appearance-none bg-white border-2 border-slate-200 text-slate-700 py-2.5 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:border-ace focus:ring-4 focus:ring-ace/10 transition-all cursor-pointer font-semibold text-sm">
+                                        <option value="ALL" selected>Semua Games</option>
+                                        <option value="1-10">1 - 10 Games (Casual)</option>
+                                        <option value="11-20">11 - 20 Games (Reguler)</option>
+                                        <option value="21-40">21 - 40 Games (Aktif)</option>
+                                        <option value="41+">> 40 Games (Veteran)</option>
                                     </select>
                                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
                                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -419,10 +419,10 @@
             { name: "Azzam", gender: "M", games: 8, wins: 2, totalDiff: -8, joinMonth: "September" },
             { name: "Bayu", gender: "M", games: 26, wins: 12, totalDiff: 0, joinMonth: "Agustus" },
             { name: "Bayuw", gender: "M", games: 8, wins: 4, totalDiff: -1, joinMonth: "September" },
-            { name: "Binka", gender: "M", games: 12, wins: 6, totalDiff: 6, joinMonth: "September", lastUpdate: { games: 4, wins: 2, diff: 1 } },
+            { name: "Binka", gender: "M", games: 12, wins: 6, totalDiff: 6, joinMonth: "September" },
             { name: "Dani", gender: "M", games: 8, wins: 0, totalDiff: -21, joinMonth: "Agustus" },
             { name: "Davy", gender: "M", games: 4, wins: 4, totalDiff: 8, joinMonth: "Agustus" },
-            { name: "Deny", gender: "M", games: 16, wins: 7, totalDiff: -3, joinMonth: "September" },
+            { name: "Deny", gender: "M", games: 20, wins: 10, totalDiff: 4, joinMonth: "September" },
             { name: "Domas", gender: "M", games: 20, wins: 3, totalDiff: -21, joinMonth: "Juni" },
             { name: "Dwiki", gender: "M", games: 4, wins: 2, totalDiff: 0, joinMonth: "Juli" },
             { name: "Ecko", gender: "M", games: 4, wins: 0, totalDiff: -7, joinMonth: "September" },
@@ -430,7 +430,7 @@
             { name: "Evan", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "September" },
             { name: "Fadly", gender: "M", games: 4, wins: 2, totalDiff: -2, joinMonth: "Juli" },
             { name: "Fahmi", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Juni" },
-            { name: "Farin", gender: "M", games: 4, wins: 2, totalDiff: 1, joinMonth: "September", lastUpdate: { newPlayer: true } },
+            { name: "Farin", gender: "M", games: 4, wins: 2, totalDiff: 1, joinMonth: "September" },
             { name: "Fien", gender: "F", games: 5, wins: 1, totalDiff: -3, joinMonth: "Juli" },
             { name: "Frans", gender: "M", games: 12, wins: 7, totalDiff: 6, joinMonth: "Agustus" },
             { name: "Gana", gender: "M", games: 4, wins: 1, totalDiff: -7, joinMonth: "September" },
@@ -439,43 +439,44 @@
             { name: "Geri", gender: "M", games: 24, wins: 13, totalDiff: 3, joinMonth: "Agustus" },
             { name: "Gian", gender: "M", games: 4, wins: 2, totalDiff: 2, joinMonth: "Juni" },
             { name: "Gusti", gender: "M", games: 32, wins: 23, totalDiff: 42, joinMonth: "September" },
-            { name: "Hanung", gender: "M", games: 40, wins: 9, totalDiff: -22, joinMonth: "September" },
+            { name: "Hanung", gender: "M", games: 44, wins: 10, totalDiff: -28, joinMonth: "September" },
             { name: "Hendra", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "September" },
             { name: "Icank", gender: "M", games: 4, wins: 3, totalDiff: 3, joinMonth: "September" },
             { name: "Ichal", gender: "M", games: 4, wins: 3, totalDiff: 8, joinMonth: "Juli" },
             { name: "Indra", gender: "M", games: 2, wins: 1, totalDiff: 0, joinMonth: "Juli" },
             { name: "Intan", gender: "F", games: 9, wins: 3, totalDiff: -6, joinMonth: "September" },
-            { name: "Iqbal", gender: "M", games: 12, wins: 5, totalDiff: -11, joinMonth: "September" },
+            { name: "Iqbal", gender: "M", games: 16, wins: 5, totalDiff: -19, joinMonth: "September" },
             { name: "Iqfal", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Agustus" },
             { name: "Kamil", gender: "M", games: 12, wins: 9, totalDiff: 17, joinMonth: "Agustus" },
             { name: "Kurniawan", gender: "M", games: 25, wins: 9, totalDiff: -23, joinMonth: "September" },
-            { name: "Luthfi", gender: "M", games: 8, wins: 8, totalDiff: 17, joinMonth: "September", lastUpdate: { games: 4, wins: 4, diff: 9 } },
-            { name: "M Iqbal", gender: "M", games: 16, wins: 5, totalDiff: -17, joinMonth: "September", lastUpdate: { games: 4, wins: 2, diff: -1 } },
+            { name: "Luthfi", gender: "M", games: 8, wins: 8, totalDiff: 17, joinMonth: "September" },
+            { name: "M Iqbal", gender: "M", games: 16, wins: 5, totalDiff: -17, joinMonth: "September" },
             { name: "Nanang", gender: "M", games: 8, wins: 2, totalDiff: -4, joinMonth: "Juli" },
             { name: "Nurul", gender: "F", games: 4, wins: 1, totalDiff: -5, joinMonth: "September" },
             { name: "Octano", gender: "M", games: 24, wins: 13, totalDiff: 3, joinMonth: "September" },
             { name: "Okta", gender: "F", games: 5, wins: 2, totalDiff: -8, joinMonth: "Juli" },
             { name: "Pamungkas", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Mei" },
-            { name: "Qonita", gender: "F", games: 4, wins: 0, totalDiff: -10, joinMonth: "September", lastUpdate: { newPlayer: true } },
+            { name: "Qonita", gender: "F", games: 4, wins: 0, totalDiff: -10, joinMonth: "September" },
             { name: "Raka", gender: "M", games: 8, wins: 2, totalDiff: -14, joinMonth: "Juli" },
             { name: "Rakan", gender: "M", games: 8, wins: 8, totalDiff: 21, joinMonth: "September" },
             { name: "Rama", gender: "M", games: 24, wins: 4, totalDiff: -51, joinMonth: "September" },
             { name: "Rayest", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Juli" },
-            { name: "Reiza", gender: "M", games: 39, wins: 37, totalDiff: 86, joinMonth: "September" },
+            { name: "Reiza", gender: "M", games: 43, wins: 41, totalDiff: 97, joinMonth: "September", lastUpdate: { games: 4, wins: 4, diff: 11 } },
             { name: "Rendi", gender: "M", games: 8, wins: 6, totalDiff: 4, joinMonth: "Juli" },
             { name: "Rezza", gender: "M", games: 12, wins: 11, totalDiff: 26, joinMonth: "September" },
             { name: "Rifian", gender: "M", games: 4, wins: 0, totalDiff: -12, joinMonth: "Juli" },
             { name: "Rifki", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "Juli" },
             { name: "Riski", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "September" },
             { name: "Rizki", gender: "M", games: 8, wins: 7, totalDiff: 16, joinMonth: "Juli" },
-            { name: "Soni", gender: "M", games: 12, wins: 7, totalDiff: 8, joinMonth: "September" },
+            { name: "Soni", gender: "M", games: 20, wins: 12, totalDiff: 10, joinMonth: "September", lastUpdate: { games: 8, wins: 5, diff: 2 } },
+            { name: "Sulthan", gender: "M", games: 4, wins: 0, totalDiff: -11, joinMonth: "September", lastUpdate: { newPlayer: true } },
             { name: "Taufik", gender: "M", games: 4, wins: 0, totalDiff: -9, joinMonth: "September" },
-            { name: "Totong", gender: "M", games: 20, wins: 16, totalDiff: 29, joinMonth: "Juli" },
-            { name: "Try", gender: "M", games: 32, wins: 7, totalDiff: -43, joinMonth: "Agustus" },
+            { name: "Totong", gender: "M", games: 24, wins: 18, totalDiff: 28, joinMonth: "September", lastUpdate: { games: 4, wins: 2, diff: -1, oldJoinMonth: "Juli" } },
+            { name: "Try", gender: "M", games: 36, wins: 10, totalDiff: -38, joinMonth: "September", lastUpdate: { games: 4, wins: 3, diff: 5, oldJoinMonth: "Agustus" } },
             { name: "Windra", gender: "M", games: 4, wins: 4, totalDiff: 10, joinMonth: "Mei" },
             { name: "Wisnu", gender: "M", games: 4, wins: 3, totalDiff: 2, joinMonth: "Juni" },
             { name: "Yakin", gender: "M", games: 8, wins: 1, totalDiff: -16, joinMonth: "Juli" },
-            { name: "Yoga", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "September" },
+            { name: "Yoga", gender: "M", games: 8, wins: 3, totalDiff: -5, joinMonth: "September", lastUpdate: { games: 4, wins: 2, diff: 1 } },
             { name: "Yon", gender: "M", games: 4, wins: 3, totalDiff: 5, joinMonth: "September" },
             { name: "Yoses", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Juni" }
         ];
@@ -621,22 +622,27 @@
 
         // Helper fungsi filter & sort terpusat
         function applyFilters(data) {
-            const minGamesElement = document.getElementById('minGames');
+            const gameRangeElement = document.getElementById('gameRange');
             const tierElement = document.getElementById('tierFilter');
             const searchInputElement = document.getElementById('searchInput');
 
-            if (!minGamesElement || !tierElement) return [];
+            if (!gameRangeElement || !tierElement) return [];
 
-            const minGames = parseInt(minGamesElement.value, 10);
+            const gameRange = gameRangeElement.value;
             const tier = tierElement.value;
             const genderFilter = activeGender;
             const searchTerm = searchInputElement ? searchInputElement.value.toLowerCase() : '';
 
             return data.filter(p => {
-                if (p.games === 0 && minGames > 0) return false;
-                if (p.games === 0 && searchTerm === '') return false; // Hide 0 games by default
+                // Jangan tampilkan yg 0 game kecuali dicari secara spesifik
+                if (p.games === 0 && searchTerm === '') return false;
 
-                const matchGames = p.games >= minGames;
+                let matchGames = true;
+                if (gameRange === '1-10') matchGames = p.games >= 1 && p.games <= 10;
+                else if (gameRange === '11-20') matchGames = p.games >= 11 && p.games <= 20;
+                else if (gameRange === '21-40') matchGames = p.games >= 21 && p.games <= 40;
+                else if (gameRange === '41+') matchGames = p.games > 40;
+
                 const matchGender = genderFilter === 'ALL' ? true : p.gender === genderFilter;
                 const matchSearch = p.name.toLowerCase().includes(searchTerm);
                 
