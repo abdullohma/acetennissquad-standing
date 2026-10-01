@@ -279,32 +279,26 @@
                         <span class="bg-white px-2.5 py-1 rounded-md shadow-sm border border-purple-100/50">Diff Point</span>
                         <span class="font-bold text-purple-400">+</span>
                         <span class="bg-white px-2.5 py-1 rounded-md shadow-sm border border-purple-100/50 text-ace-dark">Game Point</span>
-                        <span class="font-bold text-rose-500">-</span>
-                        <span class="bg-rose-50 px-2.5 py-1 rounded-md shadow-sm border border-rose-200 text-rose-700">Boss Tax</span>
                     </div>
 
-                    <!-- Layout 4 Kolom -->
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs text-purple-700 bg-white/50 p-3 rounded-lg border border-purple-100/50">
+                    <!-- Layout 3 Kolom -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-purple-700 bg-white/50 p-3 rounded-lg border border-purple-100/50">
                         <div>
                             <strong class="text-purple-900">1. Base Poin (Win %):</strong> <br>
-                            Murni dari persentase kemenangan (100% = 100 Poin).
+                            Murni dari persentase kemenangan (100% = 100 Poin). <br>
                         </div>
                         <div>
                             <strong class="text-purple-900">2. Diff Point:</strong> <br>
                             Poin Selisih Skor: <br>
-                            <code>(Tot Diff × 0.15) + (Avg Diff × 2.0)</code>
+                            <code>(Tot Diff × 0.15) + <br>(Avg Diff × 2.0)</code>
                         </div>
                         <div>
                             <strong class="text-purple-900">3. Game Point:</strong> <br>
-                            <code>Margin Linear - Penalti</code><br>
+                            <code>Margin Linear - Penalti Inaktif</code><br>
                             <span class="text-[10px] text-purple-500 leading-tight block mt-1">
-                                *Margin: Selisih dari rata-rata × 0.20 (Game > 24 × 0.10).
-                                *Penalti: Dipotong 10% x Win Rate per bln absen.
+                                *Margin Linear: Selisih dr rata-rata × 0.20 (Game > 24 × 0.10).<br>
+                                *Penalti Inaktif: Dipotong 10% dari Win Rate per bln absen (September = 0 bulan absen).
                             </span>
-                        </div>
-                        <div>
-                            <strong class="text-rose-700">4. Boss Tax (Pajak Puncak):</strong> <br>
-                            Potongan <strong class="text-rose-600">10 Poin</strong> khusus pemain OP (Win Rate ≥ 90% & min. 20 Game).
                         </div>
                     </div>
                 </div>
@@ -456,13 +450,14 @@
             { name: "Icank", gender: "M", games: 4, wins: 3, totalDiff: 3, joinMonth: "September" },
             { name: "Ichal", gender: "M", games: 4, wins: 3, totalDiff: 8, joinMonth: "Juli" },
             { name: "Indra", gender: "M", games: 2, wins: 1, totalDiff: 0, joinMonth: "Juli" },
+            { name: "Indra W", gender: "M", games: 4, wins: 2, totalDiff: 1, joinMonth: "September", lastUpdate: { newPlayer: true } },
             { name: "Intan", gender: "F", games: 9, wins: 3, totalDiff: -6, joinMonth: "September" },
-            { name: "Iqbal", gender: "M", games: 16, wins: 5, totalDiff: -19, joinMonth: "September" },
+            { name: "Iqbal", gender: "M", games: 20, wins: 8, totalDiff: -15, joinMonth: "September", lastUpdate: { games: 4, wins: 3, diff: 4 } },
             { name: "Iqfal", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Agustus" },
             { name: "Kamil", gender: "M", games: 12, wins: 9, totalDiff: 17, joinMonth: "Agustus" },
             { name: "Kurniawan", gender: "M", games: 25, wins: 9, totalDiff: -23, joinMonth: "September" },
             { name: "Luthfi", gender: "M", games: 8, wins: 8, totalDiff: 17, joinMonth: "September" },
-            { name: "M Iqbal", gender: "M", games: 16, wins: 5, totalDiff: -17, joinMonth: "September" },
+            { name: "M Iqbal", gender: "M", games: 20, wins: 7, totalDiff: -17, joinMonth: "September", lastUpdate: { games: 4, wins: 2, diff: 0 } },
             { name: "Nanang", gender: "M", games: 8, wins: 2, totalDiff: -4, joinMonth: "Juli" },
             { name: "Nurul", gender: "F", games: 4, wins: 1, totalDiff: -5, joinMonth: "September" },
             { name: "Octano", gender: "M", games: 24, wins: 13, totalDiff: 3, joinMonth: "September" },
@@ -471,7 +466,7 @@
             { name: "Qonita", gender: "F", games: 4, wins: 0, totalDiff: -10, joinMonth: "September" },
             { name: "Raka", gender: "M", games: 8, wins: 2, totalDiff: -14, joinMonth: "Juli" },
             { name: "Rakan", gender: "M", games: 8, wins: 8, totalDiff: 21, joinMonth: "September" },
-            { name: "Rama", gender: "M", games: 24, wins: 4, totalDiff: -51, joinMonth: "September" },
+            { name: "Rama", gender: "M", games: 28, wins: 5, totalDiff: -56, joinMonth: "September", lastUpdate: { games: 4, wins: 1, diff: -5 } },
             { name: "Rayest", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Juli" },
             { name: "Reiza", gender: "M", games: 43, wins: 41, totalDiff: 97, joinMonth: "September" },
             { name: "Rendi", gender: "M", games: 8, wins: 6, totalDiff: 4, joinMonth: "Juli" },
@@ -481,10 +476,10 @@
             { name: "Riski", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "September" },
             { name: "Rizki", gender: "M", games: 8, wins: 7, totalDiff: 16, joinMonth: "Juli" },
             { name: "Soni", gender: "M", games: 20, wins: 12, totalDiff: 10, joinMonth: "September" },
-            { name: "Sulthan", gender: "M", games: 4, wins: 0, totalDiff: -11, joinMonth: "September" },
+            { name: "Sulthan", gender: "M", games: 4, wins: 0, totalDiff: -11, joinMonth: "September", lastUpdate: { newPlayer: true } },
             { name: "Taufik", gender: "M", games: 4, wins: 0, totalDiff: -9, joinMonth: "September" },
             { name: "Totong", gender: "M", games: 24, wins: 18, totalDiff: 28, joinMonth: "September" },
-            { name: "Try", gender: "M", games: 36, wins: 10, totalDiff: -38, joinMonth: "September" },
+            { name: "Try", gender: "M", games: 40, wins: 12, totalDiff: -38, joinMonth: "September", lastUpdate: { games: 4, wins: 2, diff: 0 } },
             { name: "Windra", gender: "M", games: 4, wins: 4, totalDiff: 10, joinMonth: "Mei" },
             { name: "Wisnu", gender: "M", games: 4, wins: 3, totalDiff: 2, joinMonth: "Juni" },
             { name: "Yakin", gender: "M", games: 8, wins: 1, totalDiff: -16, joinMonth: "Juli" },
@@ -550,7 +545,7 @@
                 
                 let gamePoint = marginPts - penalty;
 
-                // 6. KOMPONEN BOSS TAX
+                // 6. KOMPONEN BOSS TAX (SILENT)
                 let bossTax = 0;
                 if (winRate >= 90 && p.games >= 20) {
                     bossTax = 10;
@@ -569,7 +564,6 @@
                     diffPoint,
                     marginPts,
                     gamePoint,
-                    bossTax,
                     totalPoints 
                 };
             });
@@ -790,9 +784,6 @@
                     joinBadge = `<span class="text-[10px] text-rose-400 font-medium block mt-0.5 uppercase tracking-wider">${p.monthsMissed} ${monthStr} ago</span>`;
                 }
 
-                // Boss Tax icon (Mahkota turun merah)
-                const bossTaxIcon = p.bossTax > 0 ? `<span class="text-rose-500 ml-1 text-[12px] cursor-help tooltip-hint" title="Terkena Boss Tax: -10 Poin karena Win Rate ≥ 90% dan Games ≥ 20">👑⬇️</span>` : '';
-
                 const totalDiffPrefix = p.totalDiff > 0 ? '+' : '';
                 const avgDiffPrefix = p.avgDiff > 0 ? '+' : '';
                 const diffPointColor = p.diffPoint > 0 ? 'text-purple-600' : (p.diffPoint < 0 ? 'text-rose-600' : 'text-slate-500');
@@ -818,7 +809,7 @@
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="${nameClass}">${p.name}</span> ${bossTaxIcon}
+                            <span class="${nameClass}">${p.name}</span>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center">
                             <div><span class="font-bold text-emerald-600">${p.wins}W</span> <span class="text-slate-300 mx-1">-</span> <span class="font-bold text-rose-500">${losses}L</span></div>
