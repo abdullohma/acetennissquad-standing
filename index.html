@@ -211,7 +211,7 @@
                                         <option value="ALL" selected>Semua Performa</option>
                                         <option value="ATAS">On Fire 🔥 (> 80%)</option>
                                         <option value="TENGAH">Konsisten ⚖️ (51% - 80%)</option>
-                                        <option value="BAWAH">Warming Up 🧗 (0% - 50%)</option>
+                                        <option value="BAWAH">Leveling Up 🔋 (0% - 50%)</option>
                                     </select>
                                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
                                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -549,7 +549,6 @@
                 let gamePoint = marginPts - penalty;
 
                 // 6. KOMPONEN BOSS TAX (SILENT)
-                // Smart Boss Tax: Hanya berlaku jika pemain aktif (karena jika inaktif, denda bulanan sudah cukup memangkas poin).
                 let bossTax = 0;
                 if (winRate >= 90 && p.games >= 20 && monthsMissed === 0) {
                     bossTax = 10;
