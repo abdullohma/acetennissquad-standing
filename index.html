@@ -173,30 +173,29 @@
                 
                 <!-- Filter Section -->
                 <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 flex-1 lg:max-w-2xl shadow-sm">
-                    <div class="flex items-center gap-2 mb-4">
-                        <span class="text-xl">📊</span>
-                        <h3 class="text-lg font-bold text-slate-800">Filter Tampilan</h3>
-                    </div>
-                    <div class="space-y-5">
+                    
+                    <!-- TAB MODE HEADER -->
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 border-b border-slate-200 pb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xl">📊</span>
+                            <h3 class="text-lg font-bold text-slate-800">Filter Tampilan</h3>
+                        </div>
                         
+                        <div class="inline-flex bg-slate-200/80 p-1 rounded-lg shadow-inner">
+                            <button id="btnModeGlobal" onclick="switchBoardMode('global')" class="px-4 py-1.5 rounded-md text-xs font-bold bg-white text-ace shadow-sm transition-all">🌍 Global Board</button>
+                            <button id="btnModeLeague" onclick="switchBoardMode('league')" class="px-4 py-1.5 rounded-md text-xs font-bold text-slate-500 hover:text-ace transition-all">🏆 Liga Kelas</button>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-5">
                         <!-- 3 Columns Grid for dropdowns -->
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <!-- Game Range Filter Dropdown -->
+                            <!-- Dynamic Game Filter Dropdown -->
                             <div>
-                                <label for="gameFilter" class="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Filter Games:</label>
+                                <label id="gameFilterLabel" for="gameFilter" class="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Min. Games:</label>
                                 <div class="relative">
                                     <select id="gameFilter" onchange="filterPlayers()" class="w-full appearance-none bg-white border-2 border-slate-200 text-slate-700 py-2.5 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:border-ace focus:ring-4 focus:ring-ace/10 transition-all cursor-pointer font-semibold text-sm">
-                                        <option value="ALL" selected>Semua Games</option>
-                                        <optgroup label="Liga / Kelas Pemain">
-                                            <option value="RANGE_1_10">Rookie League (1-10)</option>
-                                            <option value="RANGE_11_20">Contender League (11-20)</option>
-                                            <option value="RANGE_21_MAX">Core (21+)</option>
-                                        </optgroup>
-                                        <optgroup label="Klasemen Utama">
-                                            <option value="MIN_5">Qualified Board (Min. 5)</option>
-                                            <option value="MIN_10">Established Board (Min. 10)</option>
-                                            <option value="MIN_20">Elite Board (Min. 20)</option>
-                                        </optgroup>
+                                        <!-- Options injected by JS based on Mode -->
                                     </select>
                                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
                                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -414,7 +413,7 @@
             { name: "Akhmad", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Agustus" },
             { name: "Alfred", gender: "M", games: 4, wins: 1, totalDiff: 0, joinMonth: "Juli" },
             { name: "Alief", gender: "M", games: 12, wins: 3, totalDiff: -15, joinMonth: "September" },
-            { name: "Aliy", gender: "M", games: 64, wins: 52, totalDiff: 102, joinMonth: "Oktober", lastUpdate: { games: 4, wins: 3, diff: 4, oldJoinMonth: "September" } },
+            { name: "Aliy", gender: "M", games: 64, wins: 52, totalDiff: 102, joinMonth: "Oktober" },
             { name: "Amani", gender: "M", games: 4, wins: 2, totalDiff: 2, joinMonth: "Juni" },
             { name: "Ambar", gender: "F", games: 4, wins: 0, totalDiff: -7, joinMonth: "Agustus" },
             { name: "Andhika", gender: "M", games: 4, wins: 4, totalDiff: 12, joinMonth: "Juni" },
@@ -429,13 +428,13 @@
             { name: "Dani", gender: "M", games: 8, wins: 0, totalDiff: -21, joinMonth: "Agustus" },
             { name: "Davy", gender: "M", games: 4, wins: 4, totalDiff: 8, joinMonth: "Agustus" },
             { name: "Deny", gender: "M", games: 20, wins: 10, totalDiff: 4, joinMonth: "September" },
-            { name: "Dhelano", gender: "M", games: 4, wins: 2, totalDiff: 1, joinMonth: "Oktober", lastUpdate: { newPlayer: true } },
+            { name: "Dhelano", gender: "M", games: 4, wins: 2, totalDiff: 1, joinMonth: "Oktober" },
             { name: "Domas", gender: "M", games: 20, wins: 3, totalDiff: -21, joinMonth: "Juni" },
             { name: "Dwiki", gender: "M", games: 4, wins: 2, totalDiff: 0, joinMonth: "Juli" },
             { name: "Ecko", gender: "M", games: 4, wins: 0, totalDiff: -7, joinMonth: "September" },
             { name: "Eko", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Mei" },
             { name: "Evan", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "September" },
-            { name: "Fadlan", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Oktober", lastUpdate: { newPlayer: true } },
+            { name: "Fadlan", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Oktober" },
             { name: "Fadly", gender: "M", games: 4, wins: 2, totalDiff: -2, joinMonth: "Juli" },
             { name: "Fahmi", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Juni" },
             { name: "Farin", gender: "M", games: 4, wins: 2, totalDiff: 1, joinMonth: "September" },
@@ -467,7 +466,7 @@
             { name: "Pamungkas", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Mei" },
             { name: "Qonita", gender: "F", games: 4, wins: 0, totalDiff: -10, joinMonth: "September" },
             { name: "Raka", gender: "M", games: 8, wins: 2, totalDiff: -14, joinMonth: "Juli" },
-            { name: "Rakan", gender: "M", games: 12, wins: 12, totalDiff: 26, joinMonth: "Oktober", lastUpdate: { games: 4, wins: 4, diff: 5, oldJoinMonth: "September" } },
+            { name: "Rakan", gender: "M", games: 12, wins: 12, totalDiff: 26, joinMonth: "Oktober" },
             { name: "Rama", gender: "M", games: 28, wins: 5, totalDiff: -56, joinMonth: "September" },
             { name: "Rayest", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Juli" },
             { name: "Reiza", gender: "M", games: 43, wins: 41, totalDiff: 97, joinMonth: "September" },
@@ -481,7 +480,7 @@
             { name: "Sulthan", gender: "M", games: 4, wins: 0, totalDiff: -11, joinMonth: "September" },
             { name: "Taufik", gender: "M", games: 4, wins: 0, totalDiff: -9, joinMonth: "September" },
             { name: "Totong", gender: "M", games: 24, wins: 18, totalDiff: 28, joinMonth: "September" },
-            { name: "Try", gender: "M", games: 44, wins: 13, totalDiff: -38, joinMonth: "Oktober", lastUpdate: { games: 4, wins: 1, diff: 0, oldJoinMonth: "September" } },
+            { name: "Try", gender: "M", games: 44, wins: 13, totalDiff: -38, joinMonth: "Oktober" },
             { name: "Windra", gender: "M", games: 4, wins: 4, totalDiff: 10, joinMonth: "Mei" },
             { name: "Wisnu", gender: "M", games: 4, wins: 3, totalDiff: 2, joinMonth: "Juni" },
             { name: "Yakin", gender: "M", games: 8, wins: 1, totalDiff: -16, joinMonth: "Juli" },
@@ -495,6 +494,7 @@
         // ============================================
         let activeFormat = 'single'; // Default
         let activeGender = 'ALL'; // Default
+        let currentBoardMode = 'global'; // Mode Filter Default
         let playersData = [];
         let prevPlayersData = []; // Untuk komparasi rank
         let filteredPlayers = [];
@@ -608,6 +608,41 @@
             filterPlayers();
         }
 
+        function switchBoardMode(mode) {
+            currentBoardMode = mode;
+            const btnGlobal = document.getElementById('btnModeGlobal');
+            const btnLeague = document.getElementById('btnModeLeague');
+            const gameFilter = document.getElementById('gameFilter');
+            const gameFilterLabel = document.getElementById('gameFilterLabel');
+            
+            const activeClass = "px-4 py-1.5 rounded-md text-xs font-bold bg-white text-ace shadow-sm transition-all";
+            const inactiveClass = "px-4 py-1.5 rounded-md text-xs font-bold text-slate-500 hover:text-ace transition-all";
+            
+            if (mode === 'global') {
+                btnGlobal.className = activeClass;
+                btnLeague.className = inactiveClass;
+                gameFilterLabel.innerText = "Klasemen Global:";
+                gameFilter.innerHTML = `
+                    <option value="ALL" selected>Semua Games</option>
+                    <option value="MIN_5">Qualified Board (Min. 5)</option>
+                    <option value="MIN_10">Established Board (Min. 10)</option>
+                    <option value="MIN_20">Elite Board (Min. 20)</option>
+                `;
+            } else {
+                btnGlobal.className = inactiveClass;
+                btnLeague.className = activeClass;
+                gameFilterLabel.innerText = "Pilih Liga:";
+                gameFilter.innerHTML = `
+                    <option value="ALL" selected>Semua Games</option>
+                    <option value="RANGE_1_10">Rookie League (1-10)</option>
+                    <option value="RANGE_11_20">Contender League (11-20)</option>
+                    <option value="RANGE_21_MAX">Core Squad (21+)</option>
+                `;
+            }
+            
+            filterPlayers();
+        }
+
         function initData() {
             const rawData = activeFormat === 'double' ? rawDoublePlayersData : rawSinglePlayersData;
             
@@ -633,7 +668,8 @@
             const prevTotalGames = getTotalGames(prevRawData);
             prevPlayersData = calculateStats(prevRawData, prevTotalGames);
             
-            filterPlayers();
+            // Refresh UI Filter Mode & Table
+            switchBoardMode(currentBoardMode);
         }
 
         // Helper fungsi filter & sort terpusat
