@@ -183,7 +183,7 @@
                         
                         <div class="inline-flex bg-slate-200/80 p-1 rounded-lg shadow-inner">
                             <button id="btnModeGlobal" onclick="switchBoardMode('global')" class="px-4 py-1.5 rounded-md text-xs font-bold bg-white text-ace shadow-sm transition-all">🌍 Global Board</button>
-                            <button id="btnModeLeague" onclick="switchBoardMode('league')" class="px-4 py-1.5 rounded-md text-xs font-bold text-slate-500 hover:text-ace transition-all">🏆 Liga Kelas</button>
+                            <button id="btnModeLeague" onclick="switchBoardMode('league')" class="px-4 py-1.5 rounded-md text-xs font-bold text-slate-500 hover:text-ace transition-all">🏆 Squad Level</button>
                         </div>
                     </div>
                     
@@ -205,13 +205,13 @@
                             
                             <!-- Win % Dropdown -->
                             <div>
-                                <label for="tierFilter" class="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Win %:</label>
+                                <label for="tierFilter" class="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Momentum (Win %):</label>
                                 <div class="relative">
                                     <select id="tierFilter" onchange="filterPlayers()" class="w-full appearance-none bg-white border-2 border-slate-200 text-slate-700 py-2.5 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:border-ace focus:ring-4 focus:ring-ace/10 transition-all cursor-pointer font-semibold text-sm">
-                                        <option value="ALL" selected>Semua Win %</option>
-                                        <option value="ATAS">> 80%</option>
-                                        <option value="TENGAH">51% - 80%</option>
-                                        <option value="BAWAH">0% - 50%</option>
+                                        <option value="ALL" selected>Semua Performa</option>
+                                        <option value="ATAS">On Fire 🔥 (> 80%)</option>
+                                        <option value="TENGAH">Konsisten ⚖️ (51% - 80%)</option>
+                                        <option value="BAWAH">Warming Up 🧗 (0% - 50%)</option>
                                     </select>
                                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
                                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -631,11 +631,11 @@
             } else {
                 btnGlobal.className = inactiveClass;
                 btnLeague.className = activeClass;
-                gameFilterLabel.innerText = "Pilih Liga:";
+                gameFilterLabel.innerText = "Pilih Squad:";
                 gameFilter.innerHTML = `
                     <option value="ALL" selected>Semua Games</option>
-                    <option value="RANGE_1_10">Rookie League (1-10)</option>
-                    <option value="RANGE_11_20">Contender League (11-20)</option>
+                    <option value="RANGE_1_10">Rookie Squad (1-10)</option>
+                    <option value="RANGE_11_20">Contender Squad (11-20)</option>
                     <option value="RANGE_21_MAX">Core Squad (21+)</option>
                 `;
             }
