@@ -197,10 +197,10 @@
                                 <div class="relative">
                                     <select id="gameFilter" onchange="filterPlayers()" class="w-full appearance-none bg-white border-2 border-slate-200 text-slate-700 py-2.5 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:border-ace focus:ring-4 focus:ring-ace/10 transition-all cursor-pointer font-semibold text-sm">
                                         <!-- Options injected by JS based on Mode -->
-                                        <option value="ALL" selected>Semua Papan Klasemen</option>
-                                        <option value="MIN_5">Qualified Board (Min. 5)</option>
+                                        <option value="MIN_5" selected>Qualified Board (Min. 5)</option>
                                         <option value="MIN_10">Established Board (Min. 10)</option>
                                         <option value="MIN_20">Elite Board (Min. 20)</option>
+                                        <option value="ALL">Semua Games (0+)</option>
                                     </select>
                                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
                                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -435,7 +435,7 @@
             { name: "Deny", gender: "M", games: 20, wins: 10, totalDiff: 4, joinMonth: "September" },
             { name: "Dhelano", gender: "M", games: 4, wins: 2, totalDiff: 1, joinMonth: "Oktober" },
             { name: "Domas", gender: "M", games: 20, wins: 3, totalDiff: -21, joinMonth: "Juni" },
-            { name: "Dwiki", gender: "M", games: 8, wins: 3, totalDiff: -4, joinMonth: "Oktober", lastUpdate: { games: 4, wins: 1, diff: -4, oldJoinMonth: "Juli" } },
+            { name: "Dwiki", gender: "M", games: 8, wins: 3, totalDiff: -4, joinMonth: "Oktober" },
             { name: "Ecko", gender: "M", games: 4, wins: 0, totalDiff: -7, joinMonth: "September" },
             { name: "Eko", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Mei" },
             { name: "Evan", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "September" },
@@ -450,20 +450,20 @@
             { name: "Geo", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "September" },
             { name: "Geri", gender: "M", games: 24, wins: 13, totalDiff: 3, joinMonth: "Agustus" },
             { name: "Gian", gender: "M", games: 4, wins: 2, totalDiff: 2, joinMonth: "Juni" },
-            { name: "Gusti", gender: "M", games: 36, wins: 26, totalDiff: 48, joinMonth: "Oktober", lastUpdate: { games: 4, wins: 3, diff: 6, oldJoinMonth: "September" } },
+            { name: "Gusti", gender: "M", games: 36, wins: 26, totalDiff: 48, joinMonth: "Oktober" },
             { name: "Hanung", gender: "M", games: 44, wins: 10, totalDiff: -28, joinMonth: "September" },
             { name: "Hendra", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "September" },
-            { name: "Icank", gender: "M", games: 8, wins: 6, totalDiff: 8, joinMonth: "Oktober", lastUpdate: { games: 4, wins: 3, diff: 5, oldJoinMonth: "September" } },
+            { name: "Icank", gender: "M", games: 8, wins: 6, totalDiff: 8, joinMonth: "Oktober" },
             { name: "Ichal", gender: "M", games: 4, wins: 3, totalDiff: 8, joinMonth: "Juli" },
             { name: "Indra", gender: "M", games: 2, wins: 1, totalDiff: 0, joinMonth: "Juli" },
-            { name: "Indra W", gender: "M", games: 9, wins: 4, totalDiff: -2, joinMonth: "Oktober", lastUpdate: { games: 5, wins: 2, diff: -3, oldJoinMonth: "September" } },
+            { name: "Indra W", gender: "M", games: 8, wins: 4, totalDiff: -2, joinMonth: "Oktober", lastUpdate: { games: 4, wins: 2, diff: -3, oldJoinMonth: "September" } },
             { name: "Intan", gender: "F", games: 9, wins: 3, totalDiff: -6, joinMonth: "September" },
             { name: "Iqbal", gender: "M", games: 20, wins: 8, totalDiff: -15, joinMonth: "September" },
             { name: "Iqfal", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Agustus" },
             { name: "Kamil", gender: "M", games: 12, wins: 9, totalDiff: 17, joinMonth: "Agustus" },
             { name: "Kurniawan", gender: "M", games: 25, wins: 9, totalDiff: -23, joinMonth: "September" },
             { name: "Luthfi", gender: "M", games: 8, wins: 8, totalDiff: 17, joinMonth: "September" },
-            { name: "M Iqbal", gender: "M", games: 24, wins: 9, totalDiff: -16, joinMonth: "Oktober", lastUpdate: { games: 4, wins: 2, diff: 1, oldJoinMonth: "September" } },
+            { name: "M Iqbal", gender: "M", games: 24, wins: 9, totalDiff: -16, joinMonth: "Oktober" },
             { name: "Nanang", gender: "M", games: 8, wins: 2, totalDiff: -4, joinMonth: "Juli" },
             { name: "Nurul", gender: "F", games: 4, wins: 1, totalDiff: -5, joinMonth: "September" },
             { name: "Octano", gender: "M", games: 24, wins: 13, totalDiff: 3, joinMonth: "September" },
@@ -472,8 +472,8 @@
             { name: "Qonita", gender: "F", games: 4, wins: 0, totalDiff: -10, joinMonth: "September" },
             { name: "Raka", gender: "M", games: 8, wins: 2, totalDiff: -14, joinMonth: "Juli" },
             { name: "Rakan", gender: "M", games: 12, wins: 12, totalDiff: 26, joinMonth: "Oktober" },
-            { name: "Rama", gender: "M", games: 32, wins: 5, totalDiff: -66, joinMonth: "Oktober", lastUpdate: { games: 4, wins: 0, diff: -10, oldJoinMonth: "September" } },
-            { name: "Rama P", gender: "M", games: 5, wins: 0, totalDiff: -8, joinMonth: "Oktober", lastUpdate: { newPlayer: true } },
+            { name: "Rama", gender: "M", games: 32, wins: 5, totalDiff: -66, joinMonth: "Oktober" },
+            { name: "Rama P", gender: "M", games: 4, wins: 0, totalDiff: -8, joinMonth: "Oktober", lastUpdate: { newPlayer: true } },
             { name: "Rayest", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Juli" },
             { name: "Reiza", gender: "M", games: 47, wins: 45, totalDiff: 109, joinMonth: "Oktober" },
             { name: "Rendi", gender: "M", games: 8, wins: 6, totalDiff: 4, joinMonth: "Juli" },
@@ -482,11 +482,11 @@
             { name: "Rifki", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "Juli" },
             { name: "Riski", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "September" },
             { name: "Rizki", gender: "M", games: 8, wins: 7, totalDiff: 16, joinMonth: "Juli" },
-            { name: "Soni", gender: "M", games: 28, wins: 17, totalDiff: 12, joinMonth: "Oktober", lastUpdate: { games: 4, wins: 4, diff: 8, oldJoinMonth: "Oktober" } },
+            { name: "Soni", gender: "M", games: 28, wins: 17, totalDiff: 12, joinMonth: "Oktober" },
             { name: "Sulthan", gender: "M", games: 4, wins: 0, totalDiff: -11, joinMonth: "September" },
             { name: "Taufik", gender: "M", games: 4, wins: 0, totalDiff: -9, joinMonth: "September" },
-            { name: "Totong", gender: "M", games: 28, wins: 22, totalDiff: 38, joinMonth: "Oktober", lastUpdate: { games: 4, wins: 4, diff: 10, oldJoinMonth: "September" } },
-            { name: "Try", gender: "M", games: 53, wins: 14, totalDiff: -43, joinMonth: "Oktober", lastUpdate: { games: 5, wins: 1, diff: -5, oldJoinMonth: "Oktober" } },
+            { name: "Totong", gender: "M", games: 28, wins: 22, totalDiff: 38, joinMonth: "Oktober" },
+            { name: "Try", gender: "M", games: 53, wins: 14, totalDiff: -43, joinMonth: "Oktober" },
             { name: "Windra", gender: "M", games: 4, wins: 4, totalDiff: 10, joinMonth: "Mei" },
             { name: "Wisnu", gender: "M", games: 4, wins: 3, totalDiff: 2, joinMonth: "Juni" },
             { name: "Yakin", gender: "M", games: 8, wins: 1, totalDiff: -16, joinMonth: "Juli" },
