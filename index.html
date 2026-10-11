@@ -131,8 +131,9 @@
 
             <!-- TOGGLE BUTTONS -->
             <div class="flex flex-col lg:flex-row justify-center items-center gap-4 lg:gap-6 mb-10">
-                <!-- FORMAT TOGGLE -->
-                <div class="inline-flex bg-slate-100 p-1.5 rounded-full shadow-inner border border-slate-200">
+                
+                <!-- FORMAT TOGGLE (Temporarily Hidden) -->
+                <div class="hidden bg-slate-100 p-1.5 rounded-full shadow-inner border border-slate-200">
                     <button id="btnDouble" onclick="switchFormat('double')" class="px-5 md:px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 bg-transparent text-slate-500 hover:text-ace flex items-center gap-2 justify-center">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"></path></svg>
                         Double
@@ -196,6 +197,10 @@
                                 <div class="relative">
                                     <select id="gameFilter" onchange="filterPlayers()" class="w-full appearance-none bg-white border-2 border-slate-200 text-slate-700 py-2.5 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:border-ace focus:ring-4 focus:ring-ace/10 transition-all cursor-pointer font-semibold text-sm">
                                         <!-- Options injected by JS based on Mode -->
+                                        <option value="ALL" selected>Semua Papan Klasemen</option>
+                                        <option value="MIN_5">Qualified Board (Min. 5)</option>
+                                        <option value="MIN_10">Established Board (Min. 10)</option>
+                                        <option value="MIN_20">Elite Board (Min. 20)</option>
                                     </select>
                                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
                                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -445,13 +450,13 @@
             { name: "Geo", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "September" },
             { name: "Geri", gender: "M", games: 24, wins: 13, totalDiff: 3, joinMonth: "Agustus" },
             { name: "Gian", gender: "M", games: 4, wins: 2, totalDiff: 2, joinMonth: "Juni" },
-            { name: "Gusti", gender: "M", games: 32, wins: 23, totalDiff: 42, joinMonth: "September" },
+            { name: "Gusti", gender: "M", games: 36, wins: 26, totalDiff: 48, joinMonth: "Oktober", lastUpdate: { games: 4, wins: 3, diff: 6, oldJoinMonth: "September" } },
             { name: "Hanung", gender: "M", games: 44, wins: 10, totalDiff: -28, joinMonth: "September" },
             { name: "Hendra", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "September" },
             { name: "Icank", gender: "M", games: 8, wins: 6, totalDiff: 8, joinMonth: "Oktober", lastUpdate: { games: 4, wins: 3, diff: 5, oldJoinMonth: "September" } },
             { name: "Ichal", gender: "M", games: 4, wins: 3, totalDiff: 8, joinMonth: "Juli" },
             { name: "Indra", gender: "M", games: 2, wins: 1, totalDiff: 0, joinMonth: "Juli" },
-            { name: "Indra W", gender: "M", games: 4, wins: 2, totalDiff: 1, joinMonth: "September" },
+            { name: "Indra W", gender: "M", games: 9, wins: 4, totalDiff: -2, joinMonth: "Oktober", lastUpdate: { games: 5, wins: 2, diff: -3, oldJoinMonth: "September" } },
             { name: "Intan", gender: "F", games: 9, wins: 3, totalDiff: -6, joinMonth: "September" },
             { name: "Iqbal", gender: "M", games: 20, wins: 8, totalDiff: -15, joinMonth: "September" },
             { name: "Iqfal", gender: "M", games: 4, wins: 3, totalDiff: 4, joinMonth: "Agustus" },
@@ -468,6 +473,7 @@
             { name: "Raka", gender: "M", games: 8, wins: 2, totalDiff: -14, joinMonth: "Juli" },
             { name: "Rakan", gender: "M", games: 12, wins: 12, totalDiff: 26, joinMonth: "Oktober" },
             { name: "Rama", gender: "M", games: 32, wins: 5, totalDiff: -66, joinMonth: "Oktober", lastUpdate: { games: 4, wins: 0, diff: -10, oldJoinMonth: "September" } },
+            { name: "Rama P", gender: "M", games: 5, wins: 0, totalDiff: -8, joinMonth: "Oktober", lastUpdate: { newPlayer: true } },
             { name: "Rayest", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Juli" },
             { name: "Reiza", gender: "M", games: 47, wins: 45, totalDiff: 109, joinMonth: "Oktober" },
             { name: "Rendi", gender: "M", games: 8, wins: 6, totalDiff: 4, joinMonth: "Juli" },
@@ -476,11 +482,11 @@
             { name: "Rifki", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "Juli" },
             { name: "Riski", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "September" },
             { name: "Rizki", gender: "M", games: 8, wins: 7, totalDiff: 16, joinMonth: "Juli" },
-            { name: "Soni", gender: "M", games: 28, wins: 17, totalDiff: 12, joinMonth: "Oktober", lastUpdate: { games: 4, wins: 4, diff: 8 } },
+            { name: "Soni", gender: "M", games: 28, wins: 17, totalDiff: 12, joinMonth: "Oktober", lastUpdate: { games: 4, wins: 4, diff: 8, oldJoinMonth: "Oktober" } },
             { name: "Sulthan", gender: "M", games: 4, wins: 0, totalDiff: -11, joinMonth: "September" },
             { name: "Taufik", gender: "M", games: 4, wins: 0, totalDiff: -9, joinMonth: "September" },
-            { name: "Totong", gender: "M", games: 24, wins: 18, totalDiff: 28, joinMonth: "September" },
-            { name: "Try", gender: "M", games: 48, wins: 13, totalDiff: -48, joinMonth: "Oktober" },
+            { name: "Totong", gender: "M", games: 28, wins: 22, totalDiff: 38, joinMonth: "Oktober", lastUpdate: { games: 4, wins: 4, diff: 10, oldJoinMonth: "September" } },
+            { name: "Try", gender: "M", games: 53, wins: 14, totalDiff: -43, joinMonth: "Oktober", lastUpdate: { games: 5, wins: 1, diff: -5, oldJoinMonth: "Oktober" } },
             { name: "Windra", gender: "M", games: 4, wins: 4, totalDiff: 10, joinMonth: "Mei" },
             { name: "Wisnu", gender: "M", games: 4, wins: 3, totalDiff: 2, joinMonth: "Juni" },
             { name: "Yakin", gender: "M", games: 8, wins: 1, totalDiff: -16, joinMonth: "Juli" },
@@ -492,7 +498,7 @@
         // ============================================
         // LOGIC & STATE
         // ============================================
-        let activeFormat = 'single'; // Default
+        let activeFormat = 'single'; // Default (Double hidden for now)
         let activeGender = 'ALL'; // Default
         let currentBoardMode = 'global'; // Mode Filter Default
         let playersData = [];
@@ -622,7 +628,7 @@
                 btnLeague.className = inactiveClass;
                 gameFilterLabel.innerText = "Klasemen Global:";
                 gameFilter.innerHTML = `
-                    <option value="ALL" selected>Semua Games</option>
+                    <option value="ALL" selected>Semua Papan Klasemen (0+)</option>
                     <option value="MIN_5">Qualified Board (Min. 5)</option>
                     <option value="MIN_10">Established Board (Min. 10)</option>
                     <option value="MIN_20">Elite Board (Min. 20)</option>
@@ -632,10 +638,10 @@
                 btnLeague.className = activeClass;
                 gameFilterLabel.innerText = "Pilih Squad:";
                 gameFilter.innerHTML = `
-                    <option value="ALL" selected>Semua Games</option>
+                    <option value="ALL" selected>Semua Squad Level (0+)</option>
                     <option value="RANGE_1_10">Rookie Squad (1-10)</option>
-                    <option value="RANGE_11_20">Contender Squad (11-20)</option>
-                    <option value="RANGE_21_MAX">Core Squad (21+)</option>
+                    <option value="RANGE_11_30">Contender Squad (11-30)</option>
+                    <option value="RANGE_31_MAX">Core Squad (31+)</option>
                 `;
             }
             
@@ -690,8 +696,8 @@
 
                 let matchGames = true;
                 if (gameFilter === 'RANGE_1_10') matchGames = p.games >= 1 && p.games <= 10;
-                else if (gameFilter === 'RANGE_11_20') matchGames = p.games >= 11 && p.games <= 20;
-                else if (gameFilter === 'RANGE_21_MAX') matchGames = p.games >= 21;
+                else if (gameFilter === 'RANGE_11_30') matchGames = p.games >= 11 && p.games <= 30;
+                else if (gameFilter === 'RANGE_31_MAX') matchGames = p.games >= 31;
                 else if (gameFilter === 'MIN_5') matchGames = p.games >= 5;
                 else if (gameFilter === 'MIN_10') matchGames = p.games >= 10;
                 else if (gameFilter === 'MIN_20') matchGames = p.games >= 20;
