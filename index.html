@@ -418,7 +418,7 @@
             { name: "Akhmad", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Agustus" },
             { name: "Alfred", gender: "M", games: 4, wins: 1, totalDiff: 0, joinMonth: "Juli" },
             { name: "Alief", gender: "M", games: 12, wins: 3, totalDiff: -15, joinMonth: "September" },
-            { name: "Aliy", gender: "M", games: 66, wins: 54, totalDiff: 107, joinMonth: "Oktober" },
+            { name: "Aliy", gender: "M", games: 66, wins: 54, totalDiff: 107, joinMonth: "Oktober", lastUpdate: { games: 2, wins: 2, diff: 5, oldJoinMonth: "Oktober" } },
             { name: "Amani", gender: "M", games: 4, wins: 2, totalDiff: 2, joinMonth: "Juni" },
             { name: "Ambar", gender: "F", games: 4, wins: 0, totalDiff: -7, joinMonth: "Agustus" },
             { name: "Andhika", gender: "M", games: 4, wins: 4, totalDiff: 12, joinMonth: "Juni" },
@@ -466,7 +466,7 @@
             { name: "Luthfi", gender: "M", games: 8, wins: 8, totalDiff: 17, joinMonth: "September" },
             { name: "M Iqbal", gender: "M", games: 32, wins: 12, totalDiff: -17, joinMonth: "Oktober" },
             { name: "Nanang", gender: "M", games: 8, wins: 2, totalDiff: -4, joinMonth: "Juli" },
-            { name: "Naufal", gender: "M", games: 4, wins: 1, totalDiff: -5, joinMonth: "Oktober" },
+            { name: "Naufal", gender: "M", games: 4, wins: 1, totalDiff: -5, joinMonth: "Oktober", lastUpdate: { newPlayer: true } },
             { name: "Nurul", gender: "F", games: 4, wins: 1, totalDiff: -5, joinMonth: "September" },
             { name: "Octano", gender: "M", games: 24, wins: 13, totalDiff: 3, joinMonth: "September" },
             { name: "Okta", gender: "F", games: 4, wins: 2, totalDiff: -8, joinMonth: "Juli" },
@@ -478,19 +478,19 @@
             { name: "Rama", gender: "M", games: 32, wins: 5, totalDiff: -66, joinMonth: "Oktober" },
             { name: "Rama P", gender: "M", games: 9, wins: 0, totalDiff: -17, joinMonth: "Oktober" },
             { name: "Rayest", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Juli" },
-            { name: "Reiza", gender: "M", games: 58, wins: 56, totalDiff: 138, joinMonth: "Oktober" },
-            { name: "Rendi", gender: "M", games: 16, wins: 10, totalDiff: 4, joinMonth: "Oktober" },
+            { name: "Reiza", gender: "M", games: 58, wins: 56, totalDiff: 138, joinMonth: "Oktober", lastUpdate: { games: 3, wins: 3, diff: 9, oldJoinMonth: "Oktober" } },
+            { name: "Rendi", gender: "M", games: 16, wins: 10, totalDiff: 4, joinMonth: "Oktober", lastUpdate: { games: 4, wins: 2, diff: -1, oldJoinMonth: "Oktober" } },
             { name: "Rezza", gender: "M", games: 12, wins: 11, totalDiff: 26, joinMonth: "September" },
             { name: "Rifian", gender: "M", games: 4, wins: 0, totalDiff: -12, joinMonth: "Juli" },
             { name: "Rifki", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "Juli" },
             { name: "Riski", gender: "M", games: 4, wins: 1, totalDiff: -6, joinMonth: "September" },
             { name: "Rizki", gender: "M", games: 8, wins: 7, totalDiff: 16, joinMonth: "Juli" },
-            { name: "Soni", gender: "M", games: 39, wins: 25, totalDiff: 24, joinMonth: "Oktober" },
+            { name: "Soni", gender: "M", games: 39, wins: 25, totalDiff: 24, joinMonth: "Oktober", lastUpdate: { games: 3, wins: 2, diff: 2, oldJoinMonth: "Oktober" } },
             { name: "Sulthan", gender: "M", games: 4, wins: 0, totalDiff: -11, joinMonth: "September" },
             { name: "Taufik", gender: "M", games: 4, wins: 0, totalDiff: -9, joinMonth: "September" },
             { name: "Totong", gender: "M", games: 28, wins: 22, totalDiff: 38, joinMonth: "Oktober" },
             { name: "Try", gender: "M", games: 52, wins: 14, totalDiff: -43, joinMonth: "Oktober" },
-            { name: "Tyo", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Oktober" },
+            { name: "Tyo", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Oktober", lastUpdate: { newPlayer: true } },
             { name: "Windra", gender: "M", games: 4, wins: 4, totalDiff: 10, joinMonth: "Mei" },
             { name: "Wisnu", gender: "M", games: 4, wins: 3, totalDiff: 2, joinMonth: "Juni" },
             { name: "Yakin", gender: "M", games: 8, wins: 1, totalDiff: -16, joinMonth: "Juli" },
@@ -800,8 +800,13 @@
             }
 
             tbody.innerHTML = filteredPlayers.map((p, index) => {
+                const isRecentlyUpdated = p.lastUpdate !== undefined;
                 const isTopHighlight = (sortBy !== 'name' && index < 3);
-                const rowClass = isTopHighlight ? 'bg-purple-50/40 hover:bg-purple-50' : 'hover:bg-slate-50';
+                
+                const rowClass = isRecentlyUpdated 
+                    ? 'bg-blue-50/40 hover:bg-blue-50' 
+                    : (isTopHighlight ? 'bg-purple-50/40 hover:bg-purple-50' : 'hover:bg-slate-50');
+                    
                 const nameClass = isTopHighlight ? 'font-bold text-slate-900 text-base' : 'font-semibold text-slate-700';
 
                 // ==========================
@@ -816,12 +821,13 @@
                 } else if (p.lastUpdate?.newPlayer || oldRank === undefined) {
                     rankChangeHTML = `<span class="text-[9px] font-black text-blue-500 bg-blue-50 px-1.5 py-0.5 rounded uppercase tracking-wider border border-blue-200 shadow-sm">New</span>`;
                 } else {
-                    const diff = oldRank - currentRank; // Kalau diff positif = Peringkat naik (misal dari rank 5 ke 3)
+                    const diff = oldRank - currentRank; // Kalau diff positif = Peringkat naik
                     if (diff > 0) {
                         rankChangeHTML = `<span class="text-[10px] font-bold text-emerald-500 flex items-center gap-0.5"><svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 15l7-7 7 7"></path></svg>${diff}</span>`;
                     } else if (diff < 0) {
                         rankChangeHTML = `<span class="text-[10px] font-bold text-rose-500 flex items-center gap-0.5"><svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M19 9l-7 7-7-7"></path></svg>${Math.abs(diff)}</span>`;
                     } else {
+                        // Jika rank tidak berubah (diff === 0), kembalikan ke tanda strip bawaan
                         rankChangeHTML = `<span class="text-[10px] font-black text-slate-300">-</span>`;
                     }
                 }
@@ -882,7 +888,7 @@
                         <td class="px-6 py-4 whitespace-nowrap text-center font-bold ${gamePointColor} tooltip-hint" title="${gamePointTooltip}">
                             ${gamePointPrefix}${p.gamePoint.toFixed(1)} ${penaltyIcon}
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center bg-purple-50/40">
+                        <td class="px-6 py-4 whitespace-nowrap text-center ${isRecentlyUpdated ? 'bg-blue-100/50' : 'bg-purple-50/40'}">
                             <span class="text-lg font-black text-ace-dark">${p.totalPoints.toFixed(1)}</span>
                         </td>
                     </tr>
