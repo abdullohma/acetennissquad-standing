@@ -419,7 +419,7 @@
             { name: "Akhmad", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Agustus" },
             { name: "Alfred", gender: "M", games: 4, wins: 1, totalDiff: 0, joinMonth: "Juli" },
             { name: "Alief", gender: "M", games: 12, wins: 3, totalDiff: -15, joinMonth: "September" },
-            { name: "Aliy", gender: "M", games: 77, wins: 63, totalDiff: 122, joinMonth: "November" },
+            { name: "Aliy", gender: "M", games: 79, wins: 64, totalDiff: 123, joinMonth: "November" },
             { name: "Amani", gender: "M", games: 4, wins: 2, totalDiff: 2, joinMonth: "Juni" },
             { name: "Ambar", gender: "F", games: 4, wins: 0, totalDiff: -7, joinMonth: "Agustus" },
             { name: "Andhika", gender: "M", games: 4, wins: 4, totalDiff: 12, joinMonth: "Juni" },
@@ -474,7 +474,7 @@
             { name: "Jason", gender: "M", games: 4, wins: 0, totalDiff: -11, joinMonth: "November" },
             { name: "Kamil", gender: "M", games: 12, wins: 9, totalDiff: 17, joinMonth: "Agustus" },
             { name: "Kurniawan", gender: "M", games: 25, wins: 9, totalDiff: -23, joinMonth: "September" },
-            { name: "Luthfi", gender: "M", games: 11, wins: 10, totalDiff: 22, joinMonth: "November", lastUpdate: { games: 3, wins: 2, diff: 5, oldJoinMonth: "September" } },
+            { name: "Luthfi", gender: "M", games: 11, wins: 11, totalDiff: 22, joinMonth: "November", lastUpdate: { games: 3, wins: 3, diff: 5, oldJoinMonth: "September" } },
             { name: "M Iqbal", gender: "M", games: 44, wins: 20, totalDiff: -7, joinMonth: "November" },
             { name: "Nanang", gender: "M", games: 8, wins: 2, totalDiff: -4, joinMonth: "Juli" },
             { name: "Naufal", gender: "M", games: 4, wins: 1, totalDiff: -5, joinMonth: "Oktober" },
@@ -508,7 +508,7 @@
             { name: "Wisnu", gender: "M", games: 4, wins: 3, totalDiff: 2, joinMonth: "Juni" },
             { name: "Yakin", gender: "M", games: 8, wins: 1, totalDiff: -16, joinMonth: "Juli" },
             { name: "Yoga", gender: "M", games: 24, wins: 9, totalDiff: -16, joinMonth: "November" },
-            { name: "Yon", gender: "M", games: 11, wins: 5, totalDiff: 1, joinMonth: "November", lastUpdate: { games: 3, wins: 0, diff: -5, oldJoinMonth: "Oktober" } },
+            { name: "Yon", gender: "M", games: 11, wins: 6, totalDiff: 1, joinMonth: "November", lastUpdate: { games: 3, wins: 1, diff: -5, oldJoinMonth: "Oktober" } },
             { name: "Yoses", gender: "M", games: 4, wins: 0, totalDiff: -10, joinMonth: "Juni" },
             { name: "Zaki", gender: "M", games: 4, wins: 0, totalDiff: -9, joinMonth: "Oktober" }
         ];
@@ -573,17 +573,8 @@
                 
                 let gamePoint = marginPts - penalty;
 
-                // 6. KOMPONEN BOSS TAX (SILENT) - Modified for "Aliens"
-                let bossTax = 0;
-                if (winRate >= 90 && p.games >= 20) {
-                    // Super Boss Tax (-15) untuk mengimbangi pemain yang win rate dan diff nya over-limit
-                    // Tax tetap berjalan meski vakum, agar poin mereka tidak tiba-tiba naik karena penalti inaktif lebih kecil dari tax
-                    if (winRate >= 95 && p.totalDiff > 100) {
-                        bossTax = 15; 
-                    } else {
-                        bossTax = 10;
-                    }
-                }
+                // 6. KOMPONEN BOSS TAX (SILENT)
+                let bossTax = 0; // Aturan Boss Tax resmi dihapus sesuai permintaan
                 
                 // TOTAL
                 const totalPoints = winRate + diffPoint + gamePoint - bossTax;
